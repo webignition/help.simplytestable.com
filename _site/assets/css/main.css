@@ -1,0 +1,65 @@
+body {
+    margin-top:80px;
+}
+
+.navbar .brand {
+    background: url('/assets/img/st30.png') transparent no-repeat 5px 4px;
+    color: #08C;
+    padding-left: 40px;
+}
+
+.navbar-inverse .brand:hover {
+    color:#0ae;
+}
+
+body .container a {
+    text-decoration: none;
+}
+
+body .container a:hover {
+    text-decoration: none;
+}
+
+.document-list  {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+.document-list li {
+    list-style-type: none;
+    margin:0;
+    padding:3px;
+}
+
+.document-list a {
+    display:block;
+    padding:3px;
+    margin: -3px;
+}
+
+.document-list .icon {
+    margin-right:6px;
+}
+
+.document-list a:hover span {
+    text-decoration: underline;
+}
+
+.section-post-meta .meta {
+    opacity: 0.4;
+}
+
+.post .section {
+    width:80%;
+}
+
+.post .section {
+    margin-bottom: 40px;
+}
+
+.post p {
+    font-size: 16px;
+    line-height: 24px;    
+}
+

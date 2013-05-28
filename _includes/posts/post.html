@@ -1,0 +1,24 @@
+{% assign content_item = false %}
+{% if post %}
+{% assign content_item = post %}
+{% else %}
+{% assign content_item = page %}
+{% endif %}
+
+<div class="post">
+    {% if content_item.is_archive %}
+    {% else %}
+    <div class="section section-post-meta post">    
+        <h2>            
+            <a href="{{ content_item.url }}">                
+                {{ content_item.title }}
+            </a>
+        </h2>
+        <p class="meta">
+            Last updated: {{ content_item.date | date: "%B %e, %Y" }}     
+        </p>
+    </div>    
+    {% endif %}
+    
+    {{ content_item.content }}
+</div>

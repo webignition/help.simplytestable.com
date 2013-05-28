@@ -1,0 +1,37 @@
+<div class="about well">
+    <h2>
+        Legal documents
+    </h2>
+    <ul class="document-list">
+        <li>
+            {% if page.url != '/privacy-policy/' %}
+            <a href="/privacy-policy/">
+            {% endif %}
+                <i class="icon icon-file-alt"></i>
+                <span>Privacy policy</span>
+            {% if page.url != '/privacy-policy/' %}
+            </a>
+            {% endif %}
+        </li>         
+        <li>
+            {% if page.url != '/cookie-policy/' %}
+            <a href="/cookie-policy/">
+            {% endif %}
+                <i class="icon icon-file-alt"></i>
+                <span>Cookie policy</span>
+            {% if page.url != '/cookie-policy/' %}
+            </a>
+            {% endif %}
+        </li>        
+        <li>
+            {% if page.url != '/terms-and-conditions/' %}
+            <a href="/terms-and-conditions/">
+            {% endif %}
+                <i class="icon icon-file-alt"></i>
+                <span>Terms and conditions</span>
+            {% if page.url != '/terms-and-conditions/' %}
+            </a>
+            {% endif %}
+        </li> 
+    </ul>
+</div>

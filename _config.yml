@@ -1,0 +1,9 @@
+# Jekyll
+exclude: nbproject, README.md, _drafts
+permalink: /:title/
+url: http://help.simplytestable.com
+
+# Site
+simplytestable:
+    title: Help and Support | Simply Testable
+    support_email: "&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#115;&#105;&#109;&#112;&#108;&#121;&#116;&#101;&#115;&#116;&#97;&#98;&#108;&#101;&#46;&#99;&#111;&#109;"
