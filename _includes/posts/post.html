@@ -14,9 +14,12 @@
                 {{ content_item.title }}
             </a>
         </h2>
+        {% if content_item.date %}
         <p class="meta">
             Last updated: {{ content_item.date | date: "%B %e, %Y" }}     
-        </p>
+        </p>        
+        {% endif %}        
+
     </div>    
     {% endif %}
     
