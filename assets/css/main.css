@@ -20,22 +20,29 @@ body .container a:hover {
     text-decoration: none;
 }
 
-.document-list  {
+.sidebar-list {
+    margin-left: 16px;
+}
+
+.sidebar-list li {
+    margin:0;
+    padding:3px;
+}
+
+.sidebar-list a {
+    display:block;
+    padding:3px;
+    margin: -3px;
+}
+
+.document-list {
     list-style-type: none;
     margin:0;
-    padding:0;
+    padding:0;    
 }
 
 .document-list li {
     list-style-type: none;
-    margin:0;
-    padding:3px;
-}
-
-.document-list a {
-    display:block;
-    padding:3px;
-    margin: -3px;
 }
 
 .document-list .icon {
@@ -63,3 +70,12 @@ body .container a:hover {
     line-height: 24px;    
 }
 
+ol.roman {
+    list-style-type: lower-roman;
+}
+
+span.target {
+    display: block;
+    height:40px;
+    margin-top:-40px;
+}

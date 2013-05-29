@@ -6,7 +6,7 @@
         {% include assets/css/default.html %}
         {% include assets/js/default.html %}
     </head>
-    <body id="{% include page/id %}">
+    <body id="{% include page/id %}" class="{{ page.body_class }}">
         {% include header/navigation.html %}
 
         <div class="container">
@@ -14,9 +14,9 @@
 
             <div class="row">
                 <div class="span8 pull-right">
-                    <p>
+
                         {% include posts/post.html %}
-                    </p>
+
                 </div>
                 <div class="span4 sidebar pull-left">
 {% include sidebar/legal.html %}

@@ -1,6 +1,6 @@
 # Jekyll
 exclude: nbproject, README.md, _drafts
-permalink: /:title/
+permalink: /:categories/:title/
 url: http://help.simplytestable.com
 
 # Site

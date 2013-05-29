@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://help.simplytestable.com/cookie-policy/</loc>
-        <lastmod>2013-05-28T15:15:06+01:00</lastmod>
+        <loc>http://help.simplytestable.com/legal/terms-of-service/</loc>
+        <lastmod>2013-05-29T12:34:43+01:00</lastmod>
     </url>
     <url>
-        <loc>http://help.simplytestable.com/privacy-policy/</loc>
-        <lastmod>2013-05-28T16:18:20+01:00</lastmod>
+        <loc>http://help.simplytestable.com/legal/privacy/</loc>
+        <lastmod>2013-05-29T09:48:57+01:00</lastmod>
     </url>
     <url>
-        <loc>http://help.simplytestable.com/terms-and-conditions/</loc>
-        <lastmod>2013-05-28T15:15:06+01:00</lastmod>
+        <loc>http://help.simplytestable.com/legal/cookies/</loc>
+        <lastmod>2013-05-29T12:38:18+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/</loc>
-        <lastmod>2013-05-28T16:18:20+01:00</lastmod>
+        <lastmod>2013-05-29T12:38:18+01:00</lastmod>
     </url>
 </urlset>
