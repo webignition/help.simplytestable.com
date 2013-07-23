@@ -1,0 +1,22 @@
+<div class="about well">
+    <h3>
+        Legal documents
+    </h3>
+    
+   
+    
+    <ul class="sidebar-list document-list">
+{% for post in site.categories.legal | sort:"name" %}
+        <li>
+            {% if page.url != post.url %}
+            <a href="{{ post.url }}">
+            {% endif %}    
+                <i class="icon icon-file-alt"></i>
+                <span>{{ post.title }}</span>
+            {% if page.url != '/privacy-policy/' %}
+            </a>
+            {% endif %}  
+        </li>    
+{% endfor %}         
+    </ul>
+</div>

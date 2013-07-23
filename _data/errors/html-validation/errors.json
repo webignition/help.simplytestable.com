@@ -1,0 +1,287 @@
+[
+  {
+    "frequency": 928,
+    "normal_form": "required attribute \"%0\" not specified",
+    "parameters": [
+      {
+        "alt": 789,
+        "type": 119,
+        "rows": 10,
+        "cols": 10
+      }
+    ]
+  },
+  {
+    "frequency": 781,
+    "normal_form": "end tag for \"%0\" omitted, but OMITTAG NO was specified",
+    "parameters": [
+      {
+        "img": 719,
+        "br": 12,
+        "a": 11,
+        "link": 10,
+        "area": 6,
+        "input": 6,
+        "div": 5,
+        "object": 5,
+        "li": 4,
+        "html": 1,
+        "body": 1,
+        "script": 1
+      }
+    ]
+  },
+  {
+    "frequency": 428,
+    "normal_form": "& did not start a character reference. (& probably should have been escaped as &amp;.)"
+  },
+  {
+    "frequency": 280,
+    "normal_form": "there is no attribute \"%0\"",
+    "parameters": [
+      {
+        "allowtransparency": 12,
+        "target": 12,
+        "rel": 12,
+        "data-flattr-category": 10,
+        "data-width": 10,
+        "border": 10,
+        "data-flattr-button": 10,
+        "data-flattr-tags": 10,
+        "data-href": 10,
+        "data-flattr-uid": 10,
+        "data-size": 10,
+        "data-lang": 10,
+        "data-theme": 10,
+        "data-rel": 10,
+        "data-send": 10,
+        "data-show-faces": 10,
+        "data-show-count": 10,
+        "data-colorscheme": 10,
+        "sizes": 10,
+        "size": 9,
+        "callback": 9,
+        "ontouchstart": 9,
+        "count": 9,
+        "type": 7,
+        "summary": 6,
+        "class": 6,
+        "tabindex": 3,
+        "vspace": 3,
+        "hspace": 3,
+        "data-url": 3,
+        "data-count": 3,
+        "data-text": 3,
+        "onclick": 2,
+        "name": 2,
+        "language": 1,
+        "align": 1,
+        "djconfig": 1,
+        "id": 1,
+        "value": 1,
+        "disabled": 1,
+        "bgcolor": 1
+      }
+    ]
+  },
+  {
+    "frequency": 258,
+    "normal_form": "reference to entity \"%0\" for which no system identifier could be generated",
+    "parameters": [
+      {
+        "co.": 30,
+        "loc": 13,
+        "v": 12,
+        "utm_content": 11,
+        "utm_campaign": 11,
+        "utm_medium": 11,
+        "subset": 10,
+        "tz": 10,
+        "post": 10,
+        "rand": 10,
+        "subd": 10,
+        "user_id": 10,
+        "campaign": 9,
+        "d": 9,
+        "cv": 9,
+        "variant": 9,
+        "c2": 9,
+        "cj": 9,
+        "size": 3,
+        "appid": 3,
+        "colorscheme": 3,
+        "height": 3,
+        "count": 3,
+        "hl": 3,
+        "rpctoken": 3,
+        "_methods": 3,
+        "parent": 3,
+        "jsh": 3,
+        "action": 3,
+        "annotation": 3,
+        "width": 3,
+        "show_faces": 3,
+        "layout": 3,
+        "send": 3,
+        "utmxhash": 1,
+        "utmxx": 1,
+        "utmxtime": 1,
+        "utmxkey": 1,
+        "online-link-html": 1,
+        "utmx": 1,
+        "ps_t": 1,
+        "offline-link-html": 1
+      }
+    ]
+  },
+  {
+    "frequency": 215,
+    "normal_form": "general entity \"%0\" not defined and no default entity",
+    "parameters": [
+      {
+        "co.": 20,
+        "v": 12,
+        "loc": 10,
+        "rand": 10,
+        "subset": 10,
+        "subd": 10,
+        "post": 10,
+        "user_id": 10,
+        "tz": 10,
+        "variant": 9,
+        "d": 9,
+        "campaign": 9,
+        "cj": 9,
+        "cv": 9,
+        "c2": 9,
+        "appid": 3,
+        "height": 3,
+        "action": 3,
+        "colorscheme": 3,
+        "size": 3,
+        "count": 3,
+        "rpctoken": 3,
+        "_methods": 3,
+        "parent": 3,
+        "jsh": 3,
+        "annotation": 3,
+        "hl": 3,
+        "show_faces": 3,
+        "send": 3,
+        "width": 3,
+        "layout": 3,
+        "utmx": 1,
+        "utmxkey": 1,
+        "utm_campaign": 1,
+        "utm_content": 1,
+        "utmxx": 1,
+        "utmxhash": 1,
+        "utm_medium": 1,
+        "ps_t": 1,
+        "online-link-html": 1,
+        "offline-link-html": 1,
+        "utmxtime": 1
+      }
+    ]
+  },
+  {
+    "frequency": 209,
+    "normal_form": "Bad value %0 for attribute %1 on element %2: %3",
+    "parameters": [
+      {
+        "utf-8": 39,
+        "": 36,
+        "text\/html; charset=utf-8": 34,
+        "category tag": 30,
+        "100%": 21,
+        "social-twitter": 8,
+        "social-facebook": 8,
+        "social-pingback": 8,
+        "social-all": 8,
+        "wordpress": 8,
+        "nofollow dofollow": 2,
+        "http:\/\/cardmeeting.com,": 2,
+        "dc.description": 1,
+        "dc.title": 1,
+        "schema.dc": 1,
+        "publisher": 1,
+        "http:\/\/\/": 1
+      },
+      {
+        "rel": 74,
+        "charset": 39,
+        "target": 36,
+        "content": 34,
+        "width": 21,
+        "href": 3,
+        "name": 2
+      },
+      {
+        "a": 111,
+        "meta": 66,
+        "img": 19,
+        "script": 9,
+        "link": 2,
+        "object": 1,
+        "embed": 1
+      },
+      {
+        "utf-8 is not a valid character encoding name.": 73,
+        "browsing context name must be at least one character long.": 36,
+        "the string category is not a registered keyword or absolute url. whitespace in path component. use %20 in place of spaces.": 30,
+        "expected a digit but saw % instead.": 21,
+        "the string social-twitter is not a registered keyword or absolute url. not an absolute iri.": 8,
+        "the string social-facebook is not a registered keyword or absolute url. not an absolute iri.": 8,
+        "not an absolute iri. the string social-pingback is not a registered keyword or absolute url.": 8,
+        "not an absolute iri. the string social-all is not a registered keyword or absolute url.": 8,
+        "not an absolute iri. the string wordpress is not a registered keyword or absolute url.": 8,
+        "whitespace in path component. use %20 in place of spaces. the string dofollow is not a registered keyword or absolute url.": 2,
+        "host component did not meet the restrictions on dns names.": 2,
+        "keyword dc.description is not registered.": 1,
+        "keyword dc.title is not registered.": 1,
+        "not an absolute iri. the string schema.dc is not a registered keyword or absolute url.": 1,
+        "not an absolute iri. the string publisher is not a registered keyword or absolute url.": 1,
+        "a component that is required by the scheme is missing.": 1
+      }
+    ]
+  },
+  {
+    "frequency": 183,
+    "normal_form": "An img element must have an alt attribute, except under certain conditions. For details, consult guidance on providing text alternatives for images."
+  },
+  {
+    "frequency": 123,
+    "normal_form": "document type does not allow element \"%0\" here; missing one of %1 start-tag",
+    "parameters": [
+      {
+        "div": 38,
+        "span": 30,
+        "img": 19,
+        "input": 18,
+        "noscript": 10,
+        "a": 6,
+        "p": 1,
+        "h1": 1
+      },
+      {
+        "\"p\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"div\", \"pre\", \"address\", \"fieldset\", \"ins\", \"del\"": 48,
+        "\"object\", \"applet\", \"map\", \"iframe\", \"button\", \"ins\", \"del\"": 27,
+        "\"object\", \"ins\", \"del\", \"map\", \"button\"": 23,
+        "\"p\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"div\", \"address\", \"fieldset\", \"ins\", \"del\"": 19,
+        "\"object\", \"span\", \"bdo\", \"applet\", \"iframe\", \"tt\", \"i\", \"b\", \"u\", \"s\", \"strike\", \"big\", \"small\", \"font\", \"em\", \"strong\", \"dfn\", \"code\", \"q\", \"samp\", \"kbd\", \"var\", \"cite\", \"abbr\", \"acronym\", \"sub\", \"sup\", \"label\", \"ins\", \"del\"": 6
+      }
+    ]
+  },
+  {
+    "frequency": 95,
+    "normal_form": "Unclosed element %0.",
+    "parameters": [
+      {
+        "span": 90,
+        "b": 2,
+        "blockquote": 2,
+        "a": 1
+      }
+    ]
+  }
+]

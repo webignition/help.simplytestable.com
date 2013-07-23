@@ -1,5 +1,6 @@
 require 'yaml'
 require 'fileutils'
+require 'json'
 
 VENDOR_DIRECTORY = "vendor"
 DEPENDENCY_MANIFEST = "manifest.yml"
@@ -8,6 +9,7 @@ PLUGIN_DIRECTORY = "_plugins"
 task :default do  
   puts 'Building ...'
   fetch_dependencies
+  build_html_validation_error_posts
   system("rm sitemap.xml")
   jekyll
   system("cp _site/sitemap.xml sitemap.xml") 
@@ -23,6 +25,10 @@ end
 def jekyll
   command = "jekyll"  
   system(command)
+end
+
+def build_html_validation_error_posts
+  system("node _build/html-validation-error-posts.js")
 end
 
 def remove_dependencies  

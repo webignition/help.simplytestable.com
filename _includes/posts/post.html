@@ -14,7 +14,7 @@
                 {{ content_item.title }}
             </a>
         </h2>
-        {% if content_item.date %}
+        {% if content_item.date and content_item.categories contains 'legal'%}        
         <p class="meta">
             Last updated: {{ content_item.date | date: "%B %e, %Y" }}     
         </p>        
