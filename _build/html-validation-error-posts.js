@@ -134,11 +134,6 @@ fs.readFile(file, 'utf8', function(err, data) {
         //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
         //console.log(error.count);
         console.log(error.normal_form);
-//        
-//        if (error.normal_form === 'Attribute %0 not allowed on element %1 at this point.') {
-//            console.log(error);
-//            process.exit(0);
-//        }
         
         if (error.hasOwnProperty('parameters')) {
             var output_parameter_count = 0;
@@ -149,100 +144,22 @@ fs.readFile(file, 'utf8', function(err, data) {
                         continue;
                     }
                     
-//                    if (error.parameters[parameter_name].hasOwnProperty('children')) {
-//                        console.log(parameter_name, error.parameters);
-//                        process.exit(0);
-//                    }
-                    
-                    if (output_parameter_count < parameter_limit) {                        
-                        
-                        //var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
+                    if (output_parameter_count < parameter_limit) {
                         var file_names = get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]);
                         console.log(file_names);
-                    }
-                    
+                    }                    
                     
                     output_parameter_count++;
-//                    
-//                    
-//                    var parameter_properties = error.parameters[parameter_name];
-//                    console.log(parameter_properties);
                 }
-                
-                
-                
-                
-                //process.exit(0);
-                
-                
-//                if (error.parameters.hasOwnProperty(parameter_name)) {
-//                    if (output_parameter_count < parameter_limit) {
-//                        var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
-//                        console.log(scoped_file_name);
-//                        console.log(error.parameters[parameter_name].hasOwnProperty('children'));
-//                    }                   
-//                    
-//                    output_parameter_count++;
-//                }
             }
-            
-//            for (var parameter_set_index = 0; parameter_set_index < error.parameters.length; parameter_set_index++) {
-//                var parameter_set = error.parameters[parameter_set_index];
-//                
-//                
-//                //console.log("Set " + parameter_set_index);
-//                
-////                for (parameter_name in parameter_set) {
-////                    if (parameter_set.hasOwnProperty(parameter_name)) {                        
-////                        console.log(parameter_name);
-////                        
-//////                        if (output_parameter_count < parameter_limit) {                            
-//////                            //var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
-//////                            
-//////                            //console.log(scoped_file_name);
-//////                            console.log(parameter_name);
-//////                            console.log(parameter_set[parameter_name]);     
-//////                            output_parameter_count++;
-//////                        }
-////                    }
-////                }
-//                
-//                console.log();
-//            }
-            
-            //if (error.parameters.length === 1) {
-           
-            //}
             
             if (error_count >= error_limit) {
                 process.exit(0);
             }
-            
-            
 
         }
         
         console.log("\n");
-        
-//        if (error_index === 1) {
-//            console.log(error_data[error_index]);
-            //
-//        }
-        
-        
-        
-        
-//        file_name = normal_form_to_file_name(data[error_index].normal_form);
-//
-//        if ( {
-//            console.log(file_name);
-//        } else {
-//            
-//        }
-        
-
-        //console.log(data[error_index].frequency);
-        //console.log(data[error_index].normal_form);
         
         error_count++;
     }
