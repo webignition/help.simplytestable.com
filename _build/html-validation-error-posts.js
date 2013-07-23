@@ -50,6 +50,16 @@ var normal_form_to_file_name = function(normal_form, parameters) {
     }
 
     var file_name = normal_form.toLowerCase();
+    
+    if (count_parameter_placeholders(file_name) > 0) {
+        var placeholder_letters = get_placeholder_values(file_name, parameters);
+        var placeholder_count = count_parameter_placeholders(file_name);
+        var placeholders = get_placeholders(file_name);
+
+        for (var placeholder_index = 0; placeholder_index < placeholder_count; placeholder_index++) {
+            file_name = file_name.replace(placeholders[placeholder_index], placeholder_letters[placeholder_index]);
+        }
+    }    
 
     file_name = replace_global(' ', '-', file_name);
     file_name = replace_global(',', '', file_name);
@@ -63,18 +73,6 @@ var normal_form_to_file_name = function(normal_form, parameters) {
     file_name = replace_global('(', '', file_name);
     file_name = replace_global(')', '', file_name);
     file_name = replace_global('--', '-', file_name);
-
-    if (count_parameter_placeholders(file_name) === 0) {
-        return encodeURIComponent(file_name);
-    }
-
-    var placeholder_letters = get_placeholder_values(file_name, parameters);
-    var placeholder_count = count_parameter_placeholders(file_name);
-    var placeholders = get_placeholders(file_name);
-
-    for (var placeholder_index = 0; placeholder_index < placeholder_count; placeholder_index++) {
-        file_name = file_name.replace(placeholders[placeholder_index], placeholder_letters[placeholder_index]);
-    }
 
     return encodeURIComponent(file_name);
 };
@@ -95,7 +93,33 @@ var post_exists = function(file_name) {
     return false;
 };
 
+var get_parameterised_file_names = function (normal_form, parameters, parameter_properties) {    
+    var file_names = [];
+    
+    if (parameter_properties.hasOwnProperty('children')) {        
+        for (var child_parameter_name in parameter_properties.children) {            
+            var child_file_names = get_parameterised_file_names(normal_form, parameters.concat(child_parameter_name), parameter_properties.children[child_parameter_name]);
+            
+            for (var child_file_name_index = 0; child_file_name_index < child_file_names.length; child_file_name_index++) {                
+                file_names.push(child_file_names[child_file_name_index]);
+            }
+        }
+    } else {
+        var scoped_file_name = normal_form_to_file_name(normal_form, parameters);
+        file_names.push(scoped_file_name);        
+    }
+    
+    return file_names;
+    
+    
+    console.log(scoped_file_name);
+    console.log(parameter_properties.hasOwnProperty('children'));    
+    
+};
 
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 fs.readFile(file, 'utf8', function(err, data) {
     if (err) {
@@ -105,7 +129,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 3;
-    var error_limit = 4;
+    var error_limit = 5;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
@@ -113,26 +137,59 @@ fs.readFile(file, 'utf8', function(err, data) {
         var parent_file_name = normal_form_to_file_name(error.normal_form);
         
         console.log(parent_file_name);
-        console.log(post_exists(parent_file_name) ? 'Y' : 'N');
-        console.log(error.count);
+        //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
+        //console.log(error.count);
         console.log(error.normal_form);
-        
-        //process.exit(0);
+//        
+//        if (error.normal_form === 'Attribute %0 not allowed on element %1 at this point.') {
+//            console.log(error);
+//            process.exit(0);
+//        }
         
         if (error.hasOwnProperty('parameters')) {
-            //console.log(error.parameters);
             var output_parameter_count = 0;
             
             for (var parameter_name in error.parameters) {
-                if (error.parameters.hasOwnProperty(parameter_name)) {
-                    if (output_parameter_count < parameter_limit) {
-                        var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
-                        console.log(scoped_file_name);
-                        //console.log(parameter_name);
-                    }                   
+                if (error.parameters.hasOwnProperty(parameter_name)) {                    
+                    if (isNumber(parameter_name)) {
+                        continue;
+                    }
+                    
+//                    if (error.parameters[parameter_name].hasOwnProperty('children')) {
+//                        console.log(parameter_name, error.parameters);
+//                        process.exit(0);
+//                    }
+                    
+                    if (output_parameter_count < parameter_limit) {                        
+                        
+                        //var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
+                        var file_names = get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]);
+                        console.log(file_names);
+                    }
+                    
                     
                     output_parameter_count++;
+//                    
+//                    
+//                    var parameter_properties = error.parameters[parameter_name];
+//                    console.log(parameter_properties);
                 }
+                
+                
+                
+                
+                //process.exit(0);
+                
+                
+//                if (error.parameters.hasOwnProperty(parameter_name)) {
+//                    if (output_parameter_count < parameter_limit) {
+//                        var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
+//                        console.log(scoped_file_name);
+//                        console.log(error.parameters[parameter_name].hasOwnProperty('children'));
+//                    }                   
+//                    
+//                    output_parameter_count++;
+//                }
             }
             
 //            for (var parameter_set_index = 0; parameter_set_index < error.parameters.length; parameter_set_index++) {
