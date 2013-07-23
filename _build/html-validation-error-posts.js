@@ -105,16 +105,10 @@ var get_parameterised_file_names = function (normal_form, parameters, parameter_
             }
         }
     } else {
-        var scoped_file_name = normal_form_to_file_name(normal_form, parameters);
-        file_names.push(scoped_file_name);        
+        file_names.push(normal_form_to_file_name(normal_form, parameters));        
     }
     
-    return file_names;
-    
-    
-    console.log(scoped_file_name);
-    console.log(parameter_properties.hasOwnProperty('children'));    
-    
+    return file_names;    
 };
 
 function isNumber(n) {
