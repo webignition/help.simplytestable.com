@@ -1,5 +1,5 @@
 var fs = require('fs');
-var file = __dirname + '/../_data/errors/html-validation/errors_1.json';
+var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 
 var current_posts = fs.readdirSync(posts_directory);
@@ -37,12 +37,12 @@ var normal_form_to_file_name = function(normal_form, parameters) {
         var placeholder_values = [];
 
         for (var index = start; index < start + placeholder_count; index++) {
-            placeholder_letters.push(String.fromCharCode(index));
+            placeholder_values.push(String.fromCharCode(index));
         }
         
         if (parameters !== undefined) {
             for (var parameter_index = 0; parameter_index < parameters.length; parameter_index++) {
-                
+                placeholder_values[parameter_index] = parameters[parameter_index].toLowerCase();
             }
         }
 
@@ -104,7 +104,9 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 5;
+    var parameter_limit = 3;
+    var error_limit = 4;
+    var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
         var error = error_data[error_index];
@@ -112,30 +114,60 @@ fs.readFile(file, 'utf8', function(err, data) {
         
         console.log(parent_file_name);
         console.log(post_exists(parent_file_name) ? 'Y' : 'N');
-        console.log(error.frequency);
+        console.log(error.count);
         console.log(error.normal_form);
         
+        //process.exit(0);
+        
         if (error.hasOwnProperty('parameters')) {
+            //console.log(error.parameters);
+            var output_parameter_count = 0;
+            
+            for (var parameter_name in error.parameters) {
+                if (error.parameters.hasOwnProperty(parameter_name)) {
+                    if (output_parameter_count < parameter_limit) {
+                        var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
+                        console.log(scoped_file_name);
+                        //console.log(parameter_name);
+                    }                   
+                    
+                    output_parameter_count++;
+                }
+            }
+            
+//            for (var parameter_set_index = 0; parameter_set_index < error.parameters.length; parameter_set_index++) {
+//                var parameter_set = error.parameters[parameter_set_index];
+//                
+//                
+//                //console.log("Set " + parameter_set_index);
+//                
+////                for (parameter_name in parameter_set) {
+////                    if (parameter_set.hasOwnProperty(parameter_name)) {                        
+////                        console.log(parameter_name);
+////                        
+//////                        if (output_parameter_count < parameter_limit) {                            
+//////                            //var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
+//////                            
+//////                            //console.log(scoped_file_name);
+//////                            console.log(parameter_name);
+//////                            console.log(parameter_set[parameter_name]);     
+//////                            output_parameter_count++;
+//////                        }
+////                    }
+////                }
+//                
+//                console.log();
+//            }
             
             //if (error.parameters.length === 1) {
-                var parameter_set = error.parameters[0];
-                var output_parameter_count = 0;
-                
-                for (parameter_name in parameter_set) {
-                    if (parameter_set.hasOwnProperty(parameter_name)) {
-                        if (output_parameter_count < parameter_limit) {
-                            var scoped_file_name = normal_form_to_file_name(error.normal_form, [parameter_name]);
-                            
-                            console.log(scoped_file_name);
-                            console.log(parameter_name);
-                            console.log(parameter_set[parameter_name]);     
-                            output_parameter_count++;
-                        }
-                    }
-                }             
+           
             //}
             
-            process.exit(0);
+            if (error_count >= error_limit) {
+                process.exit(0);
+            }
+            
+            
 
         }
         
@@ -160,5 +192,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
         //console.log(data[error_index].frequency);
         //console.log(data[error_index].normal_form);
+        
+        error_count++;
     }
 });
