@@ -73,6 +73,8 @@ var normal_form_to_file_name = function(normal_form, parameters) {
     file_name = replace_global('(', '', file_name);
     file_name = replace_global(')', '', file_name);
     file_name = replace_global('--', '-', file_name);
+    
+    return file_name;
 
     return encodeURIComponent(file_name);
 };
@@ -122,8 +124,8 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 3;
-    var error_limit = 5;
+    var parameter_limit = 5;
+    var error_limit = 200;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
@@ -133,33 +135,39 @@ fs.readFile(file, 'utf8', function(err, data) {
         console.log(parent_file_name);
         //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
         //console.log(error.count);
-        console.log(error.normal_form);
+        //console.log(error.normal_form);
         
-        if (error.hasOwnProperty('parameters')) {
-            var output_parameter_count = 0;
-            
-            for (var parameter_name in error.parameters) {
-                if (error.parameters.hasOwnProperty(parameter_name)) {                    
-                    if (isNumber(parameter_name)) {
-                        continue;
-                    }
-                    
-                    if (output_parameter_count < parameter_limit) {
-                        var file_names = get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]);
-                        console.log(file_names);
-                    }                    
-                    
-                    output_parameter_count++;
-                }
-            }
-            
-            if (error_count >= error_limit) {
-                process.exit(0);
-            }
+        error_count++;
+        
+//        if (error.hasOwnProperty('parameters')) {
+//            var output_parameter_count = 0;
+//            
+//            for (var parameter_name in error.parameters) {
+//                if (error.parameters.hasOwnProperty(parameter_name)) {                    
+//                    if (isNumber(parameter_name)) {
+//                        continue;
+//                    }
+//                    
+//                    if (output_parameter_count < parameter_limit) {
+//                        var file_names = get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]);
+//                        console.log(file_names);
+//                    }                    
+//                    
+//                    output_parameter_count++;
+//                }
+//            }
+//            
+//            if (error_count >= error_limit) {
+//                process.exit(0);
+//            }
+//
+//        }
 
+        if (error_count >= error_limit) {
+            process.exit(0);
         }
         
-        console.log("\n");
+        //console.log("\n");
         
         error_count++;
     }
