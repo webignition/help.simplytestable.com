@@ -1,7 +1,7 @@
 var fs = require('fs');
 var program = require('commander');
 
-var file = __dirname + '/../_data/errors/html-validation/errors_6.json';
+var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 
 var current_posts = fs.readdirSync(posts_directory);
