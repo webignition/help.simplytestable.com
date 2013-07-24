@@ -1,7 +1,7 @@
 var fs = require('fs');
 var program = require('commander');
 
-var file = __dirname + '/../_data/errors/html-validation/errors_4.json';
+var file = __dirname + '/../_data/errors/html-validation/errors_6.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 
 var current_posts = fs.readdirSync(posts_directory);
@@ -130,18 +130,14 @@ fs.readFile(file, 'utf8', function(err, data) {
         console.log('Error: ' + err);
         return;
     }
-    
-//    console.log(program.noparams);
-//    process.exit();
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 5;
-    var error_limit = 200;
+    var parameter_limit = 3;
+    var error_limit = 3;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
         var error = error_data[error_index];
-        var parent_file_name = normal_form_to_file_name(error.normal_form);
         
         if (program.noparams && error.hasOwnProperty('parameters')) {
             continue;
@@ -159,7 +155,50 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
+        if (error.normal_form.substr(0, 3) === '<p>') {
+            continue;
+        }
+        
+        var parent_file_name = normal_form_to_file_name(error.normal_form);
+        var file_names = [];
+        
+        if (error_count >= error_limit) {
+            process.exit(0);
+        }          
+
+        error_count++;
+        
+        var output_parameter_count = 0;
+
+        for (var parameter_name in error.parameters) {
+            if (error.parameters.hasOwnProperty(parameter_name)) {                    
+                if (isNumber(parameter_name)) {
+                    continue;
+                }
+
+                //if (output_parameter_count < parameter_limit) {
+                    file_names = file_names.concat(get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]));
+                    //console.log(file_names);
+                    //console.log("\n");
+                //}                    
+
+                output_parameter_count++;
+            }
+        }
+        
+        var requiresTemplate = false;
+
         console.log(error.count + "\t" +error.normal_form);
+        console.log(parent_file_name);
+        console.log("post_exists: " + post_exists(parent_file_name));
+        console.log("requiresTemplate: " + requiresTemplate);
+        //console.log(file_names);
+        console.log("\n");      
+        
+        //console.log(error.count + "\t" +error.normal_form);
+
+        
+
 //        //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
 //        //console.log(error.count);
 //        //console.log(error.normal_form);
@@ -195,7 +234,6 @@ fs.readFile(file, 'utf8', function(err, data) {
 //        }
         
         //console.log("\n");
-        
-        error_count++;
+
     }
 });
