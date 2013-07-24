@@ -1,5 +1,7 @@
 var fs = require('fs');
-var file = __dirname + '/../_data/errors/html-validation/errors.json';
+var program = require('commander');
+
+var file = __dirname + '/../_data/errors/html-validation/errors_4.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 
 var current_posts = fs.readdirSync(posts_directory);
@@ -117,11 +119,20 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-fs.readFile(file, 'utf8', function(err, data) {
+program
+    .option('-n, --noparams', 'Process parameterless errors only')
+    .option('-p, --params', 'Process parametered errors only')
+    .option('-c, --countmin [number]', 'Minimum error count to be considered', 0)
+    .parse(process.argv);
+
+fs.readFile(file, 'utf8', function(err, data) {    
     if (err) {
         console.log('Error: ' + err);
         return;
     }
+    
+//    console.log(program.noparams);
+//    process.exit();
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 5;
@@ -132,14 +143,30 @@ fs.readFile(file, 'utf8', function(err, data) {
         var error = error_data[error_index];
         var parent_file_name = normal_form_to_file_name(error.normal_form);
         
-        console.log(parent_file_name);
-        //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
-        //console.log(error.count);
-        //console.log(error.normal_form);
+        if (program.noparams && error.hasOwnProperty('parameters')) {
+            continue;
+        }
         
-        error_count++;
+        if (program.params && error.hasOwnProperty('parameters') === false) {
+            continue;
+        }        
         
-//        if (error.hasOwnProperty('parameters')) {
+        if (error.count < program.countmin) {
+            continue;
+        }
+        
+        if (error.normal_form === '') {
+            continue;
+        }
+        
+        console.log(error.count + "\t" +error.normal_form);
+//        //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
+//        //console.log(error.count);
+//        //console.log(error.normal_form);
+//        
+//        error_count++;
+//        
+//        if (program.noparams === false && error.hasOwnProperty('parameters')) {
 //            var output_parameter_count = 0;
 //            
 //            for (var parameter_name in error.parameters) {
@@ -162,10 +189,10 @@ fs.readFile(file, 'utf8', function(err, data) {
 //            }
 //
 //        }
-
-        if (error_count >= error_limit) {
-            process.exit(0);
-        }
+//
+//        if (error_count >= error_limit) {
+//            process.exit(0);
+//        }
         
         //console.log("\n");
         
