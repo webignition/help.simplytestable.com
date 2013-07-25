@@ -14,72 +14,138 @@
     </url>
     <url>
         <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-geocode-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-hl-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-ie-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-ll-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-q-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-sll-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-source-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-sspn-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-t-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-x-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-z-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-hl-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-ie-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-limit-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-ll-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-mode-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-order-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-q-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-source-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-t-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-x-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-z-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/</loc>
-        <lastmod>2013-07-25T14:59:11+01:00</lastmod>
+        <lastmod>2013-07-25T15:08:44+01:00</lastmod>
     </url>
 </urlset>

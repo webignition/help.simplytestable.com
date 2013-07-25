@@ -1,24 +1,18 @@
-{% assign related_post_count = '' %}
+{% assign related_error_count = '' %}
 {% for post in site.posts %}
-{% if post.parent_path == page.parent_path and post.is_parent == false %}
-{% capture related_post_count %}{{related_post_count}}x{% endcapture %}
+{% if post.related_errors contains page.parent_path and post.is_parent == true %}
+{% capture related_error_count %}{{related_error_count}}x{% endcapture %}
 {% endif %}
 {% endfor %}
 
-{% if related_post_count | size > 0 %}
+{% if related_error_count | size > 0 %}
 <hr>
-{% if page.is_parent == false %}
-<div class="section related-errors">    
-    <h3>Main error type</h3>
-    <a href="../{{page.parent_path}}">{{ page.parent_title }}</a>  
-</div>
-{% endif %}
 
 <div class="section related-errors">    
     <h3>Related errors</h3>
     <ul>
         {% for post in site.posts %}
-        {% if post.parent_path == page.parent_path and post.is_parent == false %}
+        {% if post.related_errors contains page.parent_path and post.is_parent == true %}
         <li>
             {% if post.title == page.title %}
             {{post.title}}
