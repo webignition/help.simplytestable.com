@@ -1,9 +1,9 @@
 ---
 layout: error
-title: "End tag for &quot;{{%0}}&quot; omitted, but omittag no was specified"
-categories: [errors, html-validation]
+title: "End tag for &quot;area&quot; omitted, but omittag no was specified"
+categories: [errors, html-validation, end-tag-for-x-omitted-but-omittag-no-was-specified]
 complete: false
-is_parent: {{is_parent}}
+is_parent: false
 parent_path: end-tag-for-x-omitted-but-omittag-no-was-specified
 parent_title: "End tag for &quot;X&quot; omitted, but omittag no was specified"
 related_errors: []
@@ -18,20 +18,20 @@ related_errors: []
     <p>
         Use
     </p>    
-    <pre>&lt;example&gt;<strong>&lt;{{%0}}&gt; &hellip; &lt;/{{%0}}&gt;</strong>&lt;/example&gt;</pre>
+    <pre>&lt;example&gt;<strong>&lt;area&gt; &hellip; &lt;/area&gt;</strong>&lt;/example&gt;</pre>
     <p>
         instead of
     </p>
-    <pre>&lt;example&gt;<strong>&lt;{{%0}}&gt;</strong>&lt;/example&gt;</pre>   
+    <pre>&lt;example&gt;<strong>&lt;area&gt;</strong>&lt;/example&gt;</pre>   
     <h3>For self-closing elements</h3>
     <p>
         Use
     </p>    
-    <pre>&lt;example&gt;<strong>&lt;{{%0}} &hellip; /</strong>&gt;&lt;/example&gt;</pre>
+    <pre>&lt;example&gt;<strong>&lt;area &hellip; /</strong>&gt;&lt;/example&gt;</pre>
     <p>
         instead of
     </p>
-    <pre>&lt;example&gt;<strong>&lt;{{%0}} &hellip; </strong>&gt;&lt;/example&gt;</pre>
+    <pre>&lt;example&gt;<strong>&lt;area &hellip; </strong>&gt;&lt;/example&gt;</pre>
 </div>
 
 <div class="section">    
@@ -70,31 +70,31 @@ related_errors: []
     <p>
         Use
     </p>    
-    <pre>&lt;example&gt;<strong>&lt;{{%0}}&gt; &hellip; &lt;/{{%0}}&gt;</strong>&lt;/example&gt;</pre>
+    <pre>&lt;example&gt;<strong>&lt;area&gt; &hellip; &lt;/area&gt;</strong>&lt;/example&gt;</pre>
     <p>
         instead of
     </p>
-    <pre>&lt;example&gt;<strong>&lt;{{%0}}&gt;</strong>&lt;/example&gt;</pre>   
+    <pre>&lt;example&gt;<strong>&lt;area&gt;</strong>&lt;/example&gt;</pre>   
     
     <h3>For self-closing elements</h3>
     <p>
         Use
     </p>    
-    <pre>&lt;example&gt;<strong>&lt;{{%0}} &hellip; /</strong>&gt;&lt;/example&gt;</pre>
+    <pre>&lt;example&gt;<strong>&lt;area &hellip; /</strong>&gt;&lt;/example&gt;</pre>
     <p>
         instead of
     </p>
-    <pre>&lt;example&gt;<strong>&lt;{{%0}} &hellip; </strong>&gt;&lt;/example&gt;</pre> 
+    <pre>&lt;example&gt;<strong>&lt;area &hellip; </strong>&gt;&lt;/example&gt;</pre> 
     
     <h3>For undefined elements</h3>
     <p>
-        This error might follow one or more 'element "{{%0}}" undefined' errors.
+        This error might follow one or more 'element "area" undefined' errors.
     </p>    
     <p>
         Check to see if this is the case.
     </p>
     <p>
-        If so, the <code>&lt;&{{%0}}gt;</code> element is not defined for the version
+        If so, the <code>&lt;&areagt;</code> element is not defined for the version
         of HTML you are using.
     </p>
     <p>
@@ -102,7 +102,7 @@ related_errors: []
         used in your markup. Fix this if not correct. 
     </p>
     <p>
-        If you're still running into 'element "{{%0}}" undefined' errors, you're
+        If you're still running into 'element "area" undefined' errors, you're
         simply using an invalid, undefined element. Don't.
     </p>
    

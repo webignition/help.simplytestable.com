@@ -1,9 +1,9 @@
 ---
 layout: error
-title: "Document type does not allow element &quot;{{%0}}&quot; here; missing one of {{%1}} start tag"
-categories: [errors, html-validation]
+title: "Document type does not allow element &quot;p&quot; here; missing one of &quot;button&quot;, &quot;ins&quot;, &quot;del&quot; start tag"
+categories: [errors, html-validation, document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag]
 complete: false
-is_parent: {{is_parent}}
+is_parent: false
 parent_path: document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag
 parent_title: "Document type does not allow element &quot;X&quot; here; missing one of Y start tag"
 related_errors: []
@@ -12,12 +12,12 @@ related_errors: []
 <div class="section">    
     <h2>Most Likely Cause and Fix</h2>
     <p>
-        Your markup contains a <code>&lt;{{%0}}&gt;</code> element in a place
+        Your markup contains a <code>&lt;p&gt;</code> element in a place
         it does not belong.  
     </p>    
     <p>
-        The validator is telling you that the <code>&lt;{{%0}}&gt;</code>
-        must be inside a {{y_parameters_coded}} element.
+        The validator is telling you that the <code>&lt;p&gt;</code>
+        must be inside a <code>&lt;button&gt;</code>, <code>&lt;ins&gt;</code> or <code>&lt;del&gt;</code> element.
     </p>
 </div>
 
@@ -40,8 +40,8 @@ related_errors: []
     </p>
     <p>
         This error relates to the <em>when</em> and is telling you that the
-        <code>&lt;{{%0}}&gt;</code> element on the relevant line number
-        is not allowed unless inside a {{y_parameters_coded}} element.
+        <code>&lt;p&gt;</code> element on the relevant line number
+        is not allowed unless inside a <code>&lt;button&gt;</code>, <code>&lt;ins&gt;</code> or <code>&lt;del&gt;</code> element.
     </p>
 </div>
 
@@ -52,17 +52,17 @@ related_errors: []
         This will guide you to the exact point in your markup to which the error relates.
     </p> 
     <p>
-        Find the <code>&lt;{{%0}}&gt;</code> element in question and check to see what
+        Find the <code>&lt;p&gt;</code> element in question and check to see what
         element it is inside of.
     </p>
     <p>
         With respect to the specific portion of the document referred to by the given line
-        and column number, the troublesome <code>&lt;{{%0}}&gt;</code> must be
-        within a {{y_parameters_coded}} element.
+        and column number, the troublesome <code>&lt;p&gt;</code> must be
+        within a <code>&lt;button&gt;</code>, <code>&lt;ins&gt;</code> or <code>&lt;del&gt;</code> element.
     </p>   
     <p>
-        Check that you haven't closed a {{y_parameters_coded}} element too soon
-        and make sure that the <code>&lt;{{%0}}&gt;</code> is inside a {{y_parameters_coded}} element
+        Check that you haven't closed a <code>&lt;button&gt;</code>, <code>&lt;ins&gt;</code> or <code>&lt;del&gt;</code> element too soon
+        and make sure that the <code>&lt;p&gt;</code> is inside a <code>&lt;button&gt;</code>, <code>&lt;ins&gt;</code> or <code>&lt;del&gt;</code> element
         as expected.
     </p>
 </div>

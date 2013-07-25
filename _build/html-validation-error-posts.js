@@ -8,7 +8,7 @@ var templates_directory = __dirname + '/../_templates/errors/html-validation';
 
 var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
-var MAX_FILE_NAME_LENGTH = 256;
+var MAX_FILE_NAME_LENGTH = 220;
 
 var placeholder_transforms = {
     'document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag': function (parameters) {
@@ -142,6 +142,8 @@ var normal_form_to_template_form = function (normal_form) {
     return template_form;
 };
 
+//  console.log(get_post_path(error_properties, document_properties));
+
 var post_exists = function(file_name) {    
     var escape_reg_exp = function(str) {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
@@ -178,16 +180,11 @@ var create_template = function (error_properties) {
     var values = {
         "title": S(error_properties.title).escapeHTML().s,
         parent_path: parent_properties.file_name,
-        parent_title: S(error_properties.title).template(parent_values).s
+        parent_title: S(error_properties.title).template(parent_values).escapeHTML().s
     };
+
     
     content = S(content).template(values).s;    
-    
-//    console.log();
-//    //console.log(parent_properties);
-//    console.log(content);
-//    process.exit();
-    
     
     fs.writeFileSync(get_template_path(error_properties.template), content, "utf8", function (err) {
         console.log(err);
@@ -195,11 +192,7 @@ var create_template = function (error_properties) {
     });
 };
 
-var create_post = function (document_properties, error_properties) {
-//    console.log(document_properties);
-//    console.log(error_properties);
-//    process.exit();
-
+var get_post_path = function (error_properties, document_properties) {
     var get_date_string  = function () {
         var date = new Date();
         
@@ -208,18 +201,39 @@ var create_post = function (document_properties, error_properties) {
         var day =  S(date.getDate() + 1).pad(2, '0').s;
         
         return year + '-' + month + '-' + day;
+    };  
+    
+    var filename_body = (document_properties.is_parent) ? 'index' : document_properties.file_name;
+    if (filename_body.length > MAX_FILE_NAME_LENGTH) {
+        filename_body = filename_body.substr(0, MAX_FILE_NAME_LENGTH);
+    }
+    
+    var post_path = posts_directory + '/';
+    post_path += error_properties.template + '/';        
+    post_path +=get_date_string() + '-' + filename_body + '.html';        
+    return post_path;
+};
+
+var create_post = function (document_properties, error_properties) {
+    var set_category = function (content) {
+        var lines = content.split("\n");
+        
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].indexOf('categories: [') !== -1) {
+                lines[i] = lines[i].replace(']', ', ' + error_properties.template + ']');
+            }
+        }
+        
+        return lines.join("\n");
     };
+
    
     if (!template_exists(error_properties.template)) {
         console.log("missing template: " + error_properties.template);
         process.exit();
     }
     
-    var post_path = posts_directory + '/' + get_date_string() + '-' + document_properties.file_name + '.html';
-    if (post_path.length > MAX_FILE_NAME_LENGTH) {
-        post_path = post_path.substr(0, MAX_FILE_NAME_LENGTH);
-    }
-    
+    var post_path = get_post_path(error_properties, document_properties);    
     var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
     
     var template_values = {
@@ -242,39 +256,19 @@ var create_post = function (document_properties, error_properties) {
     }
     
     content = S(content).template(template_values).s;
+
+    content = set_category(content);
+    
+    var post_directory = post_path.split('/').slice(0, post_path.split('/').length - 1).join('/');
+    
+    if (!fs.existsSync(post_directory)) {
+        fs.mkdirSync(post_directory);
+    }    
     
     fs.writeFileSync(post_path, content, "utf8", function (err) {        
         console.log(err);
         process.exit();
     });   
-    
-//    console.log(template_values);
-//    console.log(content);
-//    process.exit();
-//        
-//        
-//    
-//    
-//    
-//    
-//    
-//    
-//    var content = fs.readFileSync(get_template_path(template), "utf8");
-//    var values = {
-//        "title": S(title).escapeHTML()
-//    };
-//    
-//    content = S(content).template(values).s;
-////console.log(templateContent);
-//
-//fs.writeFileSync(post_path, content, "utf8", function (err) {
-//    console.log(err);
-//});
-//    
-////    console.log(post_path);
-////    console.log(template);
-////    console.log(get_template_path(template));
-//    //process.exit();    
 };
 
 var get_parameterised_file_names = function (normal_form, parameters, parameter_properties) {    
@@ -331,7 +325,7 @@ var get_parameterised_documents = function (normal_form, parameters, parameter_p
 var get_error_properties = function (normal_form) {           
     return {
         "normal_form": normal_form,
-        template: has_placeholders(normal_form) ? normal_form_to_file_name(normal_form) : 'default',
+        template: has_placeholders(normal_form) ? normal_form_to_file_name(normal_form) : POST_TEMPLATE,
         title: normal_form_to_template_form(normal_form),        
         placeholders: get_placeholders(normal_form)
     };
@@ -362,8 +356,8 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 10;
-    var error_limit = 4;
+    var parameter_limit = 2;
+    var error_limit = 5;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
