@@ -8,6 +8,7 @@ var templates_directory = __dirname + '/../_templates/errors/html-validation';
 
 var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
+var INDEX_TEMPLATE = 'index';
 var MAX_FILE_NAME_LENGTH = 220;
 
 var placeholder_transforms = {
@@ -310,6 +311,82 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+var create_index = function (parents) {
+    var add_list_items = function (content, parents) {
+        var lines = content.split("\n");
+        var list_line_index = 0;
+        var list_lines = [];
+        
+        for (var line_index = 0; line_index < lines.length; line_index++) {
+            if (lines[line_index].indexOf('<li></li>') !== -1) {
+                list_line_index = line_index;
+            }
+        }
+        
+        for (var parent_index = 0; parent_index < parents.length; parent_index++) {
+            var template_values = {};
+            
+            for (var i = 0; i < parents[parent_index].error.placeholders.length; i++) {
+                template_values[parents[parent_index].error.placeholders[i]] = S(parents[parent_index].document.parameters[i]).escapeHTML().s;
+            }
+//
+//            if (placeholder_transforms.hasOwnProperty(error_properties.template)) {        
+//                var additional_template_values = placeholder_transforms[error_properties.template](document_properties.parameters);
+//                for (var key in additional_template_values) {
+//                    if (additional_template_values.hasOwnProperty(key)) {
+//                        template_values[key] = additional_template_values[key];
+//                    }
+//                }
+//            }
+//
+//            content = S(content).template(template_values).s;            
+
+            //console.log(S(parents[parent_index].error.title).template(template_values).s);
+            
+            
+            list_lines.push('<li><h2><a href="../' + parents[parent_index].document.file_name + '">' + S(parents[parent_index].error.title).template(template_values).s + '</a></h2></li>');
+            
+            //console.log(parents[parent_index]);
+            //process.exit();
+        }
+        
+        lines[list_line_index] = list_lines.join("\n");
+        
+        return lines.join("\n");
+    };
+    
+    var content = fs.readFileSync(get_template_path(INDEX_TEMPLATE), "utf8");    
+    var post_path = posts_directory + '/2010-01-01-index.html';
+    
+    var content = add_list_items(content, parents);
+    
+//    console.log(post_path);
+//    
+    fs.writeFileSync(post_path, content, "utf8", function (err) {        
+        console.log(err);
+        process.exit();
+    });      
+    
+//    var parent_values = {};    
+//    for (var i = 0; i < error_properties.placeholders.length; i++) {
+//        parent_values[error_properties.placeholders[i]] = S(parent_properties.parameters[i]).escapeHTML().s;
+//    }      
+//    
+//    var values = {
+//        "title": S(error_properties.title).escapeHTML().s,
+//        parent_path: parent_properties.file_name,
+//        parent_title: S(error_properties.title).template(parent_values).escapeHTML().s
+//    };
+//
+//    
+//    content = S(content).template(values).s;    
+//    
+//    fs.writeFileSync(get_template_path(error_properties.template), content, "utf8", function (err) {
+//        console.log(err);
+//        process.exit();
+//    });
+};
+
 program
     .option('-n, --noparams', 'Process parameterless errors only')
     .option('-p, --params', 'Process parametered errors only')
@@ -325,9 +402,12 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 2;
     var error_limit = 5;
-    var error_count = 0;
+    
+    var error_subset = error_data.slice(0, error_limit);
+    
+    var index_entries = [];
 
-    for (var error_index = 0; error_index < error_data.length; error_index++) {        
+    for (var error_index = 0; error_index < error_subset.length; error_index++) {
         var error = error_data[error_index];        
         
         if (program.noparams && error.hasOwnProperty('parameters')) {
@@ -350,8 +430,6 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-        error_count++;
-        
         var error_properties = get_error_properties(error.normal_form);
         
         if (template_exists(error_properties.template)) {
@@ -360,7 +438,13 @@ fs.readFile(file, 'utf8', function(err, data) {
             create_template(error_properties);
         }
         
-        var documents = [get_document_properties(error.normal_form, [], true)];
+        var parent_document = get_document_properties(error.normal_form, [], true);        
+        var documents = [parent_document];
+        
+        index_entries.push({
+            "error":error_properties,
+            "document":parent_document
+        });
         
         var output_parameter_count = 0;
 
@@ -384,11 +468,10 @@ fs.readFile(file, 'utf8', function(err, data) {
             } else {
                 create_post(documents[documentIndex], error_properties);
             }
-        }       
-        
-        if (error_count >= error_limit) {
-            process.exit(0);
         }
-
     }
+    
+    create_index(index_entries);
+    
+    //console.log(parents);
 });

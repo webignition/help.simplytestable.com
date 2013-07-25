@@ -95,3 +95,17 @@ span.target {
 strong .atv {
     color: #aa0011;
 }
+
+.top-list ol {
+    margin-left:60px;
+}
+
+.top-list ol li {
+    font-size: 40px;
+    color: #ddd;
+    margin-bottom: 40px;    
+}
+
+.top-list ol li a {
+    display:block;
+}

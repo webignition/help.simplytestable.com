@@ -28,11 +28,14 @@
                 </div>
             </div>             
             
+
+            
+            {% if page.id != '/errors/html-validation/index' %}
             <div class="row">
                 <div class="span8 pull-left">
                         {% include posts/post.html %}
                 </div>
-            </div> 
+            </div>                       
             
             <div class="row">
                 <div class="span12">
@@ -50,7 +53,17 @@
                 <div class="span12">
                         {% include error/examples.html %}
                 </div>
-            </div>           
+            </div> 
+            
+            {% else %}
+            
+            <div class="row">
+                <div class="span12">
+                        {% include posts/post.html %}
+                </div>
+            </div>               
+            
+            {% endif %}
         </div>
     </body>
 </html>
