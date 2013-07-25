@@ -1,10 +1,48 @@
 var fs = require('fs');
 var program = require('commander');
+var S = require('string');
 
 var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
+var templates_directory = __dirname + '/../_templates/errors/html-validation';
 
 var current_posts = fs.readdirSync(posts_directory);
+
+var get_placeholders = function(file_name) {
+    return file_name.match(/\"?%[0-9]"?/g);
+};
+
+var count_parameter_placeholders = function(file_name) {
+    var matches = file_name.match(/\"?%[0-9]"?/g);
+    if (matches !== null) {
+        return matches.length;
+    }
+
+    return 0;
+};
+
+var get_placeholder_values = function(file_name, parameters) {
+    var start = 120;
+    var placeholder_count = count_parameter_placeholders(file_name);
+
+    if (placeholder_count > 3) {
+        start = start - placeholder_count + 3;
+    }
+
+    var placeholder_values = [];
+
+    for (var index = start; index < start + placeholder_count; index++) {
+        placeholder_values.push(String.fromCharCode(index).toUpperCase());
+    }
+
+    if (parameters !== undefined) {
+        for (var parameter_index = 0; parameter_index < parameters.length; parameter_index++) {
+            placeholder_values[parameter_index] = parameters[parameter_index].toLowerCase();
+        }
+    }
+
+    return placeholder_values;
+};
 
 var normal_form_to_file_name = function(normal_form, parameters) {
     var replace_global = function(search, replace, subject) {
@@ -14,42 +52,6 @@ var normal_form_to_file_name = function(normal_form, parameters) {
 
         return subject;
     };
-
-    var get_placeholders = function(file_name) {
-        return file_name.match(/\"?%[0-9]"?/g);
-    };
-
-    var count_parameter_placeholders = function(file_name) {
-        var matches = file_name.match(/\"?%[0-9]"?/g);
-        if (matches !== null) {
-            return matches.length;
-        }
-
-        return 0;
-    }
-
-    var get_placeholder_values = function(file_name, parameters) {
-        var start = 120;
-        var placeholder_count = count_parameter_placeholders(file_name);
-
-        if (placeholder_count > 3) {
-            start = start - placeholder_count + 3;
-        }
-
-        var placeholder_values = [];
-
-        for (var index = start; index < start + placeholder_count; index++) {
-            placeholder_values.push(String.fromCharCode(index));
-        }
-        
-        if (parameters !== undefined) {
-            for (var parameter_index = 0; parameter_index < parameters.length; parameter_index++) {
-                placeholder_values[parameter_index] = parameters[parameter_index].toLowerCase();
-            }
-        }
-
-        return placeholder_values;
-    }
 
     var file_name = normal_form.toLowerCase();
     
@@ -74,11 +76,28 @@ var normal_form_to_file_name = function(normal_form, parameters) {
     file_name = replace_global('ampsersand_placeholder', 'amp', file_name);
     file_name = replace_global('(', '', file_name);
     file_name = replace_global(')', '', file_name);
+    file_name = replace_global('/>', '', file_name);
+    file_name = replace_global('/', '-slash', file_name);
     file_name = replace_global('--', '-', file_name);
     
-    return file_name;
+    return file_name.toLowerCase();
+};
 
-    return encodeURIComponent(file_name);
+var normal_form_to_specific_form = function (normal_form, parameters) {    
+    var specific_form = S(normal_form).humanize().s;
+    
+    if (count_parameter_placeholders(specific_form) > 0) {
+        var placeholder_letters = get_placeholder_values(specific_form, parameters);
+        
+        var placeholder_count = count_parameter_placeholders(specific_form);
+        var placeholders = get_placeholders(specific_form);
+
+        for (var placeholder_index = 0; placeholder_index < placeholder_count; placeholder_index++) {
+            specific_form = specific_form.replace(placeholders[placeholder_index], placeholder_letters[placeholder_index]);
+        }
+    }
+    
+    return specific_form;
 };
 
 var post_exists = function(file_name) {    
@@ -97,6 +116,63 @@ var post_exists = function(file_name) {
     return false;
 };
 
+var template_exists = function (template) {
+    return fs.existsSync(templates_directory + '/' + template + '.html');
+};
+
+var get_template_path = function (template) {
+    return templates_directory + '/' + template + '.html';
+};
+
+var create_template = function (template, title, normal_form, parameters) {
+    
+};
+
+var create_post = function (file_name, title, normal_form, template) {
+    var get_date_string  = function () {
+        var date = new Date();
+        
+        var year = date.getFullYear();
+        var month =  S(date.getMonth() + 1).pad(2, '0').s;
+        var day =  S(date.getDate() + 1).pad(2, '0').s;
+        
+        return year + '-' + month + '-' + day;
+    };
+    
+    var template = (template === undefined) ? 'default' : template;    
+    
+    if (!template_exists(template)) {        
+        create_template(template, title, normal_form, parameters);
+        
+        console.log("missing template: " + template);
+        process.exit();
+    }
+        
+        
+    
+    
+    
+    var post_path = posts_directory + '/' + get_date_string() + '-' + file_name + '.html';
+    
+    
+    var content = fs.readFileSync(get_template_path(template), "utf8");
+    var values = {
+        "title": S(title).escapeHTML()
+    };
+    
+    content = S(content).template(values).s;
+//console.log(templateContent);
+
+fs.writeFileSync(post_path, content, "utf8", function (err) {
+    console.log(err);
+});
+    
+//    console.log(post_path);
+//    console.log(template);
+//    console.log(get_template_path(template));
+    //process.exit();    
+};
+
 var get_parameterised_file_names = function (normal_form, parameters, parameter_properties) {    
     var file_names = [];
     
@@ -113,6 +189,24 @@ var get_parameterised_file_names = function (normal_form, parameters, parameter_
     }
     
     return file_names;    
+};
+
+var get_parameterised_specific_forms = function (normal_form, parameters, parameter_properties) {        
+    var specific_forms = [];
+    
+    if (parameter_properties.hasOwnProperty('children')) {        
+        for (var child_parameter_name in parameter_properties.children) {            
+            var child_file_names = get_parameterised_specific_forms(normal_form, parameters.concat(child_parameter_name), parameter_properties.children[child_parameter_name]);
+            
+            for (var child_file_name_index = 0; child_file_name_index < child_file_names.length; child_file_name_index++) {                
+                specific_forms.push(child_file_names[child_file_name_index]);
+            }
+        }
+    } else {
+        specific_forms.push(normal_form_to_specific_form(normal_form, parameters));        
+    }
+    
+    return specific_forms;    
 };
 
 function isNumber(n) {
@@ -160,11 +254,13 @@ fs.readFile(file, 'utf8', function(err, data) {
         }
         
         var parent_file_name = normal_form_to_file_name(error.normal_form);
+        var parent_title = normal_form_to_specific_form(error.normal_form);
         var file_names = [];
+        var specific_forms = [];
         
-        if (error_count >= error_limit) {
-            process.exit(0);
-        }          
+//        if (error_count >= error_limit) {
+//            process.exit(0);
+//        }          
 
         error_count++;
         
@@ -176,24 +272,37 @@ fs.readFile(file, 'utf8', function(err, data) {
                     continue;
                 }
 
-                //if (output_parameter_count < parameter_limit) {
+                if (output_parameter_count < parameter_limit) {
                     file_names = file_names.concat(get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]));
-                    //console.log(file_names);
-                    //console.log("\n");
-                //}                    
+                    specific_forms = specific_forms.concat(get_parameterised_specific_forms(error.normal_form, [parameter_name], error.parameters[parameter_name]));
+                }                    
 
                 output_parameter_count++;
             }
         }
         
-        var requiresTemplate = false;
+        var requiresTemplate = error.hasOwnProperty('parameters'); // parameter-filled files will require a template
+        var isTemplate = true; // parent files will be made in to templates
 
-        console.log(error.count + "\t" +error.normal_form);
+        console.log(error.normal_form);
         console.log(parent_file_name);
-        console.log("post_exists: " + post_exists(parent_file_name));
+//        console.log(parent_title);
+//        console.log("post_exists: " + post_exists(parent_file_name));
+//        //console.log("template_exists: " + post_exists(parent_file_name));
         console.log("requiresTemplate: " + requiresTemplate);
+//        console.log("isTemplate: " + isTemplate);
+        
+        if (requiresTemplate && !template_exists(parent_file_name)) {
+            console.log("missing template: " + parent_file_name);
+        }        
+        
         //console.log(file_names);
-        console.log("\n");      
+        console.log("\n");        
+
+        
+        if (!post_exists(parent_file_name)) {
+            create_post(parent_file_name, parent_title, error.normal_form,requiresTemplate ? parent_file_name : undefined);
+        }
         
         //console.log(error.count + "\t" +error.normal_form);
 
