@@ -9,16 +9,22 @@
     {% if content_item.is_archive %}
     {% else %}
     <div class="section section-post-meta post">    
-        <h1>            
-            <!--<a href="{{ content_item.url }}">-->                
-                {{ content_item.title }}
-            <!--</a>-->
-        </h1>
+        <h1>{{ content_item.title }}</h1>
         {% if content_item.date and content_item.categories contains 'legal'%}        
         <p class="meta">
             Last updated: {{ content_item.date | date: "%B %e, %Y" }}     
         </p>        
         {% endif %}        
+        
+        {% if content_item.categories contains 'errors' and content_item.is_parent%}        
+<div class="alert alert-info">
+This is a generic> error page which should help you in general with errors similar to the above.
+Refer below to the <a href="#examples"><strong>specific examples</strong></a> for more precise
+advice.
+</div>        
+        
+        
+        {% endif %}           
 
     </div>    
     {% endif %}
