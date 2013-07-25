@@ -91,3 +91,7 @@ span.target {
     height:40px;
     margin-top:-40px;
 }
+
+strong .atv {
+    color: #aa0011;
+}

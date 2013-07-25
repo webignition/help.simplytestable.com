@@ -330,7 +330,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 3;
+    var parameter_limit = 10;
     var error_limit = 1;
     var error_count = 0;
 

@@ -6,7 +6,7 @@
 {% for category in page.categories %}
 {% capture path %}{{ path }}/{{ category }}{% endcapture %}
     <li>
-        <a href="{{path}}/">{{ category }}</a>
+        <a href="{{path}}/">{{ category | capitalize | replace:'Html','HTML' }}</a>
         
         {% if forloop.last %}
             {% if page.is_parent == false %}
