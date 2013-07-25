@@ -8,8 +8,8 @@ var templates_directory = __dirname + '/../_templates/errors/html-validation';
 
 var current_posts = fs.readdirSync(posts_directory);
 
-var get_placeholders = function(file_name) {
-    return file_name.match(/\"?%[0-9]"?/g);
+var get_placeholders = function(normal_form) {
+    return normal_form.match(/\"?%[0-9]"?/g);
 };
 
 var count_parameter_placeholders = function(file_name) {
@@ -207,6 +207,15 @@ var get_parameterised_specific_forms = function (normal_form, parameters, parame
     return specific_forms;    
 };
 
+var get_document_properties = function (normal_form, parameter_values) {       
+    return {
+        "normal_form": normal_form,
+        file_name: normal_form_to_file_name(normal_form, parameter_values),
+        title: normal_form_to_specific_form(normal_form, parameter_values),        
+        placeholders: get_placeholders(normal_form)
+    };
+};
+
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -225,11 +234,11 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 3;
-    var error_limit = 3;
+    var error_limit = 5;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
-        var error = error_data[error_index];
+        var error = error_data[error_index];        
         
         if (program.noparams && error.hasOwnProperty('parameters')) {
             continue;
@@ -251,17 +260,29 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-        var parent_file_name = normal_form_to_file_name(error.normal_form);
-        var parent_title = normal_form_to_specific_form(error.normal_form);
+        error_count++;
+        
+        var document_properties = get_document_properties(error.normal_form);
+        
+
+        
+        console.log(document_properties);
+
+        
         var file_names = [];
         var specific_forms = [];
         
-//        if (error_count >= error_limit) {
-//            process.exit(0);
-//        }          
-
-        error_count++;
+        if (error_count >= error_limit) {
+            process.exit(0);
+        } 
         
+        
+
+        
+        
+        continue;
+         var parent_file_name = normal_form_to_file_name(error.normal_form);
+        var parent_title = normal_form_to_specific_form(error.normal_form);       
         var output_parameter_count = 0;
 
         for (var parameter_name in error.parameters) {
