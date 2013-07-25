@@ -20,7 +20,7 @@
         {% for post in site.posts %}
         {% if post.parent_path == page.parent_path and post.is_parent == false %}
         <li>
-            {% if post == page %}
+            {% if post.title == page.title %}
             {{post.title}}
             {% else %}
             <a href="{{post.url}}">{{post.title}}</a>
