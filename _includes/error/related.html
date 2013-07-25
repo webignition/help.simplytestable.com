@@ -19,7 +19,13 @@
     <ul>
         {% for post in site.posts %}
         {% if post.parent_path == page.parent_path and post.is_parent == false %}
-        <li><a href="{{post.url}}">{{post.title}}</a></li>
+        <li>
+            {% if post == page %}
+            {{post.title}}
+            {% else %}
+            <a href="{{post.url}}">{{post.title}}</a>
+            {% endif %}            
+        </li>
         {% endif %}
         {% endfor %}        
     </ul>   
