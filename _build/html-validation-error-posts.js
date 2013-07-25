@@ -9,21 +9,22 @@ var templates_directory = __dirname + '/../_templates/errors/html-validation';
 var current_posts = fs.readdirSync(posts_directory);
 
 var get_placeholders = function(normal_form) {
-    return normal_form.match(/\"?%[0-9]"?/g);
+    placeholders = normal_form.match(/\"?%[0-9]"?/g);
+    return placeholders ? placeholders : [];
 };
 
-var count_parameter_placeholders = function(file_name) {
-    var matches = file_name.match(/\"?%[0-9]"?/g);
-    if (matches !== null) {
-        return matches.length;
-    }
-
-    return 0;
+var count_parameter_placeholders = function(normal_form) {
+    var placeholders = get_placeholders(normal_form);    
+    return placeholders ? get_placeholders(normal_form).length : 0;
 };
 
-var get_placeholder_values = function(file_name, parameters) {
+var has_placeholders = function (normal_form) {
+    return count_parameter_placeholders(normal_form) > 0;
+};
+
+var get_placeholder_values = function(normal_form, parameters) {
     var start = 120;
-    var placeholder_count = count_parameter_placeholders(file_name);
+    var placeholder_count = count_parameter_placeholders(normal_form);
 
     if (placeholder_count > 3) {
         start = start - placeholder_count + 3;
@@ -100,6 +101,19 @@ var normal_form_to_specific_form = function (normal_form, parameters) {
     return specific_form;
 };
 
+var normal_form_to_template_form = function (normal_form) {
+    var template_form = S(normal_form).humanize().s;
+    
+    var placeholders = get_placeholders(normal_form);
+    
+    for (var placeholderIndex = 0; placeholderIndex < placeholders.length; placeholderIndex++) {
+        var template_placeholder = '{{'+placeholders[placeholderIndex]+'}}';
+        template_form = template_form.replace(placeholders[placeholderIndex], template_placeholder);
+    }
+    
+    return template_form;
+};
+
 var post_exists = function(file_name) {    
     var escape_reg_exp = function(str) {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
@@ -128,47 +142,50 @@ var create_template = function (template, title, normal_form, parameters) {
     
 };
 
-var create_post = function (file_name, title, normal_form, template) {
-    var get_date_string  = function () {
-        var date = new Date();
-        
-        var year = date.getFullYear();
-        var month =  S(date.getMonth() + 1).pad(2, '0').s;
-        var day =  S(date.getDate() + 1).pad(2, '0').s;
-        
-        return year + '-' + month + '-' + day;
-    };
-    
-    var template = (template === undefined) ? 'default' : template;    
-    
-    if (!template_exists(template)) {        
-        console.log("missing template: " + template);
-        process.exit();
-    }
-        
-        
-    
-    
-    
-    var post_path = posts_directory + '/' + get_date_string() + '-' + file_name + '.html';
-    
-    
-    var content = fs.readFileSync(get_template_path(template), "utf8");
-    var values = {
-        "title": S(title).escapeHTML()
-    };
-    
-    content = S(content).template(values).s;
-//console.log(templateContent);
-
-fs.writeFileSync(post_path, content, "utf8", function (err) {
-    console.log(err);
-});
-    
-//    console.log(post_path);
-//    console.log(template);
-//    console.log(get_template_path(template));
-    //process.exit();    
+var create_post = function (document_properties, error_properties) {
+    console.log(document_properties);
+    console.log(error_properties);
+    process.exit();
+//    var get_date_string  = function () {
+//        var date = new Date();
+//        
+//        var year = date.getFullYear();
+//        var month =  S(date.getMonth() + 1).pad(2, '0').s;
+//        var day =  S(date.getDate() + 1).pad(2, '0').s;
+//        
+//        return year + '-' + month + '-' + day;
+//    };
+//    
+//    var template = (template === undefined) ? 'default' : template;    
+//    
+//    if (!template_exists(template)) {        
+//        console.log("missing template: " + template);
+//        process.exit();
+//    }
+//        
+//        
+//    
+//    
+//    
+//    var post_path = posts_directory + '/' + get_date_string() + '-' + file_name + '.html';
+//    
+//    
+//    var content = fs.readFileSync(get_template_path(template), "utf8");
+//    var values = {
+//        "title": S(title).escapeHTML()
+//    };
+//    
+//    content = S(content).template(values).s;
+////console.log(templateContent);
+//
+//fs.writeFileSync(post_path, content, "utf8", function (err) {
+//    console.log(err);
+//});
+//    
+////    console.log(post_path);
+////    console.log(template);
+////    console.log(get_template_path(template));
+//    //process.exit();    
 };
 
 var get_parameterised_file_names = function (normal_form, parameters, parameter_properties) {    
@@ -207,12 +224,34 @@ var get_parameterised_specific_forms = function (normal_form, parameters, parame
     return specific_forms;    
 };
 
-var get_document_properties = function (normal_form, parameter_values) {       
+var get_parameterised_documents = function (normal_form, parameters, parameter_properties) {
+    var documents = [];
+    
+    if (parameter_properties.hasOwnProperty('children')) {        
+        for (var child_parameter_name in parameter_properties.children) {            
+            documents = documents.concat(get_parameterised_documents(normal_form, parameters.concat(child_parameter_name), parameter_properties.children[child_parameter_name]));
+        }
+    } else {
+        documents.push(get_document_properties(normal_form, parameters));  
+    }
+    
+    return documents;        
+    
+};
+
+var get_error_properties = function (normal_form) {           
     return {
         "normal_form": normal_form,
-        file_name: normal_form_to_file_name(normal_form, parameter_values),
-        title: normal_form_to_specific_form(normal_form, parameter_values),        
+        template: has_placeholders(normal_form) ? normal_form_to_file_name(normal_form) : 'default',
+        title: normal_form_to_template_form(normal_form),        
         placeholders: get_placeholders(normal_form)
+    };
+};
+
+var get_document_properties = function (normal_form, parameters) {
+    return {
+        file_name: normal_form_to_file_name(normal_form, parameters),
+        parameters: get_placeholder_values(normal_form, parameters)
     };
 };
 
@@ -234,7 +273,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 3;
-    var error_limit = 5;
+    var error_limit = 10;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
@@ -262,27 +301,58 @@ fs.readFile(file, 'utf8', function(err, data) {
         
         error_count++;
         
-        var document_properties = get_document_properties(error.normal_form);
+        var error_properties = get_error_properties(error.normal_form);
+        var documents = [get_document_properties(error.normal_form)];
         
+        var output_parameter_count = 0;
+
+        for (var parameter_value in error.parameters) {
+            if (error.parameters.hasOwnProperty(parameter_value)) {                    
+                if (isNumber(parameter_value)) {
+                    continue;
+                }
+
+                //if (output_parameter_count < parameter_limit) {
+                    documents = documents.concat(get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value]));
+                //}                    
+
+                //output_parameter_count++;
+            }
+        }
+        
+//        console.log(error_properties);
+//        console.log(documents);
+        
+        
+        for (var documentIndex = 0; documentIndex < documents.length; documentIndex++) {
+            if (post_exists(documents[documentIndex].file_name)) {
+                // Check post integrity?
+            } else {
+                // Create post from template
+            }
+            
+            console.log(documents[documentIndex].file_name);
+            process.exit();
+            
+            //create_post(documents[documentIndex], error_properties);
+        }
 
         
-        console.log(document_properties);
+//        var file_names = [normal_form_to_file_name(error.normal_form)];
+//        var specific_forms = [normal_form_to_specific_form(error.normal_form)];
+//        
+//        console.log(file_names);
 
+        //console.log("\n");        
         
-        var file_names = [];
-        var specific_forms = [];
-        
-        if (error_count >= error_limit) {
-            process.exit(0);
-        } 
-        
+//        if (error_count >= error_limit) {
+//            process.exit(0);
+//        } 
         
 
-        
         
         continue;
-         var parent_file_name = normal_form_to_file_name(error.normal_form);
-        var parent_title = normal_form_to_specific_form(error.normal_form);       
+  
         var output_parameter_count = 0;
 
         for (var parameter_name in error.parameters) {
