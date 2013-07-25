@@ -8,16 +8,13 @@ var templates_directory = __dirname + '/../_templates/errors/html-validation';
 
 var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
+var MAX_FILE_NAME_LENGTH = 256;
+
 
 var current_posts = fs.readdirSync(posts_directory);
 
 var get_placeholders = function(normal_form) {
-    placeholders = normal_form.match(/%[0-9]/g);
-    
-//    console.log(normal_form);
-//    console.log(placeholders);
-//    process.exit();
-    
+    placeholders = normal_form.match(/%[0-9]/g);    
     return placeholders ? placeholders : [];
 };
 
@@ -196,6 +193,9 @@ var create_post = function (document_properties, error_properties) {
     }
     
     var post_path = posts_directory + '/' + get_date_string() + '-' + document_properties.file_name + '.html';
+    if (post_path.length > MAX_FILE_NAME_LENGTH) {
+        post_path = post_path.substr(0, MAX_FILE_NAME_LENGTH);
+    }
     
     var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
     
@@ -211,7 +211,7 @@ var create_post = function (document_properties, error_properties) {
     
     content = S(content).template(template_values).s;
     
-    fs.writeFileSync(post_path, content, "utf8", function (err) {
+    fs.writeFileSync(post_path, content, "utf8", function (err) {        
         console.log(err);
         process.exit();
     });   
@@ -331,7 +331,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 10;
-    var error_limit = 3;
+    var error_limit = 4;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        

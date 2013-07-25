@@ -14,204 +14,378 @@
     </url>
     <url>
         <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-a-here-missing-one-of-dt-dd-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-a-here-missing-one-of-ins-del-h1-h2-h3-h4-h5-h6-p-div-pre-address-fieldset-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-a-here-missing-one-of-p-h1-h2-h3-h4-h5-h6-div-pre-address-fieldset-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-a-here-missing-one-of-th-td-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-blockquote-here-missing-one-of-button-map-object-ins-del-noscript-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-blockquote-here-missing-one-of-object-applet-map-iframe-button-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-blockquote-here-missing-one-of-object-ins-del-map-button-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-div-here-missing-one-of-button-map-object-ins-del-noscript-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-div-here-missing-one-of-object-applet-map-iframe-button-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-div-here-missing-one-of-object-ins-del-map-button-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-h3-here-missing-one-of-applet-object-map-iframe-button-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-h3-here-missing-one-of-button-map-object-ins-del-noscript-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-h3-here-missing-one-of-object-applet-map-iframe-button-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-h3-here-missing-one-of-object-ins-del-map-button-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-h3-here-missing-one-of-object-map-button-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-img-here-missing-one-of-ins-del-h1-h2-h3-h4-h5-h6-p-div-address-fieldset-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-img-here-missing-one-of-p-h1-h2-h3-h4-h5-h6-div-address-fieldset-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-input-here-missing-one-of-dt-dd-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-input-here-missing-one-of-ins-del-h1-h2-h3-h4-h5-h6-p-div-address-fieldset-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-input-here-missing-one-of-p-h1-h2-h3-h4-h5-h6-div-pre-address-fieldset-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-li-here-missing-one-of-ul-ol-menu-dir-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-li-here-missing-one-of-ul-ol-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-p-here-missing-one-of-button-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-p-here-missing-one-of-button-map-object-ins-del-noscript-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-p-here-missing-one-of-object-applet-map-iframe-button-ins-del-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-p-here-missing-one-of-object-ins-del-map-button-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-script-here-missing-one-of-dt-dd-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-script-here-missing-one-of-th-td-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag/
+        </loc>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-area-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-br-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-div-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-img-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-input-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-li-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-meta-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-p-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-td-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-variable-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-geocode-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-hl-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-ie-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-ll-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-q-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-sll-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-source-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-sspn-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-t-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-x-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/general-entity-z-not-defined-and-no-default-entity/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-hl-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-ie-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-limit-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-ll-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-mode-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-order-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-q-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-source-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-t-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-x-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-z-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/</loc>
-        <lastmod>2013-07-25T16:07:54+01:00</lastmod>
+        <lastmod>2013-07-25T16:19:02+01:00</lastmod>
     </url>
 </urlset>
