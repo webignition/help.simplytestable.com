@@ -142,8 +142,6 @@ var create_post = function (file_name, title, normal_form, template) {
     var template = (template === undefined) ? 'default' : template;    
     
     if (!template_exists(template)) {        
-        create_template(template, title, normal_form, parameters);
-        
         console.log("missing template: " + template);
         process.exit();
     }
@@ -293,7 +291,8 @@ fs.readFile(file, 'utf8', function(err, data) {
 //        console.log("isTemplate: " + isTemplate);
         
         if (requiresTemplate && !template_exists(parent_file_name)) {
-            console.log("missing template: " + parent_file_name);
+            console.log("missing template!: " + parent_file_name);
+            process.exit();
         }        
         
         //console.log(file_names);
