@@ -142,8 +142,6 @@ var normal_form_to_template_form = function (normal_form) {
     return template_form;
 };
 
-//  console.log(get_post_path(error_properties, document_properties));
-
 var post_exists = function(file_name) {    
     var escape_reg_exp = function(str) {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
@@ -203,13 +201,18 @@ var get_post_path = function (error_properties, document_properties) {
         return year + '-' + month + '-' + day;
     };  
     
-    var filename_body = (document_properties.is_parent) ? 'index' : document_properties.file_name;
+    //var filename_body = (document_properties.is_parent) ? 'index' : document_properties.file_name;
+    var filename_body = document_properties.file_name;
     if (filename_body.length > MAX_FILE_NAME_LENGTH) {
         filename_body = filename_body.substr(0, MAX_FILE_NAME_LENGTH);
     }
     
     var post_path = posts_directory + '/';
-    post_path += error_properties.template + '/';        
+    
+    //if (!document_properties.is_parent) {
+        post_path += error_properties.template + '/';
+    //}
+
     post_path +=get_date_string() + '-' + filename_body + '.html';        
     return post_path;
 };
@@ -257,7 +260,11 @@ var create_post = function (document_properties, error_properties) {
     
     content = S(content).template(template_values).s;
 
-    content = set_category(content);
+    if (!document_properties.is_parent) {
+        content = set_category(content);
+    }
+
+    
     
     var post_directory = post_path.split('/').slice(0, post_path.split('/').length - 1).join('/');
     

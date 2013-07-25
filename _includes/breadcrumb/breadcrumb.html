@@ -4,7 +4,9 @@
    
 {% assign path = '' %}     
 {% for category in page.categories %}
-{% capture path %}{{ path }}/{{ category }}{% endcapture %}
+    {% if forloop.last == false or page.is_parent %}
+
+    {% capture path %}{{ path }}/{{ category }}{% endcapture %}
     <li>
         <a href="{{path}}/">{{ category | capitalize | replace:'Html','HTML' }}</a>
         
@@ -18,10 +20,12 @@
         
         
     </li>
+    {% endif %}
+
 {% endfor %} 
 
 {% if page.is_parent == false %}
-<li class="active"><a href="/{{ page.categories | join, '/'}}/{{page.parent_path}}/">{{page.parent_title}}</a></li>
+<li class="active"><a href="/{{ page.categories | join, '/'}}/">{{page.parent_title}}</a></li>
 {% endif %}
 
 </ul>
