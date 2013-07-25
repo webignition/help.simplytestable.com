@@ -27,15 +27,24 @@ related_errors: []
 <div class="section">    
     <h2>What This Error Means</h2>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-
+        HTML is often comprised of elements nested inside other elements, such as
+        the placing of an anchor within a paragraph:
     </p>    
+    <pre>&lt;p&gt;
+    Hello &lt;a href="http://example.com"&gt;World!&lt;/a&gt;
+&lt;/p&gt;</pre>
     <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-        sunt in culpa qui officia deserunt mollit anim id est laborum.
+        There are rules regarding <em>which</em> elements can be nested inside other elements
+        and <em>when</em> this is allowed to happen.
+    </p>
+    <p>
+        Most notably, block-level elements, such as <code>&lt;div&gt;</code>,
+        are not allowed inside inline elements such as <code>&lt;span&gt;</code>.
+    </p>
+    <p>
+        This error relates to the <em>when</em> and is telling you that the
+        <code>&lt;script&gt;</code> element on the relevant line number
+        is not allowed unless inside a <code>&lt;dt&gt;</code> or <code>&lt;dd&gt;</code> element.
     </p>
 </div>
 

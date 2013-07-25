@@ -10,6 +10,29 @@ var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
 var MAX_FILE_NAME_LENGTH = 256;
 
+var placeholder_transforms = {
+    'document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag': function (parameters) {
+        var y_parameters = S(parameters[1]).replaceAll('"', '').replaceAll(' ', '').s.split(',');
+        var y_parameters_coded = '';
+        
+        for (var i = 0; i < y_parameters.length; i++) {
+            y_parameters_coded += '<code>&lt;' + y_parameters[i] + '&gt;</code>';
+            
+            if (i < y_parameters.length - 1) {
+                if (i === y_parameters.length - 2) {
+                    y_parameters_coded += ' or ';
+                } else {
+                    y_parameters_coded += ', ';
+                }                
+            }
+        }
+        
+        return {
+            'y_parameters_coded':(y_parameters_coded)
+        };
+    }
+};
+
 
 var current_posts = fs.readdirSync(posts_directory);
 
@@ -207,6 +230,15 @@ var create_post = function (document_properties, error_properties) {
     
     for (var i = 0; i < error_properties.placeholders.length; i++) {
         template_values[error_properties.placeholders[i]] = S(document_properties.parameters[i]).escapeHTML().s;
+    }
+    
+    if (placeholder_transforms.hasOwnProperty(error_properties.template)) {        
+        var additional_template_values = placeholder_transforms[error_properties.template](document_properties.parameters);
+        for (var key in additional_template_values) {
+            if (additional_template_values.hasOwnProperty(key)) {
+                template_values[key] = additional_template_values[key];
+            }
+        }
     }
     
     content = S(content).template(template_values).s;
