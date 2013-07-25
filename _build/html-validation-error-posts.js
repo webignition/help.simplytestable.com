@@ -201,7 +201,6 @@ var get_post_path = function (error_properties, document_properties) {
         return year + '-' + month + '-' + day;
     };  
     
-    //var filename_body = (document_properties.is_parent) ? 'index' : document_properties.file_name;
     var filename_body = document_properties.file_name;
     if (filename_body.length > MAX_FILE_NAME_LENGTH) {
         filename_body = filename_body.substr(0, MAX_FILE_NAME_LENGTH);
@@ -209,10 +208,7 @@ var get_post_path = function (error_properties, document_properties) {
     
     var post_path = posts_directory + '/';
     
-    //if (!document_properties.is_parent) {
-        post_path += error_properties.template + '/';
-    //}
-
+    post_path += error_properties.template + '/';
     post_path +=get_date_string() + '-' + filename_body + '.html';        
     return post_path;
 };
@@ -276,42 +272,6 @@ var create_post = function (document_properties, error_properties) {
         console.log(err);
         process.exit();
     });   
-};
-
-var get_parameterised_file_names = function (normal_form, parameters, parameter_properties) {    
-    var file_names = [];
-    
-    if (parameter_properties.hasOwnProperty('children')) {        
-        for (var child_parameter_name in parameter_properties.children) {            
-            var child_file_names = get_parameterised_file_names(normal_form, parameters.concat(child_parameter_name), parameter_properties.children[child_parameter_name]);
-            
-            for (var child_file_name_index = 0; child_file_name_index < child_file_names.length; child_file_name_index++) {                
-                file_names.push(child_file_names[child_file_name_index]);
-            }
-        }
-    } else {
-        file_names.push(normal_form_to_file_name(normal_form, parameters));        
-    }
-    
-    return file_names;    
-};
-
-var get_parameterised_specific_forms = function (normal_form, parameters, parameter_properties) {        
-    var specific_forms = [];
-    
-    if (parameter_properties.hasOwnProperty('children')) {        
-        for (var child_parameter_name in parameter_properties.children) {            
-            var child_file_names = get_parameterised_specific_forms(normal_form, parameters.concat(child_parameter_name), parameter_properties.children[child_parameter_name]);
-            
-            for (var child_file_name_index = 0; child_file_name_index < child_file_names.length; child_file_name_index++) {                
-                specific_forms.push(child_file_names[child_file_name_index]);
-            }
-        }
-    } else {
-        specific_forms.push(normal_form_to_specific_form(normal_form, parameters));        
-    }
-    
-    return specific_forms;    
 };
 
 var get_parameterised_documents = function (normal_form, parameters, parameter_properties) {
@@ -416,12 +376,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
                 output_parameter_count++;
             }
-        }
-        
-//        console.log(error_properties);
-//        console.log(documents);
-//        process.exit();
-//        
+        }    
         
         for (var documentIndex = 0; documentIndex < documents.length; documentIndex++) {
             if (post_exists(documents[documentIndex].file_name)) {
@@ -429,104 +384,11 @@ fs.readFile(file, 'utf8', function(err, data) {
             } else {
                 create_post(documents[documentIndex], error_properties);
             }
-        }
-
-        
-//        var file_names = [normal_form_to_file_name(error.normal_form)];
-//        var specific_forms = [normal_form_to_specific_form(error.normal_form)];
-//        
-//        console.log(file_names);
-
-        //console.log("\n");        
+        }       
         
         if (error_count >= error_limit) {
             process.exit(0);
-        } 
-        
-
-        
-        continue;
-  
-        var output_parameter_count = 0;
-
-        for (var parameter_name in error.parameters) {
-            if (error.parameters.hasOwnProperty(parameter_name)) {                    
-                if (isNumber(parameter_name)) {
-                    continue;
-                }
-
-                if (output_parameter_count < parameter_limit) {
-                    file_names = file_names.concat(get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]));
-                    specific_forms = specific_forms.concat(get_parameterised_specific_forms(error.normal_form, [parameter_name], error.parameters[parameter_name]));
-                }                    
-
-                output_parameter_count++;
-            }
         }
-        
-        var requiresTemplate = error.hasOwnProperty('parameters'); // parameter-filled files will require a template
-        var isTemplate = true; // parent files will be made in to templates
-
-        console.log(error.normal_form);
-        console.log(parent_file_name);
-//        console.log(parent_title);
-//        console.log("post_exists: " + post_exists(parent_file_name));
-//        //console.log("template_exists: " + post_exists(parent_file_name));
-        console.log("requiresTemplate: " + requiresTemplate);
-//        console.log("isTemplate: " + isTemplate);
-        
-        if (requiresTemplate && !template_exists(parent_file_name)) {
-            console.log("missing template!: " + parent_file_name);
-            process.exit();
-        }        
-        
-        //console.log(file_names);
-        console.log("\n");        
-
-        
-        if (!post_exists(parent_file_name)) {
-            create_post(parent_file_name, parent_title, error.normal_form,requiresTemplate ? parent_file_name : undefined);
-        }
-        
-        //console.log(error.count + "\t" +error.normal_form);
-
-        
-
-//        //console.log(post_exists(parent_file_name) ? 'Y' : 'N');
-//        //console.log(error.count);
-//        //console.log(error.normal_form);
-//        
-//        error_count++;
-//        
-//        if (program.noparams === false && error.hasOwnProperty('parameters')) {
-//            var output_parameter_count = 0;
-//            
-//            for (var parameter_name in error.parameters) {
-//                if (error.parameters.hasOwnProperty(parameter_name)) {                    
-//                    if (isNumber(parameter_name)) {
-//                        continue;
-//                    }
-//                    
-//                    if (output_parameter_count < parameter_limit) {
-//                        var file_names = get_parameterised_file_names(error.normal_form, [parameter_name], error.parameters[parameter_name]);
-//                        console.log(file_names);
-//                    }                    
-//                    
-//                    output_parameter_count++;
-//                }
-//            }
-//            
-//            if (error_count >= error_limit) {
-//                process.exit(0);
-//            }
-//
-//        }
-//
-//        if (error_count >= error_limit) {
-//            process.exit(0);
-//        }
-        
-        //console.log("\n");
 
     }
 });
