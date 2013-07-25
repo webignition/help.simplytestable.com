@@ -11,17 +11,19 @@
 
         <div class="container">
             {% include header/introduction.html %}
+            
+            <div class="row">
+                <div class="span12">
+                    {% include breadcrumb/breadcrumb.html %}
+                </div>
+            </div>             
 
             <div class="row">
-                <div class="span9 pull-right">
-
+                <div class="span8 pull-left">
                         {% include posts/post.html %}
-
+                        {% include error/related.html %}
                 </div>
-                <div class="span3 sidebar pull-left">
-{% include sidebar/html-validation-errors-list.html %}
-                </div>
-            </div>
+            </div>           
         </div>
     </body>
 </html>

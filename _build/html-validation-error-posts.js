@@ -12,7 +12,12 @@ var POST_TEMPLATE = 'post_default';
 var current_posts = fs.readdirSync(posts_directory);
 
 var get_placeholders = function(normal_form) {
-    placeholders = normal_form.match(/\"?%[0-9]"?/g);
+    placeholders = normal_form.match(/%[0-9]/g);
+    
+//    console.log(normal_form);
+//    console.log(placeholders);
+//    process.exit();
+    
     return placeholders ? placeholders : [];
 };
 
@@ -142,26 +147,39 @@ var get_template_path = function (template) {
 };
 
 var create_template = function (error_properties) {    
+    var parent_properties = get_document_properties(error_properties.normal_form, [], true);
     var content = fs.readFileSync(get_template_path(TEMPLATE_TEMPLATE), "utf8");
     
+    var parent_values = {};    
+    for (var i = 0; i < error_properties.placeholders.length; i++) {
+        parent_values[error_properties.placeholders[i]] = S(parent_properties.parameters[i]).escapeHTML().s;
+    }      
+    
     var values = {
-        "title": error_properties.title
+        "title": S(error_properties.title).escapeHTML().s,
+        parent_path: parent_properties.file_name,
+        parent_title: S(error_properties.title).template(parent_values).s
     };
     
     content = S(content).template(values).s;    
     
+//    console.log();
+//    //console.log(parent_properties);
+//    console.log(content);
+//    process.exit();
+    
     
     fs.writeFileSync(get_template_path(error_properties.template), content, "utf8", function (err) {
-        console.log("Error creating template: " + error_properties.template);
         console.log(err);
         process.exit();
     });
 };
 
 var create_post = function (document_properties, error_properties) {
-    console.log(document_properties);
-    console.log(error_properties);
-    //process.exit();
+//    console.log(document_properties);
+//    console.log(error_properties);
+//    process.exit();
+
     var get_date_string  = function () {
         var date = new Date();
         
@@ -171,9 +189,7 @@ var create_post = function (document_properties, error_properties) {
         
         return year + '-' + month + '-' + day;
     };
-//    
-//    var template = (template === undefined) ? 'default' : template;    
-//    
+   
     if (!template_exists(error_properties.template)) {
         console.log("missing template: " + error_properties.template);
         process.exit();
@@ -183,17 +199,26 @@ var create_post = function (document_properties, error_properties) {
     
     var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
     
-    var template_values = {};
+    var template_values = {
+        is_parent: (document_properties.is_parent) ? "true" : "false",
+        parent_path: error_properties.template,
+        parent_title: error_properties.template,
+    };
     
     for (var i = 0; i < error_properties.placeholders.length; i++) {
-        template_values[error_properties.placeholders[i]] = document_properties.parameters[i];
+        template_values[error_properties.placeholders[i]] = S(document_properties.parameters[i]).escapeHTML().s;
     }
     
     content = S(content).template(template_values).s;
     
-    console.log(template_values);
-    console.log(content);
-    process.exit();
+    fs.writeFileSync(post_path, content, "utf8", function (err) {
+        console.log(err);
+        process.exit();
+    });   
+    
+//    console.log(template_values);
+//    console.log(content);
+//    process.exit();
 //        
 //        
 //    

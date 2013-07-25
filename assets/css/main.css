@@ -2,6 +2,18 @@ body {
     margin-top:80px;
 }
 
+h1 {
+    font-size: 31.5px;
+}
+
+h2 {
+    font-size: 24.5px;
+}
+
+h3 {
+    font-size: 17.5px;
+}
+
 .navbar .brand {
     background: url('/assets/img/st30.png') transparent no-repeat 5px 4px;
     color: #08C;
@@ -57,9 +69,9 @@ body .container a:hover {
     opacity: 0.4;
 }
 
-.post .section {
+/*.post .section {
     width:80%;
-}
+}*/
 
 .post .section {
     margin-bottom: 40px;

@@ -1,0 +1,27 @@
+<ul class="breadcrumb">
+    <li><a href="/">Documentation</a> <span class="divider">/</span></li>
+    
+   
+{% assign path = '' %}     
+{% for category in page.categories %}
+{% capture path %}{{ path }}/{{ category }}{% endcapture %}
+    <li>
+        <a href="{{path}}/">{{ category }}</a>
+        
+        {% if forloop.last %}
+            {% if page.is_parent == false %}
+            <span class="divider">/</span>
+            {% endif %}
+        {% else %}
+            <span class="divider">/</span>
+        {% endif %}
+        
+        
+    </li>
+{% endfor %} 
+
+{% if page.is_parent == false %}
+<li class="active"><a href="/{{ page.categories | join, '/'}}/{{page.parent_path}}/">{{page.parent_title}}</a></li>
+{% endif %}
+
+</ul>

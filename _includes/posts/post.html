@@ -9,11 +9,11 @@
     {% if content_item.is_archive %}
     {% else %}
     <div class="section section-post-meta post">    
-        <h2>            
-            <a href="{{ content_item.url }}">                
+        <h1>            
+            <!--<a href="{{ content_item.url }}">-->                
                 {{ content_item.title }}
-            </a>
-        </h2>
+            <!--</a>-->
+        </h1>
         {% if content_item.date and content_item.categories contains 'legal'%}        
         <p class="meta">
             Last updated: {{ content_item.date | date: "%B %e, %Y" }}     
