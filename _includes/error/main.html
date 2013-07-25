@@ -1,0 +1,7 @@
+<hr>
+{% if page.is_parent == false %}
+<div class="section related-errors">    
+    <h3>Main error type</h3>
+    <a href="../{{page.parent_path}}">{{ page.parent_title }}</a>  
+</div>
+{% endif %}
