@@ -6,6 +6,9 @@ var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 var templates_directory = __dirname + '/../_templates/errors/html-validation';
 
+var TEMPLATE_TEMPLATE = 'template_default';
+var POST_TEMPLATE = 'post_default';
+
 var current_posts = fs.readdirSync(posts_directory);
 
 var get_placeholders = function(normal_form) {
@@ -138,36 +141,65 @@ var get_template_path = function (template) {
     return templates_directory + '/' + template + '.html';
 };
 
-var create_template = function (template, title, normal_form, parameters) {
+var create_template = function (error_properties) {    
+    var content = fs.readFileSync(get_template_path(TEMPLATE_TEMPLATE), "utf8");
     
+    var values = {
+        "title": error_properties.title
+    };
+    
+    content = S(content).template(values).s;    
+    
+    
+    fs.writeFileSync(get_template_path(error_properties.template), content, "utf8", function (err) {
+        console.log("Error creating template: " + error_properties.template);
+        console.log(err);
+        process.exit();
+    });
 };
 
 var create_post = function (document_properties, error_properties) {
     console.log(document_properties);
     console.log(error_properties);
-    process.exit();
-//    var get_date_string  = function () {
-//        var date = new Date();
-//        
-//        var year = date.getFullYear();
-//        var month =  S(date.getMonth() + 1).pad(2, '0').s;
-//        var day =  S(date.getDate() + 1).pad(2, '0').s;
-//        
-//        return year + '-' + month + '-' + day;
-//    };
+    //process.exit();
+    var get_date_string  = function () {
+        var date = new Date();
+        
+        var year = date.getFullYear();
+        var month =  S(date.getMonth() + 1).pad(2, '0').s;
+        var day =  S(date.getDate() + 1).pad(2, '0').s;
+        
+        return year + '-' + month + '-' + day;
+    };
 //    
 //    var template = (template === undefined) ? 'default' : template;    
 //    
-//    if (!template_exists(template)) {        
-//        console.log("missing template: " + template);
-//        process.exit();
-//    }
+    if (!template_exists(error_properties.template)) {
+        console.log("missing template: " + error_properties.template);
+        process.exit();
+    }
+    
+    var post_path = posts_directory + '/' + get_date_string() + '-' + document_properties.file_name + '.html';
+    
+    var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
+    
+    var template_values = {};
+    
+    for (var i = 0; i < error_properties.placeholders.length; i++) {
+        template_values[error_properties.placeholders[i]] = document_properties.parameters[i];
+    }
+    
+    content = S(content).template(template_values).s;
+    
+    console.log(template_values);
+    console.log(content);
+    process.exit();
 //        
 //        
 //    
 //    
 //    
-//    var post_path = posts_directory + '/' + get_date_string() + '-' + file_name + '.html';
+//    
 //    
 //    
 //    var content = fs.readFileSync(get_template_path(template), "utf8");
@@ -248,10 +280,11 @@ var get_error_properties = function (normal_form) {
     };
 };
 
-var get_document_properties = function (normal_form, parameters) {
+var get_document_properties = function (normal_form, parameters, is_parent) {   
     return {
         file_name: normal_form_to_file_name(normal_form, parameters),
-        parameters: get_placeholder_values(normal_form, parameters)
+        parameters: get_placeholder_values(normal_form, parameters),
+        "is_parent": (is_parent) ? is_parent : false
     };
 };
 
@@ -273,7 +306,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 3;
-    var error_limit = 10;
+    var error_limit = 1;
     var error_count = 0;
 
     for (var error_index = 0; error_index < error_data.length; error_index++) {        
@@ -302,7 +335,14 @@ fs.readFile(file, 'utf8', function(err, data) {
         error_count++;
         
         var error_properties = get_error_properties(error.normal_form);
-        var documents = [get_document_properties(error.normal_form)];
+        
+        if (template_exists(error_properties.template)) {
+            // Check template integrity
+        } else {
+            create_template(error_properties);
+        }
+        
+        var documents = [get_document_properties(error.normal_form, [], true)];
         
         var output_parameter_count = 0;
 
@@ -312,29 +352,25 @@ fs.readFile(file, 'utf8', function(err, data) {
                     continue;
                 }
 
-                //if (output_parameter_count < parameter_limit) {
+                if (output_parameter_count < parameter_limit) {
                     documents = documents.concat(get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value]));
-                //}                    
+                }                    
 
-                //output_parameter_count++;
+                output_parameter_count++;
             }
         }
         
 //        console.log(error_properties);
 //        console.log(documents);
-        
+//        process.exit();
+//        
         
         for (var documentIndex = 0; documentIndex < documents.length; documentIndex++) {
             if (post_exists(documents[documentIndex].file_name)) {
-                // Check post integrity?
+                // Check post integrity TBC
             } else {
-                // Create post from template
+                create_post(documents[documentIndex], error_properties);
             }
-            
-            console.log(documents[documentIndex].file_name);
-            process.exit();
-            
-            //create_post(documents[documentIndex], error_properties);
         }
 
         
@@ -345,9 +381,9 @@ fs.readFile(file, 'utf8', function(err, data) {
 
         //console.log("\n");        
         
-//        if (error_count >= error_limit) {
-//            process.exit(0);
-//        } 
+        if (error_count >= error_limit) {
+            process.exit(0);
+        } 
         
 
         
