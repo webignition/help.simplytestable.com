@@ -211,12 +211,15 @@ var get_post_path = function (error_properties, document_properties) {
     
     var post_path = posts_directory + '/';
     
-    post_path += error_properties.template + '/';
+    if (error_properties.template != POST_TEMPLATE) {
+        post_path += '/auto-generated/' + error_properties.template + '/';
+    }
+    
     post_path +=get_date_string() + '-' + filename_body + '.html';        
     return post_path;
 };
 
-var create_post = function (document_properties, error_properties) {    
+var create_post = function (document_properties, error_properties) {        
     var set_category = function (content) {
         var lines = content.split("\n");
         
@@ -294,13 +297,13 @@ var create_post = function (document_properties, error_properties) {
         process.exit();
     }
     
-    var post_path = get_post_path(error_properties, document_properties);    
+    var post_path = get_post_path(error_properties, document_properties);        
     var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
     
     var template_values = {
         is_parent: (document_properties.is_parent) ? "true" : "false",
         parent_path: error_properties.template,
-        parent_title: error_properties.template,
+        parent_title: error_properties.template
     };
     
     for (var i = 0; i < error_properties.placeholders.length; i++) {
@@ -314,6 +317,10 @@ var create_post = function (document_properties, error_properties) {
                 template_values[key] = additional_template_values[key];
             }
         }
+    }
+    
+    if (error_properties.template === POST_TEMPLATE) {
+        template_values.title = S(error_properties.title).escapeHTML().s;
     }
     
     content = set_custom_sections(content, document_properties.is_parent, template_values);    
@@ -373,7 +380,7 @@ function isNumber(n) {
 
 var create_errors_index = function (parents) {
     var is_parent_template_complete = function (parent) {
-        var post_path = get_post_path(parent.error, parent.document);
+        var post_path = get_post_path(parent.error, parent.document);        
         var content = fs.readFileSync(post_path, "utf8");
         var lines = content.split("\n");
         var line_count = lines.length;
@@ -421,7 +428,7 @@ var create_errors_index = function (parents) {
         return lines.join("\n");
     };
     
-    var post_path = posts_directory + '/2010-01-01-index.html';
+    var post_path = posts_directory + '/auto-generated/2010-01-01-index.html';    
     var content = fs.readFileSync(get_template_path(INDEX_TEMPLATE), "utf8"); 
     
     content = add_list_items(content, parents);
@@ -513,7 +520,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 10;
-    var error_limit = 7;
+    var error_limit = 8;
     
     var error_subset = error_data.slice(0, error_limit);
     
