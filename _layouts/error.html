@@ -41,9 +41,13 @@
             
             {% if page.id != '/errors/html-validation/index' %}
             <div class="row">
-                <div class="span8 pull-left">
+                <div class="span8">
                         {% include posts/post.html %}
                 </div>
+                <div class="span4">
+                        {% include error/main.html %}
+                        {% include error/related.html %}
+                </div>                
             </div>                       
             
             <div class="row">
