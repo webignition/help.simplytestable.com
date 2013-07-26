@@ -28,4 +28,8 @@
 <li class="active"><a href="/{{ page.categories | join, '/'}}/">{{page.parent_title}}</a></li>
 {% endif %}
 
+{% if page.id == '/errors/html-validation/index' %}
+<li class="active">HTML validation</li>
+{% endif %}
+
 </ul>
