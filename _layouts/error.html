@@ -50,7 +50,7 @@
                         {% include error/main.html %} 
                     {% endif %} 
                     {% include error/related.html %}
-                    {% if page.is_standalone == false %}                        
+                    {% if page.is_standalone == false or page.is_standalone == null %}
                         {% include error/examples.html %}
                     {% endif %}
                 </div>                

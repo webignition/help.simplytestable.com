@@ -1,9 +1,9 @@
 ---
 layout: error
-title: "Element {{%0}} not allowed as child of element {{%1}} in this context. (suppressing further errors from this subtree.)"
-categories: [errors, html-validation]
+title: "Element a not allowed as child of element ul in this context. (suppressing further errors from this subtree.)"
+categories: [errors, html-validation, element-x-not-allowed-as-child-of-element-y-in-this-context-suppressing-further-errors-from-this-subtree]
 complete: true
-is_parent: {{is_parent}}
+is_parent: false
 parent_path: element-x-not-allowed-as-child-of-element-y-in-this-context-suppressing-further-errors-from-this-subtree
 parent_title: "Element X not allowed as child of element Y in this context. (suppressing further errors from this subtree.)"
 relations: [misplaced-element]
@@ -13,12 +13,12 @@ relations: [misplaced-element]
     <h2>Most Likely Cause and Fix</h2>
     <p>
        Your markup includes a
-        <code>&lt;{{%0}}&gt;</code> element inside a <code>&lt;{{%1}}&gt;</code> 
+        <code>&lt;a&gt;</code> element inside a <code>&lt;ul&gt;</code> 
         and that this is not allowed.
         Re-organise your markup so that this is not the case.       
     </p>    
     <p>
-        You may have an unclosed <code>&lt;{{%0}}&gt;</code> element further up
+        You may have an unclosed <code>&lt;a&gt;</code> element further up
         the page that is confusing the validator. Check this also.
     </p>
 
@@ -43,7 +43,7 @@ relations: [misplaced-element]
     </p>
     <p>
         This error is telling you that your markup includes a
-        <code>&lt;{{%0}}&gt;</code> element inside a <code>&lt;{{%1}}&gt;</code> 
+        <code>&lt;a&gt;</code> element inside a <code>&lt;ul&gt;</code> 
         and that this is not allowed.
     </p>
 </div>
@@ -55,7 +55,7 @@ relations: [misplaced-element]
     <p>
         If you look at the line and column number given in the specific error
         you encountered and you can see that you clearly have 
-        a <code>&lt;{{%0}}&gt;</code> element inside a <code>&lt;{{%1}}&gt;</code>,
+        a <code>&lt;a&gt;</code> element inside a <code>&lt;ul&gt;</code>,
         you need to re-organise your markup so that this is not the case.
     </p>    
     <p>
@@ -86,10 +86,10 @@ relations: [misplaced-element]
     </p>
     <p>
        If there really is not a
-       <code>&lt;{{%0}}&gt;</code> element inside a <code>&lt;{{%1}}&gt;</code>
+       <code>&lt;a&gt;</code> element inside a <code>&lt;ul&gt;</code>
        in your markup at the point indicated by the line and column number in the
        specific message you encountered, you will probably find that
-       there is an unclosed <code>&lt;{{%0}}&gt;</code> element further up
+       there is an unclosed <code>&lt;a&gt;</code> element further up
        the page that is causing confusion.
     </p>
 </div>
