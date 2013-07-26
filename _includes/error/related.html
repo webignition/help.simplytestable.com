@@ -2,7 +2,7 @@
 
 {% for page_relation in page.relations %}
     {% for post in site.posts %}
-        {% if post.is_parent and post.id != page.id and post.relations contains page_relation %}
+        {% if post.is_parent and post.parent_path != page.parent_path and post.relations contains page_relation %}
             {% capture related_error_count %}{{related_error_count}}x{% endcapture %}            
         {% endif %}
     {% endfor %}
@@ -16,7 +16,7 @@
     <ul>
         {% for page_relation in page.relations %}
             {% for post in site.posts %}
-                {% if post.is_parent and post.id != page.id and post.relations contains page_relation %}
+                {% if post.is_parent and post.parent_path != page.parent_path and post.relations contains page_relation %}
         <li>
             {% if post.title == page.title %}
             {{post.title}}
