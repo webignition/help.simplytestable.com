@@ -109,3 +109,12 @@ strong .atv {
 .top-list ol li a {
     display:block;
 }
+
+.related-errors ul {
+    list-style: none;
+    margin-left:0;
+}
+
+.related-errors ul li {
+    
+}
