@@ -328,26 +328,9 @@ var create_index = function (parents) {
             
             for (var i = 0; i < parents[parent_index].error.placeholders.length; i++) {
                 template_values[parents[parent_index].error.placeholders[i]] = S(parents[parent_index].document.parameters[i]).escapeHTML().s;
-            }
-//
-//            if (placeholder_transforms.hasOwnProperty(error_properties.template)) {        
-//                var additional_template_values = placeholder_transforms[error_properties.template](document_properties.parameters);
-//                for (var key in additional_template_values) {
-//                    if (additional_template_values.hasOwnProperty(key)) {
-//                        template_values[key] = additional_template_values[key];
-//                    }
-//                }
-//            }
-//
-//            content = S(content).template(template_values).s;            
-
-            //console.log(S(parents[parent_index].error.title).template(template_values).s);
-            
+            }            
             
             list_lines.push('<li><h2><a href="../' + parents[parent_index].document.file_name + '">' + S(parents[parent_index].error.title).template(template_values).s + '</a></h2></li>');
-            
-            //console.log(parents[parent_index]);
-            //process.exit();
         }
         
         lines[list_line_index] = list_lines.join("\n");
@@ -359,32 +342,11 @@ var create_index = function (parents) {
     var post_path = posts_directory + '/2010-01-01-index.html';
     
     var content = add_list_items(content, parents);
-    
-//    console.log(post_path);
-//    
+   
     fs.writeFileSync(post_path, content, "utf8", function (err) {        
         console.log(err);
         process.exit();
-    });      
-    
-//    var parent_values = {};    
-//    for (var i = 0; i < error_properties.placeholders.length; i++) {
-//        parent_values[error_properties.placeholders[i]] = S(parent_properties.parameters[i]).escapeHTML().s;
-//    }      
-//    
-//    var values = {
-//        "title": S(error_properties.title).escapeHTML().s,
-//        parent_path: parent_properties.file_name,
-//        parent_title: S(error_properties.title).template(parent_values).escapeHTML().s
-//    };
-//
-//    
-//    content = S(content).template(values).s;    
-//    
-//    fs.writeFileSync(get_template_path(error_properties.template), content, "utf8", function (err) {
-//        console.log(err);
-//        process.exit();
-//    });
+    });
 };
 
 program
@@ -400,8 +362,8 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 2;
-    var error_limit = 5;
+    var parameter_limit = 5;
+    var error_limit = 6;
     
     var error_subset = error_data.slice(0, error_limit);
     

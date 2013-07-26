@@ -1,9 +1,9 @@
 ---
 layout: error
-title: "Attribute {{%0}} not allowed on element {{%1}} at this point."
-categories: [errors, html-validation]
+title: "Attribute rel not allowed on element span at this point."
+categories: [errors, html-validation, attribute-x-not-allowed-on-element-y-at-this-point]
 complete: false
-is_parent: {{is_parent}}
+is_parent: false
 parent_path: attribute-x-not-allowed-on-element-y-at-this-point
 parent_title: "Attribute X not allowed on element Y at this point."
 related_errors: [there-is-no-attribute-x]
@@ -12,11 +12,11 @@ related_errors: [there-is-no-attribute-x]
 <div class="section">    
     <h2>Most Likely Cause and Fix</h2>
     <p>
-        Your markup contains a <code>&lt;{{%1}}&gt;</code> element with
-        a <code>{{%0}}</code> attribute in the form <code>&lt;{{%1}} {{%0}}="value" /&gt;</code>.
+        Your markup contains a <code>&lt;span&gt;</code> element with
+        a <code>rel</code> attribute in the form <code>&lt;span rel="value" /&gt;</code>.
     </p>
     <p>
-        Attribute <code>{{%0}}</code> is not allowed on element <code>&lt;{{%1}}&gt;</code>.
+        Attribute <code>rel</code> is not allowed on element <code>&lt;span&gt;</code>.
     </p>    
     <p>
         You should remove this attribute for your markup to be valid or consider
@@ -33,8 +33,8 @@ related_errors: [there-is-no-attribute-x]
     </p>
     <pre>&lt;img src="http://example.com/image.png" alt="Desc" /&gt;</pre>    
     <p>
-        This error is saying that in the context of <code>&lt;{{%1}} {{%0}}="value" /&gt;</code>,
-        the attribute <code>{{%0}}</code> is not allowed.
+        This error is saying that in the context of <code>&lt;span rel="value" /&gt;</code>,
+        the attribute <code>rel</code> is not allowed.
     </p>
 </div>
 
@@ -45,22 +45,22 @@ related_errors: [there-is-no-attribute-x]
         This will guide you to the exact point in your markup to which the error relates.
     </p>    
     <p>
-        Your markup contains a <code>&lt;{{%1}}&gt;</code> element with
-        a <code>{{%0}}</code> attribute in the form <code>&lt;{{%0}} {{%1}}="value" /&gt;</code>.
+        Your markup contains a <code>&lt;span&gt;</code> element with
+        a <code>rel</code> attribute in the form <code>&lt;rel span="value" /&gt;</code>.
     </p>
     <p>
-        Attribute <code>{{%0}}</code> is not allowed on element <code>&lt;{{%1}}&gt;</code>.
+        Attribute <code>rel</code> is not allowed on element <code>&lt;span&gt;</code>.
     </p>
     <p>
         Use
     </p>
-    <pre>&lt;{{%1}} &hellip; /&gt;</pre> 
+    <pre>&lt;span &hellip; /&gt;</pre> 
     <p>
         instead of
     </p>
-    <pre>&lt;{{%1}} {{%0}}="value" &hellip; /&gt;</pre>     
+    <pre>&lt;span rel="value" &hellip; /&gt;</pre>     
     <p>
         or consider using a <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attribute</a>
     </p>
-    <pre>&lt;{{%1}} data-{{%0}}="value" &hellip; /&gt;</pre>       
+    <pre>&lt;span data-rel="value" &hellip; /&gt;</pre>       
 </div>

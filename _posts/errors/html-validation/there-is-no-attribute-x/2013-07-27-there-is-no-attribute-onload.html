@@ -1,9 +1,9 @@
 ---
 layout: error
-title: "There is no attribute &quot;{{%0}}&quot;"
-categories: [errors, html-validation]
+title: "There is no attribute &quot;onload&quot;"
+categories: [errors, html-validation, there-is-no-attribute-x]
 complete: false
-is_parent: {{is_parent}}
+is_parent: false
 parent_path: there-is-no-attribute-x
 parent_title: "There is no attribute &quot;X&quot;"
 related_errors: [attribute-x-not-allowed-on-element-y-at-this-point]
@@ -12,7 +12,7 @@ related_errors: [attribute-x-not-allowed-on-element-y-at-this-point]
 <div class="section">    
     <h2>Most Likely Cause and Fix</h2>
     <p>
-        You have used the attribute <code>{{%0}}</code> on an element where the
+        You have used the attribute <code>onload</code> on an element where the
         element does not allow an attibute of that name.
     </p>    
     <p>
@@ -30,7 +30,7 @@ related_errors: [attribute-x-not-allowed-on-element-y-at-this-point]
     </p>
     <pre>&lt;img src="http://example.com/image.png" alt="Desc" /&gt;</pre>    
     <p>
-        This error is simply saying that the attribute <code>{{%0}}</code>
+        This error is simply saying that the attribute <code>onload</code>
         cannot be used where you used it.
     </p>
 </div>
@@ -39,7 +39,7 @@ related_errors: [attribute-x-not-allowed-on-element-y-at-this-point]
     <h2>How To Fix It</h2>
     <h3>Simply remove the attribute</h3>  
     <p>
-        You have used the attribute <code>{{%0}}</code> on an element where the
+        You have used the attribute <code>onload</code> on an element where the
         element does not allow an attibute of that name.
     </p>    
     <p>
@@ -57,12 +57,12 @@ related_errors: [attribute-x-not-allowed-on-element-y-at-this-point]
         Whilst the following is invalid HTML, the invalid attributes could
         still end up in the DOM and be accessible via JavaScript:
     </p>
-    <pre>&lt;img src="http://example.com/image.png" alt="Desc" {{%0}}="jon" /&gt;</pre>   
+    <pre>&lt;img src="http://example.com/image.png" alt="Desc" onload="jon" /&gt;</pre>   
     <p>
         <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>
         are intended exactly for this purpose. Give it a go if relevant to you.
     </p>
-    <pre>&lt;img src="http://example.com/image.png" alt="Desc" data-{{%0}}="jon" /&gt;</pre>      
+    <pre>&lt;img src="http://example.com/image.png" alt="Desc" data-onload="jon" /&gt;</pre>      
     
     <h3>Check your doctype</h3>
     <p>
