@@ -128,3 +128,8 @@ strong .atv {
     display: block;
     padding: 4px 0;    
 }
+
+.toc-container ul {
+    list-style:none;
+    margin-left:0;
+}

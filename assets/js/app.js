@@ -11,7 +11,7 @@ String.prototype.hashCode = function(){
 
 $(document).ready(function() {
     $('body.toc .post').each(function () {
-        var headings = $('h3', this);
+        var headings = $('h2', this);
         if (headings.length === 0) {
             return;
         }
@@ -30,7 +30,7 @@ $(document).ready(function() {
             tocList.append($('<li><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>'));
         });
         
-        var sidebarItem = $('<div class="well" />');
+        var sidebarItem = $('<div class="toc-container" />');
         sidebarItem.append('<h3>In this document</h3>');
         sidebarItem.append(tocList);
         

@@ -6,6 +6,7 @@ var $ = require('jquery');
 var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 var templates_directory = __dirname + '/../_templates/errors/html-validation';
+var includes_directory = __dirname + '/../_includes/generated/html-validation';
 
 var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
@@ -370,7 +371,7 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-var create_index = function (parents) {
+var create_errors_index = function (parents) {
     var is_parent_template_complete = function (parent) {
         var post_path = get_post_path(parent.error, parent.document);
         var content = fs.readFileSync(post_path, "utf8");
@@ -420,10 +421,77 @@ var create_index = function (parents) {
         return lines.join("\n");
     };
     
-    var content = fs.readFileSync(get_template_path(INDEX_TEMPLATE), "utf8");    
     var post_path = posts_directory + '/2010-01-01-index.html';
+    var content = fs.readFileSync(get_template_path(INDEX_TEMPLATE), "utf8"); 
     
-    var content = add_list_items(content, parents);
+    content = add_list_items(content, parents);
+   
+    fs.writeFileSync(post_path, content, "utf8", function (err) {        
+        console.log(err);
+        process.exit();
+    });
+};
+
+var create_home_list = function (parents) {
+    var is_parent_template_complete = function (parent) {
+        var post_path = get_post_path(parent.error, parent.document);
+        var content = fs.readFileSync(post_path, "utf8");
+        var lines = content.split("\n");
+        var line_count = lines.length;
+        
+        for (var line_index = 0; line_index < line_count; line_index++) {
+            if (lines[line_index] === 'complete: false') {
+                return false;
+            }
+            
+            if (lines[line_index] === 'complete: true') {
+                return true;
+            }            
+        }
+        
+        return false;        
+    };
+    
+    var add_list_items = function (content, parents) {
+        var lines = content.split("\n");
+        var list_line_index = 0;
+        var list_lines = [];
+        
+        for (var line_index = 0; line_index < lines.length; line_index++) {
+            if (lines[line_index].indexOf('<li></li>') !== -1) {
+                list_line_index = line_index;
+            }
+        }
+        
+        
+        for (var parent_index = 0; parent_index < parents.length; parent_index++) {
+            var template_values = {};
+            
+            for (var i = 0; i < parents[parent_index].error.placeholders.length; i++) {                
+                template_values[parents[parent_index].error.placeholders[i]] = S(parents[parent_index].document.parameters[i]).escapeHTML().s;
+            }         
+            
+            if (is_parent_template_complete(parents[parent_index])) {
+                list_lines.push('<li><a href="/errors/html-validation/' + parents[parent_index].document.file_name + '"><i class="icon icon-file-alt"></i>' + S(parents[parent_index].error.title).template(template_values).s + '</a></li>');
+            } else {
+                list_lines.push('<li><i class="icon icon-file-alt"></i>' + S(parents[parent_index].error.title).template(template_values).s + '</li>');
+            } 
+        }
+        
+        lines[list_line_index] = list_lines.join("\n");
+        
+        return lines.join("\n");
+    };    
+    
+
+    var post_path = includes_directory + '/top.html';
+    var content = fs.readFileSync(get_template_path('home-top'), "utf8"); 
+
+
+    
+//    var post_path = posts_directory + '/2010-01-01-index.html';
+//    
+    content = add_list_items(content, parents);
    
     fs.writeFileSync(post_path, content, "utf8", function (err) {        
         console.log(err);
@@ -523,5 +591,6 @@ fs.readFile(file, 'utf8', function(err, data) {
         }
     }
     
-    create_index(index_entries);
+    create_errors_index(index_entries);
+    create_home_list(index_entries);
 });

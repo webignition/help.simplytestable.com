@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ page.title }} | {{ site.simplytestable.title }}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">        
+        {% include assets/css/default.html %}
+        <script src="//twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.js" type="text/javascript"></script>        
+        {% include assets/js/default.html %}
+        <script>
+            // Activate Google Prettify in this page
+            addEventListener('load', prettyPrint, false);
+            $(document).ready(function(){
+                // Add prettyprint class to pre elements
+                $('pre').addClass('prettyprint');           
+            }); // end document.ready
+        </script>        
+    </head>
+    <body id="{% include page/id %}" class="{{ page.body_class }}">
+        {% include header/navigation.html %}
+
+        <div class="container">
+            {% include header/introduction.html %}         
+
+            <div class="row">
+                <div class="span12">
+                        {% include posts/post.html %}
+                </div>            
+            </div>            
+            
+            <div class="row">
+                <div class="span6">
+{% include generated/html-validation/top.html %}
+                </div>
+                <div class="span6">
+{% include sidebar/legal.html %}
+                </div>                
+            </div>
+        </div>
+    </body>
+</html>

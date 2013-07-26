@@ -26,40 +26,16 @@
                 <div class="span12">
                     {% include breadcrumb/breadcrumb.html %}
                 </div>
-            </div>
-        {% if page.categories contains 'errors' and page.is_parent%}                 
-            <div class="row">
-                <div class="span12">   
-                    <div class="alert alert-info">
-                    This is a generic error page which should help you in general with errors of this type.
-                    Refer below to the specific examples to the right for more precise
-                    advice.
-                    </div>        
-                </div>
-            </div>                       
-        {% endif %}              
+            </div>           
             
-            {% if page.id != '/errors/html-validation/index' %}
             <div class="row">
                 <div class="span8">
                         {% include posts/post.html %}
                 </div>
-                <div class="span4">
-                        {% include error/main.html %}
-                        {% include error/related.html %}
-                        {% include error/examples.html %}
+                <div class="span4 sidebar">
+{% include sidebar/legal.html %}
                 </div>                
             </div>
-            
-            {% else %}
-            
-            <div class="row">
-                <div class="span10 full-left">
-                        {% include posts/post.html %}
-                </div>
-            </div>               
-            
-            {% endif %}
         </div>
     </body>
 </html>
