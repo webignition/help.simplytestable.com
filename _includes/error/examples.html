@@ -6,7 +6,6 @@
 {% endfor %}
 
 {% if example_post_count | size > 0 %}
-<hr>
 
 <div class="section related-errors">    
     <h3>Examples of this error</h3>
@@ -15,7 +14,7 @@
         {% if post.parent_path == page.parent_path and post.is_parent == false %}
         <li>
             {% if post.title == page.title %}
-            {{post.title}}
+            <span>{{post.title}}</span>
             {% else %}
             <a href="{{post.url}}">{{post.title}}</a>
             {% endif %}            

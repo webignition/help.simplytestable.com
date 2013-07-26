@@ -123,7 +123,8 @@ strong .atv {
     margin: 4px 0;
 }
 
-.related-errors ul li a {
+.related-errors ul li a,
+.related-errors ul li span {
     display: block;
     padding: 4px 0;    
 }
