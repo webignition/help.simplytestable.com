@@ -8,7 +8,11 @@
 
     {% capture path %}{{ path }}/{{ category }}{% endcapture %}
     <li>
+        {% if category == 'errors' %}
+        <a href="{{path}}/html-validation/index/">{{ category | capitalize | replace:'Html','HTML' }}</a>
+        {% else %}
         <a href="{{path}}/index/">{{ category | capitalize | replace:'Html','HTML' }}</a>
+        {% endif %}        
         
         {% if forloop.last %}
             {% if page.is_parent == false %}
