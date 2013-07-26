@@ -1,6 +1,7 @@
 var fs = require('fs');
 var program = require('commander');
 var S = require('string');
+var $ = require('jquery');
 
 var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
@@ -214,7 +215,7 @@ var get_post_path = function (error_properties, document_properties) {
     return post_path;
 };
 
-var create_post = function (document_properties, error_properties) {
+var create_post = function (document_properties, error_properties) {    
     var set_category = function (content) {
         var lines = content.split("\n");
         
@@ -225,6 +226,65 @@ var create_post = function (document_properties, error_properties) {
         }
         
         return lines.join("\n");
+    };
+    
+    var set_custom_sections = function (content, is_parent, template_values) {
+        var content_sections = content.split("---\n\n");
+        var jqueryified = $('<div/>').html(content_sections[1]);
+        
+        var parameter_specific_sections = $('[data-parameter-specific=true]', jqueryified);
+        var generic_sections = $('[data-generic=true]', jqueryified);
+        
+        if (parameter_specific_sections.length === 0 && generic_sections.length === 0) {
+            return content;
+        }
+        
+        if (is_parent) {
+            parameter_specific_sections.each(function () {
+                $(this).remove();
+            });
+            
+            content_sections[1] = jqueryified.html();
+            return content_sections.join("---\n\n");
+        }
+        
+        var is_parameter_specific_section_for = function (section, parameters) {            
+            var is_key_for = false;
+            var is_value_for = false;
+            
+            for (var key in parameters) {
+                if (parameters.hasOwnProperty(key)) {
+                    if (section.attr('data-parameter-key') === key) {
+                        is_key_for = true;
+                    }
+                    
+                    if (section.attr('data-parameter-value') === parameters[key]) {
+                        is_value_for = true;
+                    }                    
+                }
+            }
+            
+            return is_key_for && is_value_for;
+        };        
+        
+        var has_matching_parameter_specific_section = false;
+        
+        parameter_specific_sections.each(function () {
+            if (is_parameter_specific_section_for($(this), template_values)) {
+               has_matching_parameter_specific_section = true;
+            } else {
+                $(this).remove();
+            }
+        });
+        
+        if (has_matching_parameter_specific_section) {
+            generic_sections.each(function () {
+                $(this).remove();
+            });             
+        }
+        
+        content_sections[1] = jqueryified.html();
+        return content_sections.join("---\n\n");
     };
 
    
@@ -255,13 +315,12 @@ var create_post = function (document_properties, error_properties) {
         }
     }
     
+    content = set_custom_sections(content, document_properties.is_parent, template_values);    
     content = S(content).template(template_values).s;
 
     if (!document_properties.is_parent) {
         content = set_category(content);
     }
-
-    
     
     var post_directory = post_path.split('/').slice(0, post_path.split('/').length - 1).join('/');
     
@@ -386,7 +445,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 5;
-    var error_limit = 6;
+    var error_limit = 7;
     
     var error_subset = error_data.slice(0, error_limit);
     
@@ -425,6 +484,7 @@ fs.readFile(file, 'utf8', function(err, data) {
         
         var parent_document = get_document_properties(error.normal_form, [], true);        
         var documents = [parent_document];
+        var document_index = [parent_document.file_name];
         
         index_entries.push({
             "error":error_properties,
@@ -439,13 +499,20 @@ fs.readFile(file, 'utf8', function(err, data) {
                     continue;
                 }
 
-                if (output_parameter_count < parameter_limit) {
-                    documents = documents.concat(get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value]));
+                if (output_parameter_count < parameter_limit) { 
+                    var parameterised_documents = get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value]);
+                    var parameterised_document_count = parameterised_documents.length;
+                    for (var parameterised_document_index = 0; parameterised_document_index < parameterised_document_count; parameterised_document_index++) {
+                        if (document_index.indexOf(parameterised_documents[parameterised_document_index].file_name) === -1) {
+                            documents.push(parameterised_documents[parameterised_document_index]);
+                            document_index.push(parameterised_documents[parameterised_document_index].file_name);                            
+                        }
+                    }
                 }                    
 
                 output_parameter_count++;
             }
-        }    
+        }
         
         for (var documentIndex = 0; documentIndex < documents.length; documentIndex++) {
             if (post_exists(documents[documentIndex].file_name)) {
