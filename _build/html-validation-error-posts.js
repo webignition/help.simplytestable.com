@@ -312,6 +312,25 @@ function isNumber(n) {
 }
 
 var create_index = function (parents) {
+    var is_parent_template_complete = function (parent) {
+        var post_path = get_post_path(parent.error, parent.document);
+        var content = fs.readFileSync(post_path, "utf8");
+        var lines = content.split("\n");
+        var line_count = lines.length;
+        
+        for (var line_index = 0; line_index < line_count; line_index++) {
+            if (lines[line_index] === 'complete: false') {
+                return false;
+            }
+            
+            if (lines[line_index] === 'complete: true') {
+                return true;
+            }            
+        }
+        
+        return false;        
+    };
+    
     var add_list_items = function (content, parents) {
         var lines = content.split("\n");
         var list_line_index = 0;
@@ -326,11 +345,15 @@ var create_index = function (parents) {
         for (var parent_index = 0; parent_index < parents.length; parent_index++) {
             var template_values = {};
             
-            for (var i = 0; i < parents[parent_index].error.placeholders.length; i++) {
+            for (var i = 0; i < parents[parent_index].error.placeholders.length; i++) {                
                 template_values[parents[parent_index].error.placeholders[i]] = S(parents[parent_index].document.parameters[i]).escapeHTML().s;
-            }            
+            } 
             
-            list_lines.push('<li><h2><a href="../' + parents[parent_index].document.file_name + '">' + S(parents[parent_index].error.title).template(template_values).s + '</a></h2></li>');
+            if (is_parent_template_complete(parents[parent_index])) {
+                list_lines.push('<li><h2><a href="../' + parents[parent_index].document.file_name + '">' + S(parents[parent_index].error.title).template(template_values).s + '</a></h2></li>');
+            } else {
+                list_lines.push('<li><h2>' + S(parents[parent_index].error.title).template(template_values).s + '</h2></li>');
+            } 
         }
         
         lines[list_line_index] = list_lines.join("\n");
@@ -434,6 +457,4 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
     
     create_index(index_entries);
-    
-    //console.log(parents);
 });
