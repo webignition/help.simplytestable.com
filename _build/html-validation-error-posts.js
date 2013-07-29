@@ -12,6 +12,7 @@ var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
 var INDEX_TEMPLATE = 'index';
 var MAX_FILE_NAME_LENGTH = 220;
+var DEFAULT_TEMPLATE_POST_TIMEPSTAMP = '2013-07-27';
 
 var placeholder_transforms = {    
     'document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag': function (parameters) {
@@ -211,15 +212,21 @@ var get_post_path = function (error_properties, document_properties) {
     
     var post_path = posts_directory + '/';
     
-    if (error_properties.template != POST_TEMPLATE) {
+    if (error_properties.template !== POST_TEMPLATE) {
         post_path += '/auto-generated/' + error_properties.template + '/';
     }
     
-    post_path +=get_date_string() + '-' + filename_body + '.html';        
+    if (error_properties.template === POST_TEMPLATE) {
+        post_path += DEFAULT_TEMPLATE_POST_TIMEPSTAMP;
+    } else {
+        post_path += get_date_string();
+    }
+    
+    post_path += '-' + filename_body + '.html';        
     return post_path;
 };
 
-var create_post = function (document_properties, error_properties) {            
+var create_post = function (document_properties, error_properties) {                
     var set_category = function (content) {
         var lines = content.split("\n");
         
@@ -232,48 +239,61 @@ var create_post = function (document_properties, error_properties) {
         return lines.join("\n");
     };
     
-    var set_custom_sections = function (content, is_parent, template_values) {
-        var content_sections = content.split("---\n\n");
-        var jqueryified = $('<div/>').html(content_sections[1]);
+    var set_custom_section = function (document_section, is_parent, template_values) {        
+        var jqueryified = $('<div/>').html(document_section);
         
         var parameter_specific_sections = $('[data-parameter-specific=true]', jqueryified);
-        var generic_sections = $('[data-generic=true]', jqueryified);
+        var generic_sections = $('[data-generic=true]', jqueryified);       
         
         if (parameter_specific_sections.length === 0 && generic_sections.length === 0) {
-            return content;
-        }
+            return document_section;
+        }        
         
         if (is_parent) {
             parameter_specific_sections.each(function () {
                 $(this).remove();
             });
             
-            content_sections[1] = jqueryified.html();
-            return content_sections.join("---\n\n");
-        }
+            return jqueryified.html();
+        }        
         
-        var is_parameter_specific_section_for = function (section, parameters) {            
+        var is_parameter_specific_section_for = function (section, parameters) {
             var is_key_for = false;
             var is_value_for = false;
             
             for (var key in parameters) {
-                if (parameters.hasOwnProperty(key)) {
+                if (parameters.hasOwnProperty(key)) {                
+                    
                     if (section.attr('data-parameter-key') === key) {
                         is_key_for = true;
                     }
                     
-                    if (section.attr('data-parameter-value') === parameters[key]) {
-                        is_value_for = true;
-                    }                    
+                    var matchComparator = section.attr('data-parameter-value');
+                    var isPositiveMatchRequired = matchComparator.substr(0, 1) !== '!';
+
+                    if (isPositiveMatchRequired === false) {
+                        matchComparator = matchComparator.substr(1);
+                    }
+                     
+                    if (isPositiveMatchRequired) {
+                        if (matchComparator === S(parameters[key]).decodeHTMLEntities().s) {
+                            is_value_for = true;
+                        }                           
+                    } else {
+                        if (matchComparator !== S(parameters[key]).decodeHTMLEntities().s) {
+                            is_value_for = true;
+                        }                           
+                    }
+                 
                 }
-            }
+            }              
             
             return is_key_for && is_value_for;
         };        
         
         var has_matching_parameter_specific_section = false;
         
-        parameter_specific_sections.each(function () {
+        parameter_specific_sections.each(function () {            
             if (is_parameter_specific_section_for($(this), template_values)) {
                has_matching_parameter_specific_section = true;
             } else {
@@ -285,10 +305,29 @@ var create_post = function (document_properties, error_properties) {
             generic_sections.each(function () {
                 $(this).remove();
             });             
+        }    
+        
+        return jqueryified.html();
+    };
+    
+    var set_custom_sections = function (content, is_parent, template_values) {        
+        var post_sections = content.split("---\n\n");
+        
+        var modified_content = '';        
+        var document_sections = post_sections[1].split('<div class="section">');       
+        
+        for (var document_section_index = 0; document_section_index < document_sections.length; document_section_index++) {
+            var document_section_comparator = S(document_sections[document_section_index]).trim().s;
+            
+            if (document_section_comparator !== '') {                
+                var document_section = S(document_section_comparator.substr(0, document_section_comparator.length - 6)).trim().s;
+                modified_content += '<div class="section">' + set_custom_section(document_section, is_parent, template_values) + '</div>' + "\n";           
+            }
         }
         
-        content_sections[1] = jqueryified.html();
-        return content_sections.join("---\n\n");
+        post_sections[1] = modified_content;
+        
+        return post_sections.join("---\n\n");
     };
 
    
@@ -307,6 +346,10 @@ var create_post = function (document_properties, error_properties) {
     };
     
     for (var i = 0; i < error_properties.placeholders.length; i++) {
+        if (document_properties.parameters[i] === '') {
+            document_properties.parameters[i] = '<blank>';
+        }
+        
         template_values[error_properties.placeholders[i]] = S(document_properties.parameters[i]).escapeHTML().s;
     }
     
@@ -380,7 +423,8 @@ function isNumber(n) {
 
 var create_errors_index = function (parents) {
     var is_parent_template_complete = function (parent) {
-        var post_path = get_post_path(parent.error, parent.document);        
+        var post_path = get_post_path(parent.error, parent.document);
+        
         var content = fs.readFileSync(post_path, "utf8");
         var lines = content.split("\n");
         var line_count = lines.length;
@@ -493,11 +537,7 @@ var create_home_list = function (parents) {
 
     var post_path = includes_directory + '/top.html';
     var content = fs.readFileSync(get_template_path('home-top'), "utf8"); 
-
-
-    
-//    var post_path = posts_directory + '/2010-01-01-index.html';
-//    
+  
     content = add_list_items(content, parents);
    
     fs.writeFileSync(post_path, content, "utf8", function (err) {        
@@ -519,8 +559,8 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 14;
-    var error_limit = 9;
+    var parameter_limit = 15;
+    var error_limit = 10;
     
     var error_subset = error_data.slice(0, error_limit);
     
