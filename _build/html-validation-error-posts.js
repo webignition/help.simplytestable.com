@@ -270,21 +270,35 @@ var create_post = function (document_properties, error_properties) {
                     
                     var matchComparator = section.attr('data-parameter-value');
                     var isPositiveMatchRequired = matchComparator.substr(0, 1) !== '!';
-
-                    if (isPositiveMatchRequired === false) {
-                        matchComparator = matchComparator.substr(1);
-                    }
-                     
-                    if (isPositiveMatchRequired) {
-                        if (matchComparator === S(parameters[key]).decodeHTMLEntities().s) {
+                    var isWildcardMatchRequired = matchComparator.substr(matchComparator.length - 1) === '*';
+                    
+                    if (isWildcardMatchRequired) {
+                        var regexpComparator = matchComparator.substr(0, matchComparator.length - 1);
+                        var regexp = new RegExp(regexpComparator + '.*');
+                        
+                        //
+                        if (regexp.test(S(parameters[key]).decodeHTMLEntities().s)) {
+//                            console.log(regexpComparator);
+//                            console.log(S(parameters[key]).decodeHTMLEntities().s);
+//                            process.exit();
                             is_value_for = true;
-                        }                           
+                        }
+                        //process.exit();
                     } else {
-                        if (matchComparator !== S(parameters[key]).decodeHTMLEntities().s) {
-                            is_value_for = true;
-                        }                           
+                        if (isPositiveMatchRequired === false) {
+                            matchComparator = matchComparator.substr(1);
+                        }
+
+                        if (isPositiveMatchRequired) {
+                            if (matchComparator === S(parameters[key]).decodeHTMLEntities().s) {
+                                is_value_for = true;
+                            }                           
+                        } else {
+                            if (matchComparator !== S(parameters[key]).decodeHTMLEntities().s) {
+                                is_value_for = true;
+                            }                           
+                        }                        
                     }
-                 
                 }
             }              
             
@@ -560,6 +574,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 15;
+    //var parameter_limit = 1;
     var error_limit = 10;
     
     var error_subset = error_data.slice(0, error_limit);
