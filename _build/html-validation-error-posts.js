@@ -155,7 +155,11 @@ var normal_form_to_specific_form = function (normal_form, parameters) {
     return specific_form;
 };
 
-var normal_form_to_template_form = function (normal_form) {
+var normal_form_to_template_form = function (normal_form) {    
+    var modifications = {
+        '^Id ':'ID '
+    };
+    
     var template_form = S(normal_form).humanize().s;
     
     var placeholders = get_placeholders(normal_form);
@@ -163,6 +167,13 @@ var normal_form_to_template_form = function (normal_form) {
     for (var placeholderIndex = 0; placeholderIndex < placeholders.length; placeholderIndex++) {
         var template_placeholder = '{{'+placeholders[placeholderIndex]+'}}';
         template_form = template_form.replace(placeholders[placeholderIndex], template_placeholder);
+        
+        for (var pattern in modifications) {
+            if (modifications.hasOwnProperty(pattern)) {
+                var regexp = new RegExp(pattern);
+                template_form = template_form.replace(regexp, modifications[pattern]);
+            }
+        }
     }
     
     return template_form;
@@ -457,7 +468,7 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-var create_errors_index = function (parents) {
+var create_errors_index = function (parents) {    
     var is_parent_template_complete = function (parent) {
         var post_path = get_post_path(parent.error, parent.document);
         
@@ -489,7 +500,7 @@ var create_errors_index = function (parents) {
             }
         }
         
-        for (var parent_index = 0; parent_index < parents.length; parent_index++) {
+        for (var parent_index = 0; parent_index < parents.length; parent_index++) {            
             var template_values = {};
             
             for (var i = 0; i < parents[parent_index].error.placeholders.length; i++) {                
@@ -596,7 +607,8 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 15;
-    var error_limit = 12;
+    //var parameter_limit = 1;
+    var error_limit = 13;
     
     var error_subset = error_data.slice(0, error_limit);
     
