@@ -29,7 +29,7 @@
 {% endfor %} 
 
 {% if page.is_parent == false %}
-<li class="active"><a href="/{{ page.categories | join, '/'}}/">{{page.parent_title}}</a></li>
+<li class="active"><a href="/{{ page.categories | join: '/'}}/">{{page.parent_title}}</a></li>
 {% endif %}
 
 {% if page.id == '/errors/html-validation/index' %}
