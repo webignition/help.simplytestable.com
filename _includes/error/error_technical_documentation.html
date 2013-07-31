@@ -1,0 +1,12 @@
+<div class="technical-documentation-links">
+<h3>Technical documentation</h3>    
+
+{% if page.error_elements != empty %}
+    {% include error/element_definitions.html %}
+{% endif %}  
+
+{% if page.error_element != null and page.error_attribute != null %}
+    {% include error/element_attribute_definition.html %}
+{% endif %}  
+
+</div>

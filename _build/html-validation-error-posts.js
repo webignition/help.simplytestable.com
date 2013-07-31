@@ -17,7 +17,7 @@ var DEFAULT_TEMPLATE_POST_TIMEPSTAMP = '2013-07-27';
 var placeholder_transforms = {    
     'document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag': function (parameters) {
         var y_parameters = S(parameters[1]).replaceAll('"', '').replaceAll(' ', '').s.split(',');
-        var y_parameters_coded = '';
+        var y_parameters_coded = '';        
         
         for (var i = 0; i < y_parameters.length; i++) {
             y_parameters_coded += '<code>&lt;' + y_parameters[i] + '&gt;</code>';
@@ -32,9 +32,28 @@ var placeholder_transforms = {
         }
         
         return {
-            'y_parameters_coded':(y_parameters_coded)
+            'y_parameters_coded':(y_parameters_coded),
+            'y_parameters': y_parameters.join(', ')
         };
-    }
+    },
+    'required-attribute-x-not-specified': function (parameters) {
+        switch (parameters[0]) {
+            case 'type':
+                return {
+                    'error_elements': ['script', 'style'].join(', ')
+                };
+
+            case 'alt':
+                return {
+                    'error_elements': ['img'].join(', ')
+                };            
+                
+            default:
+                return {
+                    'error_elements':[]
+                };
+        }
+    }            
 };
 
 
@@ -195,12 +214,12 @@ var create_template = function (error_properties) {
 };
 
 var get_post_path = function (error_properties, document_properties) {
-    var get_date_string  = function () {
+    var get_date_string  = function () {        
         var date = new Date();
         
         var year = date.getFullYear();
         var month =  S(date.getMonth() + 1).pad(2, '0').s;
-        var day =  S(date.getDate() + 1).pad(2, '0').s;
+        var day =  S(date.getDate()).pad(2, '0').s;
         
         return year + '-' + month + '-' + day;
     };  
@@ -574,8 +593,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 15;
-    //var parameter_limit = 1;
-    var error_limit = 10;
+    var error_limit = 11;
     
     var error_subset = error_data.slice(0, error_limit);
     

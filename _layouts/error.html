@@ -45,12 +45,20 @@
                 <div class="span8">
                         {% include posts/post.html %}
                 </div>
-                <div class="span4">
-                <div class="span4">
+                <div class="span4">     
+                    {% if page.error_elements == empty %}
+                    {% else %}                   
+                        {% if (page.is_parent != true or page.is_standalone != null)) %}
+                            {% include error/error_technical_documentation.html %}
+                        {% endif %}
+                    {% endif %}
+                    
                     {% if page.is_standalone == false or page.is_standalone == null %}
                         {% include error/main.html %} 
                     {% endif %} 
+                    
                     {% include error/related.html %}
+                    
                     {% if page.is_standalone == false or page.is_standalone == null %}
                         {% include error/examples.html %}
                     {% endif %}

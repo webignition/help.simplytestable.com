@@ -110,7 +110,8 @@ strong .atv {
     display:block;
 }
 
-.related-errors h3 {
+.related-errors h3,
+.technical-documentation-links h3 {
     margin-bottom:0;
 }
 
@@ -132,4 +133,10 @@ strong .atv {
 .toc-container ul {
     list-style:none;
     margin-left:0;
+}
+
+.technical-documentation-links a {
+    display: block;
+    padding: 4px 0;
+    margin: 2px 0;
 }
