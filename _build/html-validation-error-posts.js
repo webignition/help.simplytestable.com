@@ -593,7 +593,7 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 15;
-    var error_limit = 11;
+    var error_limit = 12;
     
     var error_subset = error_data.slice(0, error_limit);
     
