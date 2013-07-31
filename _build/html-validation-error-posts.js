@@ -40,17 +40,20 @@ var placeholder_transforms = {
         switch (parameters[0]) {
             case 'type':
                 return {
-                    'error_elements': ['script', 'style'].join(', ')
+                    'error_elements': ['script', 'style'].join(', '),
+                    'equivalent_errors': []
                 };
 
             case 'alt':
                 return {
-                    'error_elements': ['img'].join(', ')
+                    'error_elements': ['img'].join(', '),
+                    'equivalent_errors': ['an-img-element-must-have-an-alt-attribute-except-under-certain-conditions-for-details-consult-guidance-on-providing-text-alternatives-for-images']                    
                 };            
                 
             default:
                 return {
-                    'error_elements':[]
+                    'error_elements':[],
+                    'equivalent_errors': []                    
                 };
         }
     }            
