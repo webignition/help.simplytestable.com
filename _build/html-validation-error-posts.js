@@ -690,7 +690,7 @@ fs.readFile(file, 'utf8', function(err, data) {
               return 1;
 
             return 0;
-        }).slice(0, parameter_limit);       
+        }).slice(0, parameter_limit);
         
         for (var document_index = 0; document_index < documents.length; document_index++) {
             if (post_exists(documents[document_index].file_name)) {
