@@ -14,6 +14,14 @@ var INDEX_TEMPLATE = 'index';
 var MAX_FILE_NAME_LENGTH = 220;
 var DEFAULT_TEMPLATE_POST_TIMEPSTAMP = '2013-07-27';
 
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 var placeholder_transforms = {    
     'document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag': function (parameters) {
         var y_parameters = S(parameters[1]).replaceAll('"', '').replaceAll(' ', '').s.split(',');
@@ -227,13 +235,17 @@ var create_template = function (error_properties) {
     });
 };
 
-var get_post_path = function (error_properties, document_properties) {
+var get_post_path = function (error_properties, document_properties, document_index) {
+    if (document_index === undefined) {
+        document_index = 0;
+    }
+    
     var get_date_string  = function () {        
         var date = new Date();
         
         var year = date.getFullYear();
-        var month =  S(date.getMonth() + 1).pad(2, '0').s;
-        var day =  S(date.getDate()).pad(2, '0').s;
+        var month =  S(1).pad(2, '0').s; 
+        var day =  S(28 - document_index).pad(2, '0').s;        
         
         return year + '-' + month + '-' + day;
     };  
@@ -259,7 +271,7 @@ var get_post_path = function (error_properties, document_properties) {
     return post_path;
 };
 
-var create_post = function (document_properties, error_properties) {                
+var create_post = function (document_properties, error_properties, document_index) {    
     var set_category = function (content) {
         var lines = content.split("\n");
         
@@ -309,14 +321,9 @@ var create_post = function (document_properties, error_properties) {
                         var regexpComparator = matchComparator.substr(0, matchComparator.length - 1);
                         var regexp = new RegExp(regexpComparator + '.*');
                         
-                        //
                         if (regexp.test(S(parameters[key]).decodeHTMLEntities().s)) {
-//                            console.log(regexpComparator);
-//                            console.log(S(parameters[key]).decodeHTMLEntities().s);
-//                            process.exit();
                             is_value_for = true;
                         }
-                        //process.exit();
                     } else {
                         if (isPositiveMatchRequired === false) {
                             matchComparator = matchComparator.substr(1);
@@ -383,13 +390,14 @@ var create_post = function (document_properties, error_properties) {
         process.exit();
     }
     
-    var post_path = get_post_path(error_properties, document_properties);        
+    var post_path = get_post_path(error_properties, document_properties, document_index);                
     var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
     
     var template_values = {
         is_parent: (document_properties.is_parent) ? "true" : "false",
         parent_path: error_properties.template,
-        parent_title: error_properties.template
+        parent_title: error_properties.template,
+        date: post_path.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)[0]
     };
     
     for (var i = 0; i < error_properties.placeholders.length; i++) {
@@ -432,15 +440,15 @@ var create_post = function (document_properties, error_properties) {
     });   
 };
 
-var get_parameterised_documents = function (normal_form, parameters, parameter_properties) {
+var get_parameterised_documents = function (normal_form, parameters, parameter_properties, counts) {
     var documents = [];
     
     if (parameter_properties.hasOwnProperty('children')) {        
-        for (var child_parameter_name in parameter_properties.children) {            
-            documents = documents.concat(get_parameterised_documents(normal_form, parameters.concat(child_parameter_name), parameter_properties.children[child_parameter_name]));
+        for (var child_parameter_name in parameter_properties.children) {                                
+            documents = documents.concat(get_parameterised_documents(normal_form,parameters.concat(child_parameter_name),parameter_properties.children[child_parameter_name], counts.concat(parameter_properties.children[child_parameter_name].count)));
         }
-    } else {
-        documents.push(get_document_properties(normal_form, parameters));  
+    } else { 
+        documents.push(get_document_properties(normal_form, parameters, false, counts));          
     }
     
     return documents;        
@@ -456,11 +464,21 @@ var get_error_properties = function (normal_form) {
     };
 };
 
-var get_document_properties = function (normal_form, parameters, is_parent) {   
+var get_document_properties = function (normal_form, parameters, is_parent, counts) {       
+    var weight = Number.POSITIVE_INFINITY;
+    if (counts !== undefined) {
+        weight = 1;
+        
+        for (var count_index = 0; count_index < counts.length; count_index++) {
+            weight *= counts[count_index];
+        }
+    }    
+    
     return {
         file_name: normal_form_to_file_name(normal_form, parameters),
         parameters: get_placeholder_values(normal_form, parameters),
-        "is_parent": (is_parent) ? is_parent : false
+        'is_parent': (is_parent) ? is_parent : false,
+        'weight':weight
     };
 };
 
@@ -606,9 +624,11 @@ fs.readFile(file, 'utf8', function(err, data) {
     }
 
     var error_data = JSON.parse(data);    
-    var parameter_limit = 15;
+    var parameter_limit = 20;
+    //var parameter_limit = 4;
     var error_limit = 13;
-    
+    var parameter_depth_limit = 4;
+
     var error_subset = error_data.slice(0, error_limit);
     
     var index_entries = [];
@@ -644,45 +664,39 @@ fs.readFile(file, 'utf8', function(err, data) {
             create_template(error_properties);
         }
         
+        if (count_parameter_placeholders(error.normal_form) > parameter_depth_limit) {
+            continue;
+        }
+        
         var parent_document = get_document_properties(error.normal_form, [], true);        
+        
         var documents = [parent_document];
-        var document_index = [parent_document.file_name];
         
         index_entries.push({
             "error":error_properties,
             "document":parent_document
         });
         
-        var output_parameter_count = 0;
-
-        for (var parameter_value in error.parameters) {
-            if (error.parameters.hasOwnProperty(parameter_value)) {                    
-                if (isNumber(parameter_value)) {
-                    continue;
-                }
-
-                if (output_parameter_count < parameter_limit) { 
-                    var parameterised_documents = get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value]);                    
-                    var parameterised_document_count = parameterised_documents.length;
-                    for (var parameterised_document_index = 0; parameterised_document_index < parameterised_document_count; parameterised_document_index++) {
-                        if (document_index.indexOf(parameterised_documents[parameterised_document_index].file_name) === -1) {
-                            if (documents.length <= output_parameter_count + 1) {
-                                documents.push(parameterised_documents[parameterised_document_index]);
-                                document_index.push(parameterised_documents[parameterised_document_index].file_name);                                
-                            }
-                        }
-                    }
-                }                    
-
-                output_parameter_count++;
+        for (var parameter_value in error.parameters) {            
+            if (error.parameters.hasOwnProperty(parameter_value)) {
+                documents = documents.concat(get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value], [error.parameters[parameter_value].count])); 
             }
         }
         
-        for (var documentIndex = 0; documentIndex < documents.length; documentIndex++) {
-            if (post_exists(documents[documentIndex].file_name)) {
+        documents = documents.sort(function (a, b) {
+            if (a.weight > b.weight)
+              return -1;
+            if (a.weight < b.weight)
+              return 1;
+
+            return 0;
+        }).slice(0, parameter_limit);       
+        
+        for (var document_index = 0; document_index < documents.length; document_index++) {
+            if (post_exists(documents[document_index].file_name)) {
                 // Check post integrity TBC
             } else {
-                create_post(documents[documentIndex], error_properties);
+                create_post(documents[document_index], error_properties, document_index);
             }
         }
     }

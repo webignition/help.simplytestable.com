@@ -1,0 +1,90 @@
+---
+layout: error
+title: "Bad value publisher for attribute rel on element a: the string publisher is not a registered keyword or absolute url."
+categories: [errors, html-validation, bad-value-w-for-attribute-x-on-element-y-z]
+complete: true
+is_parent: false
+parent_path: bad-value-w-for-attribute-x-on-element-y-z
+parent_title: "Bad value W for attribute X on element Y: Z"
+relations: [attribute]
+error_elements: [a]
+error_attribute: rel
+equivalent_errors: []
+date: 2013-01-19
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+
+    
+    
+    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="a">
+        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="rel">
+            <p>
+                You've used an invalid <a href="https://en.wikipedia.org/wiki/Link_relation">link relation</a> in 
+                the context of <code>&lt;a rel="publisher" /&gt;</code>.
+                Attribute <code>rel</code> is not allowed to take the value <code>publisher</code>.
+            </p>
+            <p>
+                Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
+                and the <a href="http://www.w3.org/TR/html401/types.html#type-links">HTML4 link types</a>
+                and <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>
+                and set a valid value.
+            </p>            
+        </div>       
+    </div>
+    
+      
+    
+        
+    
+        
+    
+    </div>
+<div class="section"><h2>What This Error Means</h2>
+    
+           
+    
+    <div data-generic="true">
+        <p>
+            Some element attributes can take pretty much any value, others
+            can take only values of a certain type and others still can only
+            take a value from a pre-defined set.
+        </p>
+        <p>
+            This error relates to the following usage in your markup:
+        </p>    
+        <pre>&lt;a rel="publisher" /&gt;</pre>
+        <p>
+            The error is stating that, in this context, the attribute <code>rel</code>
+            on element <code>a</code> is not allowed to take the value <code>publisher</code>
+        </p>
+        <p>
+            The validator is giving the reason: "the string publisher is not a registered keyword or absolute url."
+        </p>
+    </div></div>
+<div class="section"><h2>How To Fix It</h2>
+    
+      
+    
+      
+    
+     
+    
+        
+    
+    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="a">        
+        <h3>For links</h3>
+        <p>
+            Set a valid value for the attribute <code>rel</code> used on a link
+            in your markup.
+        </p>        
+        <p>
+            Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
+            and the <a href="http://www.w3.org/TR/html401/types.html#type-links">HTML4 link types</a>
+            and <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>.
+        </p>
+    </div>   
+    
+        
+    
+    </div>

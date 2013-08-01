@@ -13,7 +13,7 @@ task :default do
   system("rm sitemap.xml")
   jekyll
   system("cp _site/sitemap.xml sitemap.xml") 
-  jekyll
+  #jekyll
 end
 
 task :rebuild do
