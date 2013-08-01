@@ -140,3 +140,28 @@ strong .atv {
     padding: 4px 0;
     margin: 2px 0;
 }
+
+#start-new-test-form a.btn {
+    text-align: left;
+    width:300px;
+}
+
+#start-new-test-form a.btn b {
+    display:block;
+}
+
+#start-new-test-form .byline {
+font-size: 13px;
+text-align: left;
+font-style: normal;
+opacity: 0.8;    
+}
+
+#start-new-test-form .brand {
+background: url('/assets/img/st30.png') transparent no-repeat 0px 0px;
+color: #08C;
+padding-left: 35px;
+height: 30px;
+display: block;
+padding-top: 6px;
+}
