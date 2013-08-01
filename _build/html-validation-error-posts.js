@@ -96,7 +96,7 @@ var placeholder_transforms = {
                     'equivalent_errors': []                    
                 };
         }
-    }            
+    },          
 };
 
 
@@ -438,6 +438,8 @@ var create_post = function (document_properties, error_properties, document_inde
         }
         
         template_values[error_properties.placeholders[i]] = S(document_properties.parameters[i]).escapeHTML().s;
+        template_values[error_properties.placeholders[i] + '_UPPER'] = S(document_properties.parameters[i]).escapeHTML().s.toUpperCase();
+        template_values[error_properties.placeholders[i] + '_LOWER'] = S(document_properties.parameters[i]).escapeHTML().s.toLowerCase();
     }
     
     if (placeholder_transforms.hasOwnProperty(error_properties.template)) {        
@@ -658,7 +660,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
     //var parameter_limit = 4;
-    var error_limit = 13;
+    var error_limit = 14;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);

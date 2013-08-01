@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ page.title }} | {{ site.simplytestable.title }}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">        
+        <link href="/assets/css/prettify.css" rel="stylesheet">
+        {% include assets/css/default.html %}        
+        <script type="text/javascript" src="/assets/js/prettify.js"></script>
+        {% include assets/js/default.html %}
+        <script>
+            // Activate Google Prettify in this page
+            addEventListener('load', prettyPrint, false);
+            $(document).ready(function(){
+                // Add prettyprint class to pre elements
+                $('pre').addClass('prettyprint');           
+            }); // end document.ready
+        </script>        
+    </head>
+    <body id="{% include page/id %}" class="{{ page.body_class }}">
+        {% include header/navigation.html %}
+
+        <div class="container">
+            {% include header/introduction.html %}
+            
+
+        {% if page.categories contains 'errors' and page.is_parent == true and (page.is_standalone == false or page.is_standalone == null) %}                 
+            <div class="row">
+                <div class="span12">   
+                    <div class="alert alert-info">
+                    This is a generic error page which should help you in general with errors of this type.
+                    Refer below to the specific examples to the right for more precise
+                    advice.
+                    </div>        
+                </div>
+            </div>                       
+        {% endif %}              
+            
+            {% if page.id != '/errors/html-validation/index' %}
+            <div class="row">
+                <div class="span8">
+                        {% include posts/post.html %}
+                </div>
+                <div class="span4">  
+                    <div id="start-new-test-form">    
+                        <a class="brand" href="http://gears.simplytestable.com/">
+                            SimplyTestable
+                            <span>automated front-end web testing</span>
+                        </a>    
+
+                        <a href="http://gears.simplytestable.com/" class="btn btn-large btn-success">        
+                            <b>Test your full web site now</b>
+                            <span class="byline">Free and easy. Get started in seconds.</span>
+                            <i class="icon icon-caret-right"></i>
+                        </a>
+                    </div>
+                    
+                    
+                    {% if page.reference_items == empty %}
+                    {% else %}
+                        {% include article/technical_documentation.html %}
+                    {% endif %}
+                    
+                    {% if page.related_errors == empty %}
+                    {% else %}
+                        {% include article/related.html %}
+                    {% endif %}
+                </div>                
+            </div>
+            
+            {% else %}
+            
+            <div class="row">
+                <div class="span10 full-left">
+                        {% include posts/post.html %}
+                </div>
+            </div>               
+            
+            {% endif %}
+        </div>
+    </body>
+</html>
