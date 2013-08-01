@@ -7,7 +7,7 @@ is_parent: false
 parent_path: required-attribute-x-not-specified
 parent_title: "Required attribute &quot;X&quot; not specified"
 relations: [attribute]
-error_elements: []
+error_elements: [map]
 error_attribute: null
 equivalent_errors: []
 date: 2013-01-25
@@ -20,15 +20,28 @@ date: 2013-01-25
     
     
     
-    <div data-generic="true">
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="id">
         <p>
-            Your markup is lacking the <code>id</code> attribute on an
-            element referred to by the relevant line and column number.
-        </p>    
+            Your markup contains a <code>&lt;map /&gt;</code> element
+            that lacks the required <code>id</code> attribute.
+        </p>
         <p>
-            This attribute is required, it must not be omitted.
-        </p>        
-    </div></div>
+            Add a suitable <code>id</code> attribute to each <code>&lt;map /&gt;</code>
+            element where missing.
+        </p>
+    </div> 
+    
+         
+    
+          
+    
+      
+    
+     
+    
+         
+    
+    </div>
 <div class="section"><h2>What This Error Means</h2>
     <p>
         There is a defined set of attributes for each HTML element. Some
@@ -47,6 +60,28 @@ date: 2013-01-25
         
     
     
+    
+    
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="id">
+        <h3>For map elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>id</code> attribute
+            to a <code>&lt;map /&gt;</code> element.
+        </p>
+        <p>
+            Add an <code>id</code> attribute to each <code>&lt;map /&gt;</code>
+            element where missing.
+        </p>
+    </div> 
+    
+           
+    
+         
+    
+    
+    
+          
     
          
     

@@ -48,6 +48,76 @@ date: {{date}}
         </p>
     </div>
     
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="id">
+        <p>
+            Your markup contains a <code>&lt;map /&gt;</code> element
+            that lacks the required <code>id</code> attribute.
+        </p>
+        <p>
+            Add a suitable <code>id</code> attribute to each <code>&lt;map /&gt;</code>
+            element where missing.
+        </p>
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="cols">
+        <p>
+            Your markup contains a <code>&lt;textarea /&gt;</code> element
+            that lacks the required <code>cols</code> attribute.
+        </p>
+        <p>
+            Add a suitable <code>cols</code> attribute to each <code>&lt;textarea /&gt;</code>
+            element where missing.
+        </p>
+    </div>     
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="rows">
+        <p>
+            Your markup contains a <code>&lt;textarea /&gt;</code> element
+            that lacks the required <code>cols</code> attribute.
+        </p>
+        <p>
+            Add a suitable <code>cols</code> attribute to each <code>&lt;textarea /&gt;</code>
+            element where missing.
+        </p>
+    </div>      
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="src">
+        <p>
+            Your markup contains a <code>&lt;img /&gt;</code> element
+            that lacks the required <code>src</code> attribute.
+        </p>
+        <p>
+            Add a suitable <code>src</code> attribute to each <code>&lt;img /&gt;</code>
+            element where missing.
+        </p>
+    </div>  
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="content">
+        <p>
+            You have used the HTML5 method of specifying your document's
+            content type in a HTML4 or XHTML document.
+        </p>
+        <p>
+            Use:
+        </p>
+        <pre>&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;</pre>
+        <p>
+            instead of:
+        </p>
+        <pre>&lt;meta charset="utf-8"&gt;</pre>
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="name">
+        <p>
+            Your markup contains a <code>&lt;param /&gt;</code> element
+            that lacks the required <code>name</code> attribute.
+        </p>
+        <p>
+            Add a suitable <code>name</code> attribute to each <code>&lt;param /&gt;</code>
+            element where missing.
+        </p>
+    </div>     
+    
     <div data-generic="true">
         <p>
             Your markup is lacking the <code>{{%0}}</code> attribute on an
@@ -119,6 +189,87 @@ date: {{date}}
             Add a suitable <code>type</code> attribute to each <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code>
             element where missing.
         </p>
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="id">
+        <h3>For map elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>id</code> attribute
+            to a <code>&lt;map /&gt;</code> element.
+        </p>
+        <p>
+            Add an <code>id</code> attribute to each <code>&lt;map /&gt;</code>
+            element where missing.
+        </p>
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="cols">
+        <h3>For textarea elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>cols</code> attribute
+            to a <code>&lt;textarea /&gt;</code> element.
+        </p>
+        <p>
+            Add a <code>cols</code> attribute to each <code>&lt;textarea /&gt;</code>
+            element where missing.
+        </p>
+    </div>       
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="rows">
+        <h3>For textarea elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>rows</code> attribute
+            to a <code>&lt;textarea /&gt;</code> element.
+        </p>
+        <p>
+            Add a <code>rows</code> attribute to each <code>&lt;textarea /&gt;</code>
+            element where missing.
+        </p>
+    </div>     
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="src">
+        <h3>For images</h3>
+        <p>
+            You've most likely forgotten to add an <code>src</code> attribute
+            to a <code>&lt;img /&gt;</code> element.
+        </p>
+        <p>
+            Add a <code>src</code> attribute to each <code>&lt;img /&gt;</code>
+            element where missing.
+        </p>
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="name">
+        <h3>For param elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>name</code> attribute
+            to a <code>&lt;param /&gt;</code> element.
+        </p>
+        <p>
+            Add a <code>name</code> attribute to each <code>&lt;param /&gt;</code>
+            element where missing.
+        </p>
+    </div>      
+    
+    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="content">
+        <h3>For meta elements</h3>
+        <p>
+            You have used the HTML5 method of specifying your document's
+            content type in a HTML4 or XHTML document.
+        </p>
+        <p>
+            Use:
+        </p>
+        <pre>&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;</pre>
+        <p>
+            instead of:
+        </p>
+        <pre>&lt;meta charset="utf-8"&gt;</pre>
+        <p>
+            Ensure all <code>&lt;meta /&gt;</code> elements your HTML4 or XHTML
+            document have the required <code>content</code> attribute.
+        </p>
+
     </div>     
     
     <h3>In general</h3>

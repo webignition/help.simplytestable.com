@@ -53,10 +53,42 @@ var placeholder_transforms = {
                 };
 
             case 'alt':
+            case 'src':
                 return {
                     'error_elements': ['img'].join(', '),
                     'equivalent_errors': ['an-img-element-must-have-an-alt-attribute-except-under-certain-conditions-for-details-consult-guidance-on-providing-text-alternatives-for-images']                    
                 };            
+                
+            case 'id':
+                return {
+                    'error_elements': ['map'].join(', '),
+                    'equivalent_errors': []
+                };                
+                
+            case 'cols':                
+            case 'rows':
+                return {
+                    'error_elements': ['textarea'].join(', '),
+                    'equivalent_errors': []
+                };  
+            
+            case 'action':
+                return {
+                    'error_elements': ['form'].join(', '),
+                    'equivalent_errors': []
+                };               
+                
+            case 'content':
+                return {
+                    'error_elements': ['meta'].join(', '),
+                    'equivalent_errors': []
+                };                  
+                
+            case 'name':
+                return {
+                    'error_elements': ['param'].join(', '),
+                    'equivalent_errors': []
+                };                 
                 
             default:
                 return {
