@@ -14,39 +14,31 @@ date: 2013-01-27
 ---
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
-
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="&lt;blank&gt;,action,form">       
+        <p>
+            Your markup contains a form with a blank <code>action</code> attribute.
+        </p>
+        <p>
+            Use
+        </p>
+        <pre>&lt;form action="http://example.com/"&gt;</pre> 
+        <p>
+            instead of
+        </p>
+        <pre>&lt;form action=""&gt;</pre>              
+    </div>
     
     
-    
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="&lt;blank&gt;">
-        <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="form">
-            <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="action">
-                <p>
-                    Your markup contains a form with a blank <code>action</code> attribute/
-                </p>
-                <p>
-                    Use
-                </p>
-                <pre>&lt;form action="http://example.com/" … &gt;</pre> 
-                <p>
-                    instead of
-                </p>
-                <pre>&lt;form action="" … &gt;</pre>  
-            </div>            
-        </div>        
-    </div>  
     
         
     
-        
+    
     
     </div>
 <div class="section"><h2>What This Error Means</h2>
     
-           
-    
-    <div data-generic="true">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="&lt;blank&gt;">       
         <p>
             Some element attributes can take pretty much any value, others
             can take only values of a certain type and others still can only
@@ -55,44 +47,43 @@ date: 2013-01-27
         <p>
             This error relates to the following usage in your markup:
         </p>    
-        <pre>&lt;form action="&lt;blank&gt;" /&gt;</pre>
+        <pre>&lt;form action=""&gt;</pre>
         <p>
             The error is stating that, in this context, the attribute <code>action</code>
             on element <code>form</code> is not allowed to take the value <code>&lt;blank&gt;</code>
         </p>
         <p>
             The validator is giving the reason: "must be non-empty."
-        </p>
-    </div></div>
-<div class="section"><h2>How To Fix It</h2>
-    
-      
-    
-      
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="&lt;blank&gt;">
-        <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="form">
-            <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="action">
-                <h3>For form actions</h3>
-                <p>
-                    Add a relevant value for the <code>action</code> attribute.
-                </p>
-                <p>
-                    Use
-                </p>
-                <pre>&lt;form action="http://example.com/" … &gt;</pre> 
-                <p>
-                    instead of
-                </p>
-                <pre>&lt;form action="" … &gt;</pre>                
-            </div>            
-        </div>        
+        </p>          
     </div> 
     
         
     
-       
+    </div>
+<div class="section"><h2>How To Fix It</h2>
     
-        
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="&lt;blank&gt;,action,form">       
+        <h3>For form actions</h3>
+        <p>
+            Add a relevant value for the <code>action</code> attribute.
+        </p>
+        <p>
+            Use
+        </p>
+        <pre>&lt;form action="http://example.com/" … &gt;</pre> 
+        <p>
+            instead of
+        </p>
+        <pre>&lt;form action="" … &gt;</pre>              
+    </div> 
+    
+     
+    
+    
+    
+      
+    
+    
+
     
     </div>

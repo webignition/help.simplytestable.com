@@ -15,82 +15,64 @@ date: {{date}}
 
 <div class="section">    
     <h2>Most Likely Cause and Fix</h2>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="&lt;blank&gt;,action,form">       
+        <p>
+            Your markup contains a form with a blank <code>action</code> attribute.
+        </p>
+        <p>
+            Use
+        </p>
+        <pre>&lt;form action="http://example.com/"&gt;</pre> 
+        <p>
+            instead of
+        </p>
+        <pre>&lt;form action=""&gt;</pre>              
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1" data-parameter-values="utf-8,charset">
+        <div class="alert alert-info">
+            <p>
+                <strong>No longer a problem!</strong>
+            </p>
 
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="utf-8">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="charset">
-            <div class="alert alert-info">
-                <p>
-                    <strong>No longer a problem!</strong>
-                </p>
-                
-                <p>
-                    This resulted from a bug in the HTML validator which has since been fixed.
-                </p>
-            </div>
-        </div>       
-    </div>
-    
-    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="a">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="rel">
             <p>
-                You've used an invalid <a href="https://en.wikipedia.org/wiki/Link_relation">link relation</a> in 
-                the context of <code>&lt;{{%2}} {{%1}}="{{%0}}" /&gt;</code>.
-                Attribute <code>{{%1}}</code> is not allowed to take the value <code>{{%0}}</code>.
+                This resulted from a bug in the HTML validator which has since been fixed.
             </p>
-            <p>
-                Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
-                and the <a href="http://www.w3.org/TR/html401/types.html#type-links">HTML4 link types</a>
-                and <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>
-                and set a valid value.
-            </p>            
-        </div>       
-    </div>
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="&lt;blank&gt;">
-        <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="form">
-            <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="action">
-                <p>
-                    Your markup contains a form with a blank <code>action</code> attribute/
-                </p>
-                <p>
-                    Use
-                </p>
-                <pre>&lt;form action="http://example.com/" &hellip; &gt;</pre> 
-                <p>
-                    instead of
-                </p>
-                <pre>&lt;form action="" &hellip; &gt;</pre>  
-            </div>            
         </div>        
-    </div>  
+    </div>
     
-    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="meta">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="name">                
-            <p>
-                You've used an invalid value for the <code>name</code> attribute on
-                a <code>meta</code> element.                    
-            </p>
-            
-            <p>
-                The WHAT WG wiki lists available <a href="http://wiki.whatwg.org/wiki/MetaExtensions#Registered_Extensions">registered meta extensions</a>
-                for HTML5 documents.                
-            </p>
-            
-            <p>
-                HTML4 documents are not restricted on the values that can be used.
-                Check that you're using the correct <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>.
-            </p>         
-        </div>       
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="twitter:*,name,meta">
+        <p>
+            Your HTML5 markup contains a <a href="https://dev.twitter.com/cards">Twitter Card</a> meta element
+            that uses a currently-invalid value for the <code>name</code> attribute:
+        </p>
+        <pre>&lt;meta name="{{%0}}" content="foo" &gt;</pre>
+        <p>
+            Use the HTML5 meta property attribute instead:
+        </p>
+        <pre>&lt;meta property="{{%0}}" content="foo" &gt;</pre>                    
     </div>    
+    
+    <div data-parameter-specific="true" data-parameter-keys="%1,%2" data-parameter-values="rel,link|a">
+        <p>
+            Your HTML5 document contains an invalid <a href="https://en.wikipedia.org/wiki/Link_relation">link relation</a> in 
+            the context of <code>&lt;{{%2}} {{%1}}="{{%0}}" &hellip; /&gt;</code>.
+            Attribute <code>{{%1}}</code> is not allowed to take the value <code>{{%0}}</code>.
+        </p>
+        <p>
+            Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
+            and the <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>
+            and the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">currently accepted HTML5 link types</a>.
+            and set a valid value.
+        </p>             
+    </div>
     
     <div data-generic="true">
         <p>
             In the context of <code>&lt;{{%2}} {{%1}}="{{%0}}" /&gt;</code>
             the attribute <code>{{%1}}</code> is not allowed to take the value <code>{{%0}}</code>.
-        </p>
-    </div>    
-    
-    <div data-generic="true">   
+        </p>  
         <p>
             You should remove this attribute or set a valid value for your markup to be considered valid.
         </p>        
@@ -101,7 +83,26 @@ date: {{date}}
     
     <h2>What This Error Means</h2>
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="utf-8">     
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="&lt;blank&gt;">       
+        <p>
+            Some element attributes can take pretty much any value, others
+            can take only values of a certain type and others still can only
+            take a value from a pre-defined set.
+        </p>
+        <p>
+            This error relates to the following usage in your markup:
+        </p>    
+        <pre>&lt;{{%2}} {{%1}}=""&gt;</pre>
+        <p>
+            The error is stating that, in this context, the attribute <code>{{%1}}</code>
+            on element <code>{{%2}}</code> is not allowed to take the value <code>{{%0}}</code>
+        </p>
+        <p>
+            The validator is giving the reason: "{{%3}}"
+        </p>          
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1" data-parameter-values="utf-8,charset">  
         <p>
             This is not a valid error, it occurred as a result in the HTML validator.
         </p>
@@ -109,7 +110,7 @@ date: {{date}}
             The bug has since been fixed and this is not an error you should
             encounter when running a new test.
         </p>
-    </div>       
+    </div>    
     
     <div data-generic="true">
         <p>
@@ -120,13 +121,13 @@ date: {{date}}
         <p>
             This error relates to the following usage in your markup:
         </p>    
-        <pre>&lt;{{%2}} {{%1}}="{{%0}}" /&gt;</pre>
+        <pre>&lt;{{%2}} {{%1}}="{{%0}}"&gt;</pre>
         <p>
             The error is stating that, in this context, the attribute <code>{{%1}}</code>
             on element <code>{{%2}}</code> is not allowed to take the value <code>{{%0}}</code>
         </p>
         <p>
-            The validator is giving the reason: "{{%3}}"
+            The validator is giving the reason: <em>{{%3}}</em>
         </p>
     </div>
 </div>
@@ -134,7 +135,63 @@ date: {{date}}
 <div class="section">
     <h2>How To Fix It</h2>
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="utf-8">     
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="&lt;blank&gt;,action,form">       
+        <h3>For form actions</h3>
+        <p>
+            Add a relevant value for the <code>action</code> attribute.
+        </p>
+        <p>
+            Use
+        </p>
+        <pre>&lt;form action="http://example.com/" &hellip; &gt;</pre> 
+        <p>
+            instead of
+        </p>
+        <pre>&lt;form action="" &hellip; &gt;</pre>              
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="twitter:*,name,meta">
+        <h3>For Twitter Card meta elements in HTML5 documents</h3>
+        <p>
+            The Twitter Card documentation states that you should add
+            meta elements to your markup in the form:
+        </p>
+        <pre>&lt;meta name="{{%0}}" content="foo" &gt;</pre>
+        <p>
+            Under HTML5 the <code>name</code> attribute must be one of a pre-defined
+            set. The above markup will not be valid until the relevant
+            value (<code>{{%0}}</code>) has been registered.
+        </p>
+        <p>
+            Swap the <code>name</code> attribute for an otherwise-identical
+            <code>property</code> attribute to create valid syntax that is
+            recognised by Twitter.
+        </p>
+        <pre>&lt;meta property="twitter:card" content="summary"&gt;
+&lt;meta property="twitter:site" content="simplytestable"&gt;
+&lt;meta property="twitter:title" content="Title Here"&gt;
+&lt;meta property="twitter:description" content="Description Here"&gt;
+&lt;meta property="twitter:creator" content="simplytestable"&gt;
+&lt;meta property="twitter:image:src" content="http://placehold.it/350x150"&gt;        
+&lt;meta property="twitter:domain" content="simplytestable.com"&gt;</pre>                  
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-keys="%1,%2" data-parameter-values="rel,link|a">
+        <h3>For link and anchor elements</h3>
+        <p>
+            Set a valid value for the attribute <code>{{%1}}</code> used on a link
+            in your HTML5 markup in the context:
+        </p> 
+        <pre>&lt;{{%2}} {{%1}}="{{%0}}" &hellip; /&gt;</pre>
+        <p>
+            Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
+            and the <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>
+            and the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">currently accepted HTML5 link types</a>.
+            and set a valid value.
+        </p>              
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1" data-parameter-values="utf-8,charset">    
         <p>
             This is not a valid error, it occurred as a result in the HTML validator.
         </p>
@@ -152,62 +209,12 @@ date: {{date}}
             How this might be fixed often depends on the element, attribute, attribute
             value and the context in which these are being used.
         </p>
-    </div>  
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="&lt;blank&gt;">
-        <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="form">
-            <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="action">
-                <h3>For form actions</h3>
-                <p>
-                    Add a relevant value for the <code>action</code> attribute.
-                </p>
-                <p>
-                    Use
-                </p>
-                <pre>&lt;form action="http://example.com/" &hellip; &gt;</pre> 
-                <p>
-                    instead of
-                </p>
-                <pre>&lt;form action="" &hellip; &gt;</pre>                
-            </div>            
-        </div>        
-    </div> 
-    
-    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="meta">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="name">     
-            <h3>For name attributes on meta elements in HTML5 documents</h3>
-            <p>
-                The WHAT WG wiki lists available <a href="http://wiki.whatwg.org/wiki/MetaExtensions#Registered_Extensions">registered meta extensions</a>
-                for HTML5 documents.                
-            </p>
-            <p>
-                Check that you're using a registered value.
-            </p>   
-            <h3>For name attributes on meta elements in HTML4 documents</h3>
-            <p>
-                HTML4 documents are not restricted on the values that can be used.
-                Check that you're using the correct <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>.
-            </p>                    
-        </div>            
-    </div>    
-    
-    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="a">        
-        <h3>For links</h3>
         <p>
-            Set a valid value for the attribute <code>{{%1}}</code> used on a link
-            in your markup.
-        </p>        
-        <p>
-            Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
-            and the <a href="http://www.w3.org/TR/html401/types.html#type-links">HTML4 link types</a>
-            and <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>.
+            Pay attention to the additional information supplied by the HTML
+            validator as this will often point you in the right direction: <em>{{%3}}</em>
         </p>
-    </div>   
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="utf-8">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="charset">
-        </div>       
-    </div>    
+    </div>
+
     
     <div data-generic="true">
         <h3>In general</h3>

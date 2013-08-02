@@ -14,21 +14,33 @@ date: 2013-01-13
 ---
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
-
     
     
     
     
-      
     
         
     
-        
+    <div data-parameter-specific="true" data-parameter-keys="%1,%2" data-parameter-values="rel,link|a">
+        <p>
+            Your HTML5 document contains an invalid <a href="https://en.wikipedia.org/wiki/Link_relation">link relation</a> in 
+            the context of <code>&lt;link rel="archives" … /&gt;</code>.
+            Attribute <code>rel</code> is not allowed to take the value <code>archives</code>.
+        </p>
+        <p>
+            Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
+            and the <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>
+            and the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">currently accepted HTML5 link types</a>.
+            and set a valid value.
+        </p>             
+    </div>
     
     </div>
 <div class="section"><h2>What This Error Means</h2>
     
-           
+     
+    
+        
     
     <div data-generic="true">
         <p>
@@ -39,42 +51,39 @@ date: 2013-01-13
         <p>
             This error relates to the following usage in your markup:
         </p>    
-        <pre>&lt;link rel="archives" /&gt;</pre>
+        <pre>&lt;link rel="archives"&gt;</pre>
         <p>
             The error is stating that, in this context, the attribute <code>rel</code>
             on element <code>link</code> is not allowed to take the value <code>archives</code>
         </p>
         <p>
-            The validator is giving the reason: "not an absolute iri. the string archives is not a registered keyword or absolute url."
+            The validator is giving the reason: <em>not an absolute iri. the string archives is not a registered keyword or absolute url.</em>
         </p>
     </div></div>
 <div class="section"><h2>How To Fix It</h2>
     
-      
-    
-    <div data-generic="true">
-        <p>
-            The error relates to an invalid attribute value being used on a specific
-            element.
-        </p>    
-        <p>
-            How this might be fixed often depends on the element, attribute, attribute
-            value and the context in which these are being used.
-        </p>
-    </div>  
+     
     
      
     
-        
-    
-       
-    
-        
-    
-    <div data-generic="true">
-        <h3>In general</h3>
+    <div data-parameter-specific="true" data-parameter-keys="%1,%2" data-parameter-values="rel,link|a">
+        <h3>For link and anchor elements</h3>
         <p>
-            Change the relevant attribute value to one that is valid for the context
-            in which it is being used.
-        </p>
-    </div></div>
+            Set a valid value for the attribute <code>rel</code> used on a link
+            in your HTML5 markup in the context:
+        </p> 
+        <pre>&lt;link rel="archives" … /&gt;</pre>
+        <p>
+            Read up on <a href="https://en.wikipedia.org/wiki/Link_relation">link relations</a>
+            and the <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">HTML5 link type extensions</a>
+            and the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">currently accepted HTML5 link types</a>.
+            and set a valid value.
+        </p>              
+    </div>
+    
+      
+    
+    
+
+    
+    </div>

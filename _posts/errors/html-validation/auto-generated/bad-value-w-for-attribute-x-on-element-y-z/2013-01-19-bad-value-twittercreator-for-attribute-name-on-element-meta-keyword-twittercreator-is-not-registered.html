@@ -14,38 +14,31 @@ date: 2013-01-19
 ---
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
-
     
     
     
     
-      
     
-    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="meta">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="name">                
-            <p>
-                You've used an invalid value for the <code>name</code> attribute on
-                a <code>meta</code> element.                    
-            </p>
-            
-            <p>
-                The WHAT WG wiki lists available <a href="http://wiki.whatwg.org/wiki/MetaExtensions#Registered_Extensions">registered meta extensions</a>
-                for HTML5 documents.                
-            </p>
-            
-            <p>
-                HTML4 documents are not restricted on the values that can be used.
-                Check that you're using the correct <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>.
-            </p>         
-        </div>       
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="twitter:*,name,meta">
+        <p>
+            Your HTML5 markup contains a <a href="https://dev.twitter.com/cards">Twitter Card</a> meta element
+            that uses a currently-invalid value for the <code>name</code> attribute:
+        </p>
+        <pre>&lt;meta name="twitter:creator" content="foo" &gt;</pre>
+        <p>
+            Use the HTML5 meta property attribute instead:
+        </p>
+        <pre>&lt;meta property="twitter:creator" content="foo" &gt;</pre>                    
     </div>    
     
-        
+    
     
     </div>
 <div class="section"><h2>What This Error Means</h2>
     
-           
+     
+    
+        
     
     <div data-generic="true">
         <p>
@@ -56,43 +49,50 @@ date: 2013-01-19
         <p>
             This error relates to the following usage in your markup:
         </p>    
-        <pre>&lt;meta name="twitter:creator" /&gt;</pre>
+        <pre>&lt;meta name="twitter:creator"&gt;</pre>
         <p>
             The error is stating that, in this context, the attribute <code>name</code>
             on element <code>meta</code> is not allowed to take the value <code>twitter:creator</code>
         </p>
         <p>
-            The validator is giving the reason: "keyword twitter:creator is not registered."
+            The validator is giving the reason: <em>keyword twitter:creator is not registered.</em>
         </p>
     </div></div>
 <div class="section"><h2>How To Fix It</h2>
     
-      
-    
-      
-    
      
     
-    <div data-parameter-specific="true" data-parameter-key="%2" data-parameter-value="meta">
-        <div data-parameter-specific="true" data-parameter-key="%1" data-parameter-value="name">     
-            <h3>For name attributes on meta elements in HTML5 documents</h3>
-            <p>
-                The WHAT WG wiki lists available <a href="http://wiki.whatwg.org/wiki/MetaExtensions#Registered_Extensions">registered meta extensions</a>
-                for HTML5 documents.                
-            </p>
-            <p>
-                Check that you're using a registered value.
-            </p>   
-            <h3>For name attributes on meta elements in HTML4 documents</h3>
-            <p>
-                HTML4 documents are not restricted on the values that can be used.
-                Check that you're using the correct <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>.
-            </p>                    
-        </div>            
-    </div>    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1,%2" data-parameter-values="twitter:*,name,meta">
+        <h3>For Twitter Card meta elements in HTML5 documents</h3>
+        <p>
+            The Twitter Card documentation states that you should add
+            meta elements to your markup in the form:
+        </p>
+        <pre>&lt;meta name="twitter:creator" content="foo" &gt;</pre>
+        <p>
+            Under HTML5 the <code>name</code> attribute must be one of a pre-defined
+            set. The above markup will not be valid until the relevant
+            value (<code>twitter:creator</code>) has been registered.
+        </p>
+        <p>
+            Swap the <code>name</code> attribute for an otherwise-identical
+            <code>property</code> attribute to create valid syntax that is
+            recognised by Twitter.
+        </p>
+        <pre>&lt;meta property="twitter:card" content="summary"&gt;
+&lt;meta property="twitter:site" content="simplytestable"&gt;
+&lt;meta property="twitter:title" content="Title Here"&gt;
+&lt;meta property="twitter:description" content="Description Here"&gt;
+&lt;meta property="twitter:creator" content="simplytestable"&gt;
+&lt;meta property="twitter:image:src" content="http://placehold.it/350x150"&gt;        
+&lt;meta property="twitter:domain" content="simplytestable.com"&gt;</pre>                  
+    </div> 
     
-       
     
-        
+    
+      
+    
+    
+
     
     </div>

@@ -13,29 +13,37 @@ equivalent_errors: []
 date: 2013-01-27
 ---
 
-<div class="section"><h2>Most Likely Cause and Fix</h2>
-        
+<div class="section"><h2>Most Likely Cause and Fix</h2>    
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="type">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="type">
         <p>
-            Your markup contains a <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code> element
-            that lacks the required <code>type</code> attribute.
+            Your markup contains a <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code> element
+            that lacks the required <code>type</code> attribute:
         </p>
+        <pre>&lt;script&gt;&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;
+</pre>
         <p>
             Add a suitable <code>type</code> attribute to each <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code>
-            element where missing.
+            element where missing:
+        </p>
+        <pre>&lt;script type="text/javascript"&gt;&lt;/script&gt;
+&lt;style type="text/css"&gt;&lt;/style&gt;</pre>
+        <p>
+            Or switch to HTML5 where the <code>type</code> attribute on these elements is optional.
         </p>
     </div>    
     
+      
+    
+       
     
     
-     
-    
-         
     
           
     
-      
+    
+
     
      
     
@@ -55,40 +63,46 @@ date: 2013-01-27
     <p>
         The specific error message you encountered will refer to a line and column number.
         This will guide you to the exact point in your markup to which the error relates.
-    </p>    
+    </p>
     
-        
-    
-    
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="type">
-        <h3>For style and script elements</h3>
-
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="type">
+        <h3>For style and script elements</h3>        
         <p>
             You've most likely forgotten to add a <code>type</code> attribute
-            to a <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code> element.
-        </p>        
+            to a <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code> element:
+        </p> 
+        <pre>&lt;script&gt;&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;
+</pre>
         <p>
             Check the <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>
             used in your markup. Fix this if not correct. 
-        </p>
+        </p>        
         <p>
             Add a suitable <code>type</code> attribute to each <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code>
-            element where missing.
+            element where missing:
         </p>
-    </div>
+        <pre>&lt;script type="text/javascript"&gt;&lt;/script&gt;
+&lt;style type="text/css"&gt;&lt;/style&gt;</pre>
+        <p>
+            Or switch to HTML5 where the <code>type</code> attribute on these elements is optional.
+        </p>
+    </div>     
     
      
     
-           
+        
     
-         
+     
+    
+    
+    
+     
     
     
     
           
-    
-         
+   
     
     <h3>In general</h3>
     <p>

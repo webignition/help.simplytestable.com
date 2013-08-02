@@ -14,85 +14,106 @@ date: {{date}}
 ---
 
 <div class="section">    
-    <h2>Most Likely Cause and Fix</h2>
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="action">
-        <p>
-            Your markup contains a <code>&lt;form /&gt;</code> element
-            that lacks the required <code>action</code> attribute.
-        </p>
-        <p>
-            Add a suitable <code>action</code> attribute to each <code>&lt;form /&gt;</code>
-            element where missing.
-        </p>
-    </div>    
+    <h2>Most Likely Cause and Fix</h2>    
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="type">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="type">
         <p>
-            Your markup contains a <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code> element
-            that lacks the required <code>type</code> attribute.
+            Your markup contains a <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code> element
+            that lacks the required <code>type</code> attribute:
         </p>
+        <pre>&lt;script&gt;&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;
+</pre>
         <p>
             Add a suitable <code>type</code> attribute to each <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code>
-            element where missing.
+            element where missing:
+        </p>
+        <pre>&lt;script type="text/javascript"&gt;&lt;/script&gt;
+&lt;style type="text/css"&gt;&lt;/style&gt;</pre>
+        <p>
+            Or switch to HTML5 where the <code>type</code> attribute on these elements is optional.
         </p>
     </div>    
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="alt">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="alt">
         <p>
             Your markup contains an <code>&lt;img /&gt;</code> element
-            that lacks the required <code>alt</code> attribute.
+            that lacks the required <code>alt</code> attribute:            
         </p>
+        <pre>&lt;img src="http://example.com" &hellip; /&gt;</pre>
         <p>
             Add an <code>alt</code> attribute to each <code>&lt;img /&gt;</code>
-            element where missing.
+            element where missing:
         </p>
-    </div>
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="id">
-        <p>
-            Your markup contains a <code>&lt;map /&gt;</code> element
-            that lacks the required <code>id</code> attribute.
-        </p>
-        <p>
-            Add a suitable <code>id</code> attribute to each <code>&lt;map /&gt;</code>
-            element where missing.
-        </p>
-    </div> 
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="cols">
-        <p>
-            Your markup contains a <code>&lt;textarea /&gt;</code> element
-            that lacks the required <code>cols</code> attribute.
-        </p>
-        <p>
-            Add a suitable <code>cols</code> attribute to each <code>&lt;textarea /&gt;</code>
-            element where missing.
-        </p>
-    </div>     
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="rows">
-        <p>
-            Your markup contains a <code>&lt;textarea /&gt;</code> element
-            that lacks the required <code>cols</code> attribute.
-        </p>
-        <p>
-            Add a suitable <code>cols</code> attribute to each <code>&lt;textarea /&gt;</code>
-            element where missing.
-        </p>
-    </div>      
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="src">
-        <p>
-            Your markup contains a <code>&lt;img /&gt;</code> element
-            that lacks the required <code>src</code> attribute.
-        </p>
-        <p>
-            Add a suitable <code>src</code> attribute to each <code>&lt;img /&gt;</code>
-            element where missing.
-        </p>
+        <pre>&lt;img src="http://example.com" alt="Text alternative when image is not available" &hellip; /&gt;</pre>
     </div>  
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="content">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="id">
+        <p>
+            Your XHTML document contains a <code>&lt;map&gt;</code> element
+            that lacks the required <code>id</code> attribute.
+        </p>
+        <pre>&lt;map&gt;
+&hellip;
+&lt;/map&gt;</pre>
+        <p>
+            Add a suitable <code>id</code> attribute to each <code>&lt;map&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;map id="unique-identifier"&gt;
+&hellip;
+&lt;/map&gt;</pre>
+        <p>
+            Or switch to a HTML4 or HTML5 document type where the <code>id</code>
+            attribute is not required.
+        </p>            
+    </div>   
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="cols|rows">
+        <p>
+            Your markup contains a <code>&lt;textarea&gt;</code> element
+            that lacks the required <code>{{%0}}</code> attribute:
+        </p>
+        <pre>&lt;textarea&gt;
+&hellip;
+&lt;/textarea&gt;</pre>
+        <p>
+            Add a suitable <code>{{%0}}</code> attribute to each <code>&lt;textarea&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;textarea {{%0}}="2"&gt;
+&hellip;
+&lt;/textarea&gt;</pre>
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="src">
+        <p>
+            Your markup contains an <code>&lt;img /&gt;</code> element
+            that lacks the required <code>src</code> attribute:            
+        </p>
+        <pre>&lt;img &hellip; /&gt;</pre>
+        <p>
+            Add a <code>src</code> attribute to each <code>&lt;img /&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;img src="http://example.com" &hellip; /&gt;</pre>        
+    </div>      
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="action">
+        <p>
+            Your markup contains a <code>&lt;form&gt;</code> element
+            that lacks the required <code>action</code> attribute:
+        </p>
+        <pre>&lt;form &hellip; /&gt;</pre>        
+        <p>
+            Add a suitable <code>action</code> attribute to each <code>&lt;form /&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;form action="http://example.com/post/" &hellip;&gt;</pre>           
+    </div>
+
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="content">
         <p>
             You have used the HTML5 method of specifying your document's
             content type in a HTML4 or XHTML document.
@@ -107,15 +128,17 @@ date: {{date}}
         <pre>&lt;meta charset="utf-8"&gt;</pre>
     </div> 
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="name">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="name">
         <p>
-            Your markup contains a <code>&lt;param /&gt;</code> element
-            that lacks the required <code>name</code> attribute.
+            Your markup contains a <code>&lt;param&gt;</code> element
+            that lacks the required <code>name</code> attribute:
         </p>
+        <pre>&lt;param &hellip;&gt;</pre>        
         <p>
-            Add a suitable <code>name</code> attribute to each <code>&lt;param /&gt;</code>
-            element where missing.
+            Add a suitable <code>name</code> attribute to each <code>&lt;param&gt;</code>
+            element where missing:
         </p>
+        <pre>&lt;param name="example" &hellip;&gt;</pre>
     </div>     
     
     <div data-generic="true">
@@ -146,112 +169,118 @@ date: {{date}}
     <p>
         The specific error message you encountered will refer to a line and column number.
         This will guide you to the exact point in your markup to which the error relates.
-    </p>    
+    </p>
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="alt">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="type">
+        <h3>For style and script elements</h3>        
+        <p>
+            You've most likely forgotten to add a <code>type</code> attribute
+            to a <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code> element:
+        </p> 
+        <pre>&lt;script&gt;&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;
+</pre>
+        <p>
+            Check the <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>
+            used in your markup. Fix this if not correct. 
+        </p>        
+        <p>
+            Add a suitable <code>type</code> attribute to each <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;script type="text/javascript"&gt;&lt;/script&gt;
+&lt;style type="text/css"&gt;&lt;/style&gt;</pre>
+        <p>
+            Or switch to HTML5 where the <code>type</code> attribute on these elements is optional.
+        </p>
+    </div>     
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="alt">
         <h3>For images</h3>        
         
         <p>
             You've most likely forgotten to add an <code>alt</code> attribute
-            to an <code>&lt;img /&gt;</code> element.
+            to an <code>&lt;img /&gt;</code> element:
         </p>
+        <pre>&lt;img src="http://example.com" &hellip; /&gt;</pre>
         <p>
             Add an <code>alt</code> attribute to each <code>&lt;img /&gt;</code>
-            element where missing.
+            element where missing:
         </p>
+        <pre>&lt;img src="http://example.com" alt="Text alternative when image is not available" &hellip; /&gt;</pre>
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="id">
+        <h3>For map elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>id</code> attribute
+            to a <code>&lt;map&gt;</code> element.
+        </p>
+        <pre>&lt;map&gt;
+&hellip;
+&lt;/map&gt;</pre>
+        <p>
+            Add an <code>id</code> attribute to each <code>&lt;map /&gt;</code>
+            element where missing.
+        </p> 
+        <pre>&lt;map id="unique-identifier"&gt;
+&hellip;
+&lt;/map&gt;</pre>
+        <p>
+            Or switch to a HTML4 or HTML5 document type where the <code>id</code>
+            attribute is not required.
+        </p>            
     </div>    
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="action">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="cols|rows">
+        <h3>For textarea elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>{{%0}}</code> attribute
+            to a <code>&lt;textarea&gt;</code> element:
+        </p>
+        <pre>&lt;textarea&gt;
+&hellip;
+&lt;/textarea&gt;</pre>        
+        <p>
+            Add a <code>{{%0}}</code> attribute to each <code>&lt;textarea&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;textarea {{%0}}="2"&gt;
+&hellip;
+&lt;/textarea&gt;</pre>
+    </div> 
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="src">
+        <h3>For images</h3>        
+        
+        <p>
+            You've most likely forgotten to add a <code>src</code> attribute
+            to an <code>&lt;img /&gt;</code> element:
+        </p>
+        <pre>&lt;img &hellip; /&gt;</pre>
+        <p>
+            Add an <code>alt</code> attribute to each <code>&lt;img /&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;img src="http://example.com" &hellip; /&gt;</pre>
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="action">
         <h3>For forms</h3>        
         
         <p>
             You've most likely forgotten to add an <code>action</code> attribute
-            to a <code>&lt;form /&gt;</code> element.
+            to a <code>&lt;form /&gt;</code> element:
         </p>
+        <pre>&lt;form &hellip; /&gt;</pre>        
         <p>
             Add an <code>action</code> attribute to each <code>&lt;form /&gt;</code>
-            element where missing.
+            element where missing:
         </p>
-    </div>
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="type">
-        <h3>For style and script elements</h3>
-
-        <p>
-            You've most likely forgotten to add a <code>type</code> attribute
-            to a <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code> element.
-        </p>        
-        <p>
-            Check the <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>
-            used in your markup. Fix this if not correct. 
-        </p>
-        <p>
-            Add a suitable <code>type</code> attribute to each <code>&lt;style /&gt;</code> or <code>&lt;script /&gt;</code>
-            element where missing.
-        </p>
-    </div>
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="id">
-        <h3>For map elements</h3>
-        <p>
-            You've most likely forgotten to add an <code>id</code> attribute
-            to a <code>&lt;map /&gt;</code> element.
-        </p>
-        <p>
-            Add an <code>id</code> attribute to each <code>&lt;map /&gt;</code>
-            element where missing.
-        </p>
+        <pre>&lt;form action="http://example.com/post/" &hellip; /&gt;</pre>           
     </div> 
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="cols">
-        <h3>For textarea elements</h3>
-        <p>
-            You've most likely forgotten to add an <code>cols</code> attribute
-            to a <code>&lt;textarea /&gt;</code> element.
-        </p>
-        <p>
-            Add a <code>cols</code> attribute to each <code>&lt;textarea /&gt;</code>
-            element where missing.
-        </p>
-    </div>       
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="rows">
-        <h3>For textarea elements</h3>
-        <p>
-            You've most likely forgotten to add an <code>rows</code> attribute
-            to a <code>&lt;textarea /&gt;</code> element.
-        </p>
-        <p>
-            Add a <code>rows</code> attribute to each <code>&lt;textarea /&gt;</code>
-            element where missing.
-        </p>
-    </div>     
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="src">
-        <h3>For images</h3>
-        <p>
-            You've most likely forgotten to add an <code>src</code> attribute
-            to a <code>&lt;img /&gt;</code> element.
-        </p>
-        <p>
-            Add a <code>src</code> attribute to each <code>&lt;img /&gt;</code>
-            element where missing.
-        </p>
-    </div>
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="name">
-        <h3>For param elements</h3>
-        <p>
-            You've most likely forgotten to add an <code>name</code> attribute
-            to a <code>&lt;param /&gt;</code> element.
-        </p>
-        <p>
-            Add a <code>name</code> attribute to each <code>&lt;param /&gt;</code>
-            element where missing.
-        </p>
-    </div>      
-    
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="content">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="content">
         <h3>For meta elements</h3>
         <p>
             You have used the HTML5 method of specifying your document's
@@ -270,7 +299,22 @@ date: {{date}}
             document have the required <code>content</code> attribute.
         </p>
 
-    </div>     
+    </div>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="name">
+        <h3>For param elements</h3>
+        <p>
+            You've most likely forgotten to add an <code>name</code> attribute
+            to a <code>&lt;param&gt;</code> element:            
+        </p>
+        <pre>&lt;param &hellip;&gt;</pre>           
+        <p>
+            Add a <code>name</code> attribute to each <code>&lt;param&gt;</code>
+            element where missing:
+        </p>
+        <pre>&lt;param name="example" &hellip;&gt;</pre>        
+    </div>      
+   
     
     <h3>In general</h3>
     <p>

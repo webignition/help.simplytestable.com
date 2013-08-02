@@ -15,7 +15,7 @@ date: 2013-01-18
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="variable">
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="variable">
         <p>
             Your markup is based around the
             <a href="http://www.deluxetemplates.net/2009/08/typography-blogger.html">Typography Blogger</a>
@@ -31,20 +31,35 @@ date: 2013-01-18
     </div>
 <div class="section"><h2>What This Error Means</h2>
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="variable">        
-        <p>
-            This error message is misleading out of context.
-        </p>
-        
-        <p>
-            Read our in-depth article on <a href="/articles/html/fixing-variable-elements/">fixing "variable" elements</a>.
-        </p>
-    </div>  
+      
     
-    </div>
+    <div data-generic="true">
+        <p>
+            This error is telling you that you're missing an end tag in your markup.
+        </p>    
+        <p>
+            A little more specifically, it's telling you that you're missing an end tag
+            on an element that is not allowed to lack an end tag.
+        </p>
+        <p>
+            Elements that are self-contained and don't directly relate to anything
+            else can do without an end tag (if the version of HTML you're using
+            allows this).
+        </p>
+        <p>
+            Image elements are self-contained and will usually be fine like this:        
+        </p>
+        <pre>&lt;img src="http://example.com/diagram.png" alt="Diagram"&gt;</pre>    
+        <p>
+            Inline elements that surround content, such as anchors, either require
+            an end tag to be considered valid or should have an end tag to
+            remove ambiguity:
+        </p>
+        <pre>&lt;a href="http://example.com/"&gt;Example&lt;/a&gt; &lt;!-- This end bit is important --&gt;</pre>      
+    </div></div>
 <div class="section"><h2>How To Fix It</h2>
     
-    <div data-parameter-specific="true" data-parameter-key="%0" data-parameter-value="variable">        
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="variable">        
         <p>
             This error message is misleading out of context.
         </p>

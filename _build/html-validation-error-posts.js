@@ -197,7 +197,9 @@ var normal_form_to_specific_form = function (normal_form, parameters) {
 
 var normal_form_to_template_form = function (normal_form) {    
     var modifications = {
-        '^Id ':'ID '
+        '^Id ':'ID ',
+        '\. use':'. Use',
+        ' css ':' CSS ',
     };
     
     var template_form = S(normal_form).humanize().s;
@@ -335,46 +337,54 @@ var create_post = function (document_properties, error_properties, document_inde
         }        
         
         var is_parameter_specific_section_for = function (section, parameters) {
-            var is_key_for = false;
-            var is_value_for = false;
+            if (section.attr('data-parameter-keys') === '') {
+                return false;
+            }
             
-            for (var key in parameters) {
-                if (parameters.hasOwnProperty(key)) {                
-                    
-                    if (section.attr('data-parameter-key') === key) {
-                        is_key_for = true;
-                    }
-                    
-                    var matchComparator = section.attr('data-parameter-value');
-                    var isPositiveMatchRequired = matchComparator.substr(0, 1) !== '!';
-                    var isWildcardMatchRequired = matchComparator.substr(matchComparator.length - 1) === '*';
-                    
-                    if (isWildcardMatchRequired) {
-                        var regexpComparator = matchComparator.substr(0, matchComparator.length - 1);
-                        var regexp = new RegExp(regexpComparator + '.*');
-                        
-                        if (regexp.test(S(parameters[key]).decodeHTMLEntities().s)) {
-                            is_value_for = true;
-                        }
-                    } else {
-                        if (isPositiveMatchRequired === false) {
-                            matchComparator = matchComparator.substr(1);
-                        }
+            if (section.attr('data-parameter-values') === '') {
+                return false;
+            } 
+            
+            var parameter_keys = section.attr('data-parameter-keys').split(',');
+            var parameter_values = section.attr('data-parameter-values').split(',');
+            
+            for (var parameter_index = 0; parameter_index < parameter_keys.length; parameter_index++) {
+                var matchComparator = parameter_values[parameter_index];
+                var currentParameterValue = S(parameters[parameter_keys[parameter_index]]).decodeHTMLEntities().s;
+                
+                var isWildcardMatchRequired = matchComparator.substr(matchComparator.length - 1) === '*';
+                var isSelectionMatchRequired = matchComparator.indexOf('|') !== -1;
+                
+                if (isWildcardMatchRequired) {
+                    var regexpComparator = matchComparator.substr(0, matchComparator.length - 1);
+                    var regexp = new RegExp(regexpComparator + '.*');
 
-                        if (isPositiveMatchRequired) {
-                            if (matchComparator === S(parameters[key]).decodeHTMLEntities().s) {
-                                is_value_for = true;
-                            }                           
-                        } else {
-                            if (matchComparator !== S(parameters[key]).decodeHTMLEntities().s) {
-                                is_value_for = true;
-                            }                           
-                        }                        
+                    if (regexp.test(currentParameterValue) === false) {
+                        return false;
+                    }                    
+                } else {
+                    if (isSelectionMatchRequired) {                        
+                        var matchComparators = matchComparator.split('|');
+                        var isMatch = false;
+
+                        for (var matchComparator_index = 0; matchComparator_index < matchComparators.length; matchComparator_index++) {                            
+                            if (matchComparators[matchComparator_index] === currentParameterValue) {
+                                isMatch = true;
+                            }                                  
+                        }
+                        
+                        if (isMatch === false) {
+                            return false;
+                        }                       
+                    } else {
+                        if (currentParameterValue !== matchComparator) {
+                            return false;
+                        }                           
                     }
-                }
-            }              
+                }          
+            }
             
-            return is_key_for && is_value_for;
+            return true;
         };        
         
         var has_matching_parameter_specific_section = false;
@@ -659,8 +669,8 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
-    //var parameter_limit = 4;
-    var error_limit = 14;
+    //var parameter_limit = 2;
+    var error_limit = 15;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
