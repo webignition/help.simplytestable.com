@@ -670,7 +670,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
     //var parameter_limit = 2;
-    var error_limit = 15;
+    var error_limit = 16;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
@@ -711,6 +711,10 @@ fs.readFile(file, 'utf8', function(err, data) {
         if (count_parameter_placeholders(error.normal_form) > parameter_depth_limit) {
             continue;
         }
+        
+//        if (error.normal_form !== 'end tag for element "%0" which is not open') {
+//            continue;
+//        }
         
         var parent_document = get_document_properties(error.normal_form, [], true);        
         
