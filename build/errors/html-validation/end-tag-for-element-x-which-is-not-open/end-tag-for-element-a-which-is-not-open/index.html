@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>How to fix End tag for element &quot;a&quot; which is not open | Help and Support | Simply Testable</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">        
+        <link href="/assets/css/prettify.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+<link href="/assets/css/main.css" rel="stylesheet">        
+        <script type="text/javascript" src="/assets/js/prettify.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33218043-1']);
+  _gaq.push(['_setDomainName', 'help.simplytestable.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+        <script>
+            // Activate Google Prettify in this page
+            addEventListener('load', prettyPrint, false);
+            $(document).ready(function(){
+                // Add prettyprint class to pre elements
+                $('pre').addClass('prettyprint');           
+            }); // end document.ready
+        </script>        
+    </head>
+    <body id="page-errors-html-validation-end-tag-for-element-x-which-is-not-open-end-tag-for-element-a-which-is-not-open-" class="">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/">
+                SimplyTestable
+                <span>Help and Documentation</span>
+            </a>
+            
+            
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li><a href="//simplytestable.com/">Go to Simply Testable <i class="icon icon-angle-right"></i></a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+            
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+    <li><a href="/">Documentation</a> <span class="divider">/</span></li>
+    
+   
+     
+
+    
+
+    
+    <li>
+        
+        <a href="/errors/html-validation/index/">Errors</a>
+                
+        
+        
+            <span class="divider">/</span>
+        
+        
+        
+    </li>
+    
+
+
+    
+
+    
+    <li>
+        
+        <a href="/errors/html-validation/index/">HTML-validation</a>
+                
+        
+        
+            <span class="divider">/</span>
+        
+        
+        
+    </li>
+    
+
+
+    
+
+ 
+
+
+<li class="active"><a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/">End tag for element &quot;X&quot; which is not open</a></li>
+
+
+
+
+
+
+</ul>
+                </div>
+            </div>
+                      
+            
+            
+            <div class="row">
+                <div class="span8">
+                        
+
+
+
+
+<div class="post">
+    
+    <div class="section section-post-meta post">        
+        <h1>End tag for element &quot;a&quot; which is not open</h1>
+        
+    </div>    
+    
+    
+    <div class="section"><h2>Most Likely Cause and Fix</h2>
+    
+        
+    
+    <div data-generic="true">
+        <p>
+            Your markup contains a closing tag in the form of <code>&lt;a /&gt;</code>
+            that is lacking a preceding opening tag such as <code>&lt;a … &gt;</code>.
+        </p>
+        <p>
+            <strong>Either:</strong>
+        </p>
+        <p>
+            The relevant element was inadvertently closed too soon when another element was
+            intended to be closed:
+        </p>
+
+        <pre>&lt;a&gt;
+  &lt;span&gt;
+    Foo
+  &lt;/a&gt; &lt;!-- a is closed where when span should have been closed --&gt;
+&lt;/a&gt; &lt;!-- This will cause an error when the a is closed again --&gt;
+        </pre>   
+        <p>
+            <strong>Or:</strong>
+        </p>    
+        <p>
+            The closing tag <code>&lt;a /&gt;</code> has inadvertently been included twice:
+        </p> 
+        <pre>&lt;a&gt;
+  &lt;span&gt;Foo&lt;/span&gt;
+&lt;/a&gt;
+&lt;/a&gt; &amp;lt!-- closing a tag included twice by mistake --&gt;</pre>        
+    </div></div>
+<div class="section"><h2>What This Error Means</h2>
+    <p>
+        Elements in HTML have a start and an end, with sometimes something in the middle:
+    </p>    
+    <pre>&lt;p&gt; &lt;!-- start --&gt;
+  Foo  &lt;!-- middle --&gt;
+&lt;/p&gt; &lt;!-- end --&gt;</pre>
+    <p>
+        When you include an element in your markup you should, as you might expect,
+        begin with the start, include any content in the middle where relevant
+        and finish with the end.
+    </p>
+    <p>
+        To have the closing tag for an element that does not have a start tag is
+        to produce invalid HTML and that is exactly what this error is telling you.
+    </p></div>
+<div class="section"><h2>How To Fix It</h2>
+    <p>
+        There is no general fix for this type of problem as how to solve it depends
+        on the context in which the error occurs.
+    </p>    
+    <p>
+        Use the line and column number in the specific error message you encountered
+        to find the position in your markup that is causing the error.
+    </p>   
+    <p>
+        Take a look at the elements in your markup that come before the line
+        that is causing the error to give context.
+    </p>
+    <p>
+        There are some common causes for this type of error, although which, if any,
+        applies to you depends on the context in which the error occurs.
+    </p>
+    <h3>The relevant element was inadvertently closed too soon</h3>
+    <p>
+        The element to which the error relates contains one or more other elements
+        and was intended to be as follows:
+    </p>
+    <pre>&lt;div&gt;
+  &lt;span&gt;
+    Foo
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <p>
+        When intending to close the contained <code>&lt;span&gt;</code> element,
+        you closed the parent element by mistake, producing invalid markup:
+    </p>
+    <pre>&lt;div&gt;
+  &lt;span&gt;
+    Foo
+  &lt;/div&gt; &lt!-- div closed by mistake when intended to close span --&gt;
+&lt;/div&gt; &lt!-- this div close tag now has no matching open tag which causes the error --&gt;
+    </pre>
+    <h3>Closing tag included twice by mistake</h3>
+    <p>
+        Your markup contains a straightforward element similar to:
+    </p>
+    <pre>&lt;span&gt;
+  Foo
+&lt;/span&gt;
+    </pre>
+    <p>
+        When closing this element, the closing tag was added twice instead
+        of just once, resulting in invalid markup:
+    </p>
+    <pre>&lt;span&gt;
+  Foo
+&lt;/span&gt;
+&lt;/span&gt; &lt!-- close tag included twice by mistake --&gt;</pre></div>
+
+</div>
+                </div>
+                <div class="span4">  
+                    <div id="start-new-test-form">    
+                        <a class="brand" href="http://gears.simplytestable.com/">
+                            SimplyTestable
+                            <span>automated front-end web testing</span>
+                        </a>    
+
+                        <a href="http://gears.simplytestable.com/" class="btn btn-large btn-success">        
+                            <b>Test your full web site now</b>
+                            <span class="byline">Free and easy. Get started in seconds.</span>
+                            <i class="icon icon-caret-right"></i>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+<div class="section related-errors">    
+    <h3>Main error type</h3>
+    <a href="../">End tag for element &quot;X&quot; which is not open</a>  
+</div>
+ 
+                     
+                    
+                    
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+                    
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section related-errors">    
+    <h3>Examples of this error</h3>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-div-which-is-not-open/">End tag for element &quot;div&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-li-which-is-not-open/">End tag for element &quot;li&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-p-which-is-not-open/">End tag for element &quot;p&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-strong-which-is-not-open/">End tag for element &quot;strong&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <span>End tag for element &quot;a&quot; which is not open</span>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-span-which-is-not-open/">End tag for element &quot;span&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-br-which-is-not-open/">End tag for element &quot;br&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-link-which-is-not-open/">End tag for element &quot;link&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-head-which-is-not-open/">End tag for element &quot;head&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-script-which-is-not-open/">End tag for element &quot;script&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-tr-which-is-not-open/">End tag for element &quot;tr&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-body-which-is-not-open/">End tag for element &quot;body&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-td-which-is-not-open/">End tag for element &quot;td&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-font-which-is-not-open/">End tag for element &quot;font&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-b-which-is-not-open/">End tag for element &quot;b&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-scr-which-is-not-open/">End tag for element &quot;scr&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-form-which-is-not-open/">End tag for element &quot;form&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-h2-which-is-not-open/">End tag for element &quot;h2&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-element-x-which-is-not-open/end-tag-for-element-table-which-is-not-open/">End tag for element &quot;table&quot; which is not open</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                
+    </ul>   
+</div>
+
+
+
+                    
+                </div>                
+            </div>
+            
+            
+        </div>
+    </body>
+</html>

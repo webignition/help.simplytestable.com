@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>How to fix End tag for &quot;br&quot; omitted, but omittag no was specified | Help and Support | Simply Testable</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">        
+        <link href="/assets/css/prettify.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+<link href="/assets/css/main.css" rel="stylesheet">        
+        <script type="text/javascript" src="/assets/js/prettify.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33218043-1']);
+  _gaq.push(['_setDomainName', 'help.simplytestable.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+        <script>
+            // Activate Google Prettify in this page
+            addEventListener('load', prettyPrint, false);
+            $(document).ready(function(){
+                // Add prettyprint class to pre elements
+                $('pre').addClass('prettyprint');           
+            }); // end document.ready
+        </script>        
+    </head>
+    <body id="page-errors-html-validation-end-tag-for-x-omitted-but-omittag-no-was-specified-end-tag-for-br-omitted-but-omittag-no-was-specified-" class="">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/">
+                SimplyTestable
+                <span>Help and Documentation</span>
+            </a>
+            
+            
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li><a href="//simplytestable.com/">Go to Simply Testable <i class="icon icon-angle-right"></i></a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+            
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+    <li><a href="/">Documentation</a> <span class="divider">/</span></li>
+    
+   
+     
+
+    
+
+    
+    <li>
+        
+        <a href="/errors/html-validation/index/">Errors</a>
+                
+        
+        
+            <span class="divider">/</span>
+        
+        
+        
+    </li>
+    
+
+
+    
+
+    
+    <li>
+        
+        <a href="/errors/html-validation/index/">HTML-validation</a>
+                
+        
+        
+            <span class="divider">/</span>
+        
+        
+        
+    </li>
+    
+
+
+    
+
+ 
+
+
+<li class="active"><a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/">End tag for &quot;X&quot; omitted, but omittag no was specified</a></li>
+
+
+
+
+
+
+</ul>
+                </div>
+            </div>
+                      
+            
+            
+            <div class="row">
+                <div class="span8">
+                        
+
+
+
+
+<div class="post">
+    
+    <div class="section section-post-meta post">        
+        <h1>End tag for &quot;br&quot; omitted, but omittag no was specified</h1>
+        
+    </div>    
+    
+    
+    <div class="section"><h2>Most Likely Cause and Fix</h2>
+    
+    
+    
+    <div data-generic="true">
+        <p>
+            Your markup is lacking the end tag for an element.
+        </p>
+        <h3>For elements with end tags</h3>
+        <p>
+            Use
+        </p>    
+        <pre>&lt;example&gt;<strong>&lt;br&gt; … &lt;/br&gt;</strong>&lt;/example&gt;</pre>
+        <p>
+            instead of
+        </p>
+        <pre>&lt;example&gt;<strong>&lt;br&gt;</strong>&lt;/example&gt;</pre>   
+        <h3>For self-closing elements</h3>
+        <p>
+            Use
+        </p>    
+        <pre>&lt;example&gt;<strong>&lt;br … /</strong>&gt;&lt;/example&gt;</pre>
+        <p>
+            instead of
+        </p>
+        <pre>&lt;example&gt;<strong>&lt;br … </strong>&gt;&lt;/example&gt;</pre>        
+    </div></div>
+<div class="section"><h2>What This Error Means</h2>
+    
+      
+    
+    <div data-generic="true">
+        <p>
+            This error is telling you that you're missing an end tag in your markup.
+        </p>    
+        <p>
+            A little more specifically, it's telling you that you're missing an end tag
+            on an element that is not allowed to lack an end tag.
+        </p>
+        <p>
+            Elements that are self-contained and don't directly relate to anything
+            else can do without an end tag (if the version of HTML you're using
+            allows this).
+        </p>
+        <p>
+            Image elements are self-contained and will usually be fine like this:        
+        </p>
+        <pre>&lt;img src="http://example.com/diagram.png" alt="Diagram"&gt;</pre>    
+        <p>
+            Inline elements that surround content, such as anchors, either require
+            an end tag to be considered valid or should have an end tag to
+            remove ambiguity:
+        </p>
+        <pre>&lt;a href="http://example.com/"&gt;Example&lt;/a&gt; &lt;!-- This end bit is important --&gt;</pre>      
+    </div></div>
+<div class="section"><h2>How To Fix It</h2>
+    
+      
+    
+    <div data-generic="true">
+        <p>
+            The specific error message you encountered will refer to a line and column number.
+            This will guide you to the exact point in your markup to which the error relates.
+        </p>    
+        <h3>For elements with end tags</h3>
+        <p>
+            Use
+        </p>    
+        <pre>&lt;example&gt;<strong>&lt;br&gt; … &lt;/br&gt;</strong>&lt;/example&gt;</pre>
+        <p>
+            instead of
+        </p>
+        <pre>&lt;example&gt;<strong>&lt;br&gt;</strong>&lt;/example&gt;</pre>   
+
+        <h3>For self-closing elements</h3>
+        <p>
+            Use
+        </p>    
+        <pre>&lt;example&gt;<strong>&lt;br … /</strong>&gt;&lt;/example&gt;</pre>
+        <p>
+            instead of
+        </p>
+        <pre>&lt;example&gt;<strong>&lt;br … </strong>&gt;&lt;/example&gt;</pre> 
+
+        <h3>For undefined elements</h3>
+        <p>
+            This error might follow one or more 'element "br" undefined' errors.
+        </p>    
+        <p>
+            Check to see if this is the case.
+        </p>
+        <p>
+            If so, the <code>&lt;&amp;brgt;</code> element is not defined for the version
+            of HTML you are using.
+        </p>
+        <p>
+            Check the <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>
+            used in your markup. Fix this if not correct. 
+        </p>
+        <p>
+            If you're still running into 'element "br" undefined' errors, you're
+            simply using an invalid, undefined element. Don't.
+        </p>        
+    </div></div>
+
+</div>
+                </div>
+                <div class="span4">  
+                    <div id="start-new-test-form">    
+                        <a class="brand" href="http://gears.simplytestable.com/">
+                            SimplyTestable
+                            <span>automated front-end web testing</span>
+                        </a>    
+
+                        <a href="http://gears.simplytestable.com/" class="btn btn-large btn-success">        
+                            <b>Test your full web site now</b>
+                            <span class="byline">Free and easy. Get started in seconds.</span>
+                            <i class="icon icon-caret-right"></i>
+                        </a>
+                    </div>
+                    
+                    
+                                       
+                        
+                            <div class="technical-documentation-links">
+<h3>Technical reference</h3>    
+
+
+    
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br">&lt;br&gt; element definition</a>
+
+  
+
+  
+
+</div>
+                        
+                    
+                    
+                    
+                        
+<div class="section related-errors">    
+    <h3>Main error type</h3>
+    <a href="../">End tag for &quot;X&quot; omitted, but omittag no was specified</a>  
+</div>
+ 
+                     
+                    
+                    
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+                    
+                    
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section related-errors">    
+    <h3>Examples of this error</h3>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-area-omitted-but-omittag-no-was-specified/">End tag for &quot;area&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-img-omitted-but-omittag-no-was-specified/">End tag for &quot;img&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-li-omitted-but-omittag-no-was-specified/">End tag for &quot;li&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <span>End tag for &quot;br&quot; omitted, but omittag no was specified</span>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-td-omitted-but-omittag-no-was-specified/">End tag for &quot;td&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-p-omitted-but-omittag-no-was-specified/">End tag for &quot;p&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-input-omitted-but-omittag-no-was-specified/">End tag for &quot;input&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-meta-omitted-but-omittag-no-was-specified/">End tag for &quot;meta&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-div-omitted-but-omittag-no-was-specified/">End tag for &quot;div&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-variable-omitted-but-omittag-no-was-specified/">End tag for &quot;variable&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-link-omitted-but-omittag-no-was-specified/">End tag for &quot;link&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-a-omitted-but-omittag-no-was-specified/">End tag for &quot;a&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-il-omitted-but-omittag-no-was-specified/">End tag for &quot;il&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-f-omitted-but-omittag-no-was-specified/">End tag for &quot;f&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-k-omitted-but-omittag-no-was-specified/">End tag for &quot;k&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-span-omitted-but-omittag-no-was-specified/">End tag for &quot;span&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-param-omitted-but-omittag-no-was-specified/">End tag for &quot;param&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-script-omitted-but-omittag-no-was-specified/">End tag for &quot;script&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li>
+            
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-font-omitted-but-omittag-no-was-specified/">End tag for &quot;font&quot; omitted, but omittag no was specified</a>
+                        
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                
+    </ul>   
+</div>
+
+
+
+                    
+                </div>                
+            </div>
+            
+            
+        </div>
+    </body>
+</html>

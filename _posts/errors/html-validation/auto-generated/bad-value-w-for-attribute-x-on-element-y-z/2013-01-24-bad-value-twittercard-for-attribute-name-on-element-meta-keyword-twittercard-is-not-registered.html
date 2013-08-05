@@ -1,6 +1,6 @@
 ---
 layout: error
-title: "Bad value twitter:card for attribute name on element meta: keyword twitter:card is not registered."
+title: "Bad value twitter&#58;card for attribute name on element meta: keyword twitter&#58;card is not registered."
 categories: [errors, html-validation, bad-value-w-for-attribute-x-on-element-y-z]
 complete: true
 is_parent: false
@@ -24,11 +24,11 @@ date: 2013-01-24
             Your HTML5 markup contains a <a href="https://dev.twitter.com/cards">Twitter Card</a> meta element
             that uses a currently-invalid value for the <code>name</code> attribute:
         </p>
-        <pre>&lt;meta name="twitter:card" content="foo" &gt;</pre>
+        <pre>&lt;meta name="twitter&#58;card" content="foo" &gt;</pre>
         <p>
             Use the HTML5 meta property attribute instead:
         </p>
-        <pre>&lt;meta property="twitter:card" content="foo" &gt;</pre>                    
+        <pre>&lt;meta property="twitter&#58;card" content="foo" &gt;</pre>                    
     </div>    
     
     
@@ -49,13 +49,13 @@ date: 2013-01-24
         <p>
             This error relates to the following usage in your markup:
         </p>    
-        <pre>&lt;meta name="twitter:card"&gt;</pre>
+        <pre>&lt;meta name="twitter&#58;card"&gt;</pre>
         <p>
             The error is stating that, in this context, the attribute <code>name</code>
-            on element <code>meta</code> is not allowed to take the value <code>twitter:card</code>
+            on element <code>meta</code> is not allowed to take the value <code>twitter&#58;card</code>
         </p>
         <p>
-            The validator is giving the reason: <em>keyword twitter:card is not registered.</em>
+            The validator is giving the reason: <em>keyword twitter&#58;card is not registered.</em>
         </p>
     </div></div>
 <div class="section"><h2>How To Fix It</h2>
@@ -68,11 +68,11 @@ date: 2013-01-24
             The Twitter Card documentation states that you should add
             meta elements to your markup in the form:
         </p>
-        <pre>&lt;meta name="twitter:card" content="foo" &gt;</pre>
+        <pre>&lt;meta name="twitter&#58;card" content="foo" &gt;</pre>
         <p>
             Under HTML5 the <code>name</code> attribute must be one of a pre-defined
             set. The above markup will not be valid until the relevant
-            value (<code>twitter:card</code>) has been registered.
+            value (<code>twitter&#58;card</code>) has been registered.
         </p>
         <p>
             Swap the <code>name</code> attribute for an otherwise-identical

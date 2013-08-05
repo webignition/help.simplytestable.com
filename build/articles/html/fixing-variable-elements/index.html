@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Fixing &lt;Variable&gt; Elements | Help and Support | Simply Testable</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">        
+        <link href="/assets/css/prettify.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+<link href="/assets/css/main.css" rel="stylesheet">        
+        <script type="text/javascript" src="/assets/js/prettify.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33218043-1']);
+  _gaq.push(['_setDomainName', 'help.simplytestable.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+        <script>
+            // Activate Google Prettify in this page
+            addEventListener('load', prettyPrint, false);
+            $(document).ready(function(){
+                // Add prettyprint class to pre elements
+                $('pre').addClass('prettyprint');           
+            }); // end document.ready
+        </script>        
+    </head>
+    <body id="page-articles-html-fixing-variable-elements" class="">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/">
+                SimplyTestable
+                <span>Help and Documentation</span>
+            </a>
+            
+            
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li><a href="//simplytestable.com/">Go to Simply Testable <i class="icon icon-angle-right"></i></a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+            
+
+                      
+            
+            
+            <div class="row">
+                <div class="span8">
+                        
+
+
+
+
+<div class="post">
+    
+    <div class="section section-post-meta post">        
+        <h1>Fixing &lt;Variable&gt; Elements</h1>
+        
+    </div>    
+    
+    
+    <div class="section">    
+    <h2>Introduction</h2>    
+    <p>
+        This article looks at the invalid HTML <code>&lt;Variable&gt;</code> 
+        element, what causes it to commonly occur in some HTML validation error messages
+        and how to fix it.
+    </p>
+</div>
+
+<div class="section">
+
+    <h2>What is the HTML &lt;Variable&gt; element?</h2>
+
+    <p>
+        The element <code>&lt;Variable&gt;</code> is not a valid
+        element. You'll not see it defined in any specification nor will you,
+        most likely, see it willingly used in markup.
+    </p>
+
+    <p>
+        Despite it being invalid, it's quite a commonly-occurring feature
+        in two HTML validation errors:
+    </p>
+
+    <ul>
+        <li>
+            <p>
+                <a href="/errors/html-validation/element-x-undefined/element-variable-undefined/">
+                    Element "variable" undefined
+                </a>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-variable-omitted-but-omittag-no-was-specified/">
+                    End tag for "variable" omitted, but omittag no was specified
+                </a>
+            </p>
+        </li>
+    </ul>
+
+    <p>
+        It is, at the time of writing, the most commonly occurring error of
+        the type <i><a href="http://local.help.simplytestable.com/errors/html-validation/element-x-undefined/">element "X" undefined</a></i>.
+    </p> 
+
+    <p>
+        If you're encountering either of these above HTML validation errors, this is for you.
+    </p>
+</div>
+
+<div class="section">    
+    <h2>Cause</h2>    
+    <p>
+        If you're even moderately familiar with HTML you'll know that there
+        is no <code>&lt;Variable&gt;</code> element and as such if you were
+        to encounter an error relating to such an element you might think you
+        inadvertently included it in your markup.
+    </p>
+
+    <p>
+        Having a <code>&lt;Variable&gt;</code> element used inadvertently
+        in markup is not the cause of this error.
+    </p>
+
+    <p>
+        The cause of this error relates to the string <code>&lt;Variable &hellip; &gt;</code>
+        being featured within a HTML comment. As comments are ignored by a HTML
+        parser, this initially seems a bit odd.
+    </p>
+
+    <p>
+        That the string <code>&lt;Variable &hellip; &gt;</code> is present in a
+        HTML comment is not the problem. Having such a comment in your markup
+        will not result in any validation errors.
+    </p>
+
+    <p>
+        The cause of these types of error relates to the use of the string
+        <code>&lt;Variable &hellip; &gt;</code> in a comment in markup
+        in a section of a XHTML document that is treated differently from most of the
+        result of your markup.
+    </p>
+</div>
+
+<div class="section">    
+    <h2>It's all due to CDATA and XHTML parsers</h2>    
+    <p>
+        CDATA, short for <a href="http://en.wikipedia.org/wiki/CDATA">character data</a>, 
+        is a term used to denote parts of a document that simply contain collections
+        of characters that are to be treated literally as just a bunch of text and
+        which are not to be parsed in any way.
+    </p>
+
+    <p>
+        Two of the most relevant sections of your markup to which CDATA applies
+        are the contents of <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code>
+        elements.
+    </p>
+
+    <p>
+        Unlike pretty much the rest of a HTML document, these elements do not
+        contain text to be displayed nor do they contain markup to be parsed.
+        The contain content that is in a different language (relative to HTML),
+        either JavaScript instructions or CSS styling rules.
+    </p>
+
+    <p>
+        If you use text that looks like markup within a comment within a 
+        <code>&lt;script&gt;</code> or <code>&lt;style&gt;</code> element
+        within a XHTML document, you run the risk of the text being parsed as 
+        markup which is then likely to be considered invalid.
+    </p>
+
+    <p>
+        In such cases you can mark the content of such elements as being CDATA
+        to ensure that the XML parser interpretting your XHTML document will then
+        ignore such sections and not try to parse it as markup.
+    </p>
+
+    <p>
+        That's the root cause of HTML validation errors relating to invalid
+        or unclosed <code>&lt;Variable&gt;</code> elements.
+    </p>
+
+    <p>
+        Let's now see from where these errors originate and how to fix them.
+    </p>
+</div>
+
+<div class="section">    
+    <h2>Origin: The Typography Blogger template</h2>    
+    <p>
+        This all stems from the <a href="http://www.deluxetemplates.net/2009/08/typography-blogger.html">Typography Blogger</a>
+        template for the <a href="http://en.wikipedia.org/wiki/Blogger_(service)">Blogger</a> blogging service
+        which happens to include the following markup:
+    </p>
+    <pre>&lt;style id='page-skin-1' type='text/css'&gt;&lt;!--
+…
+&lt;Variable name="bgcolor" description="Page Background Color"
+type="color" default="#fff"&gt;
+…
+--&gt;&lt;/style&gt;</pre>
+    
+    <p>
+        That's only a sample of the markup present in the template, there are many
+        more lines in the relevant section full template.
+    </p>
+    
+    <p>
+        You'll see in the above sample that there is a <code>&lt;style&gt;</code>
+        element containing a HTML comment.
+    </p>
+    
+    <p>
+        This use of a comment as-is in a HTML document is perfectly
+        valid (ignoring the invalid <code>id</code> attribute). In this case
+        it's in a XHTML document
+    </p>    
+    
+    <p>
+        In this case it's in a XHTML document (not a HTML document) and there 
+        is nothing to tell a XML parser that the content is CDATA. An XML parser,
+        such as that used by the HTML validator to validate a XHTML document,
+        can interpret the markup-like strings in the above sample as markup.
+    </p>
+    
+    <p>
+        That's exactly what happens and exactly the reason you may run in to
+        HTML validation errors relating to invalid <code>Variable</code> elements.
+    </p>
+</div>
+
+<div class="section">    
+    <h2>The fix</h2>    
+    <p>
+        Solving this is quite straightforward once we know the cause.
+    </p>
+    
+    <p>
+        We've got a bunch of text that happens to look like markup within a section
+        of a document that should be treated literally and not parsed but which
+        has not been marked as something that should be treated literally.
+    </p>
+    
+    <p>
+        Marking the relevant content as being CDATA fixes these problems:
+    </p>
+    
+<pre>&lt;style id='page-skin-1' type='text/css'&gt;
+/*&lt;![CDATA[*/
+&lt;!--
+…
+
+&lt;Variable name="bgcolor" description="Page Background Color"
+type="color" default="#fff"&gt;
+
+…
+--&gt;
+/*]]&gt;*/
+&lt;/style&gt;</pre>
+    
+    <p>
+        You'll notice the addition of <code>/*&lt;![CDATA[*/</code> immediately
+        before the start of the HTML comment and the addition of <code>/*]]&gt;*/</code>
+        immediately after the comment is ended.
+    </p>
+    
+    <p>
+        This appears quite cryptic but it is merely a way of marking the content
+        as CDATA, such that it will be safely ignored by XML parsers, whilst
+        at the same time marking the CDATA markers as CSS comments such that the
+        CDATA markers will be ignored if this is to be intepreted by a HTML parser.
+    </p>
+        
+        
+</div>
+</div>
+                </div>
+                <div class="span4">  
+                    <div id="start-new-test-form">    
+                        <a class="brand" href="http://gears.simplytestable.com/">
+                            SimplyTestable
+                            <span>automated front-end web testing</span>
+                        </a>    
+
+                        <a href="http://gears.simplytestable.com/" class="btn btn-large btn-success">        
+                            <b>Test your full web site now</b>
+                            <span class="byline">Free and easy. Get started in seconds.</span>
+                            <i class="icon icon-caret-right"></i>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                        <div class="technical-documentation-links">
+<h3>Technical reference</h3>    
+
+
+<a href="http://en.wikipedia.org/wiki/CDATA">CDATA reference</a>
+
+
+</div>
+                    
+                    
+                    
+                        <div class="section related-errors">    
+    <h3>Related errors</h3>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <li>
+            <a href="/errors/html-validation/element-x-undefined/element-variable-undefined/">Element &quot;variable&quot; undefined</a>         
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <li>
+            <a href="/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-variable-omitted-but-omittag-no-was-specified/">End tag for &quot;variable&quot; omitted, but omittag no was specified</a>         
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                
+    </ul>   
+</div>
+                    
+                </div>                
+            </div>
+            
+            
+        </div>
+    </body>
+</html>

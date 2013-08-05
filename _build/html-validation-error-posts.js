@@ -499,7 +499,7 @@ var create_post = function (document_properties, error_properties, document_inde
             document_properties.parameters[i] = '<blank>';
         }
         
-        template_values[error_properties.placeholders[i]] = S(document_properties.parameters[i]).escapeHTML().s;
+        template_values[error_properties.placeholders[i]] = S(document_properties.parameters[i]).escapeHTML().s.replace(':', '&#58;');
         template_values[error_properties.placeholders[i] + '_UPPER'] = S(document_properties.parameters[i]).escapeHTML().s.toUpperCase();
         template_values[error_properties.placeholders[i] + '_LOWER'] = S(document_properties.parameters[i]).escapeHTML().s.toLowerCase();
     }
@@ -764,7 +764,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form !== 'there is no attribute "%0"') {
+//        if (error.normal_form !== 'element "%0" undefined') {
 //            continue;
 //        }
    
@@ -794,7 +794,7 @@ fs.readFile(file, 'utf8', function(err, data) {
         }).slice(0, parameter_limit);        
         
         documents = merge_document_collections(required_documents, documents);
-        
+
         for (var document_index = 0; document_index < documents.length; document_index++) {
             if (post_exists(documents[document_index].file_name)) {
                 // Check post integrity TBC
