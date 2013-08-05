@@ -22,6 +22,10 @@ Object.size = function(obj) {
     return size;
 };
 
+var required_document_file_names = {
+    'there is no attribute "%0"':['there-is-no-attribute-data-width']
+};
+
 var placeholder_transforms = {    
     'document-type-does-not-allow-element-x-here-missing-one-of-y-start-tag': function (parameters) {
         var y_parameters = S(parameters[1]).replaceAll('"', '').replaceAll(' ', '').s.split(',');
@@ -97,6 +101,49 @@ var placeholder_transforms = {
                 };
         }
     },          
+};
+
+
+var get_document_by_filename = function (documents, file_name) {
+    for (document_index = 0; document_index < documents.length; document_index++) {
+        if (documents[document_index].file_name ===  file_name) {
+            return documents[document_index];
+        }
+    }
+};
+
+var document_collection_contains_by_file_name = function (documents, file_name) {
+    for (document_index = 0; document_index < documents.length; document_index++) {
+        if (documents[document_index].file_name ===  file_name) {
+            return true;
+        }
+    }
+    
+    return false;
+};
+
+var get_required_documents = function (normal_form, documents) {   
+    if (required_document_file_names.hasOwnProperty(normal_form) === false) {
+        return [];
+    }
+    
+    var required_documents = [];
+    var required_document_keys = required_document_file_names[normal_form];
+    for (var key_index = 0; key_index < required_document_keys.length; key_index++) {
+        required_documents.push(get_document_by_filename(documents, required_document_keys[key_index]));
+    }
+    
+    return required_documents;
+};
+
+var merge_document_collections = function (collection1, collection2) {
+    for (var collection1_index = 0; collection1_index < collection1.length; collection1_index++) {
+        if (document_collection_contains_by_file_name(collection2, collection1[collection1_index].file_name) === false) {
+            collection2.push(collection1[collection1_index]);
+        }
+    }
+    
+    return collection2;
 };
 
 
@@ -347,10 +394,15 @@ var create_post = function (document_properties, error_properties, document_inde
             
             var parameter_keys = section.attr('data-parameter-keys').split(',');
             var parameter_values = section.attr('data-parameter-values').split(',');
+            var parameter_keys_ignore = section.attr('data-parameter-keys-ignore').split(',');
             
-            for (var parameter_index = 0; parameter_index < parameter_keys.length; parameter_index++) {
+            for (var parameter_index = 0; parameter_index < parameter_keys.length; parameter_index++) {                
                 var matchComparator = parameter_values[parameter_index];
                 var currentParameterValue = S(parameters[parameter_keys[parameter_index]]).decodeHTMLEntities().s;
+                
+                if (parameter_keys_ignore.indexOf(currentParameterValue) !== -1) {
+                    return false;
+                }
                 
                 var isWildcardMatchRequired = matchComparator.substr(matchComparator.length - 1) === '*';
                 var isSelectionMatchRequired = matchComparator.indexOf('|') !== -1;
@@ -712,11 +764,11 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form !== 'end tag for element "%0" which is not open') {
+//        if (error.normal_form !== 'there is no attribute "%0"') {
 //            continue;
 //        }
-        
-        var parent_document = get_document_properties(error.normal_form, [], true);        
+   
+        var parent_document = get_document_properties(error.normal_form, [], true);              
         
         var documents = [parent_document];
         
@@ -725,12 +777,13 @@ fs.readFile(file, 'utf8', function(err, data) {
             "document":parent_document
         });
         
-        for (var parameter_value in error.parameters) {            
-            if (error.parameters.hasOwnProperty(parameter_value)) {
+        for (var parameter_value in error.parameters) {
+            if (error.parameters.hasOwnProperty(parameter_value)) {                
                 documents = documents.concat(get_parameterised_documents(error.normal_form, [parameter_value], error.parameters[parameter_value], [error.parameters[parameter_value].count])); 
             }
         }
         
+        var required_documents = get_required_documents(error.normal_form, documents);        
         documents = documents.sort(function (a, b) {
             if (a.weight > b.weight)
               return -1;
@@ -738,7 +791,9 @@ fs.readFile(file, 'utf8', function(err, data) {
               return 1;
 
             return 0;
-        }).slice(0, parameter_limit);
+        }).slice(0, parameter_limit);        
+        
+        documents = merge_document_collections(required_documents, documents);
         
         for (var document_index = 0; document_index < documents.length; document_index++) {
             if (post_exists(documents[document_index].file_name)) {

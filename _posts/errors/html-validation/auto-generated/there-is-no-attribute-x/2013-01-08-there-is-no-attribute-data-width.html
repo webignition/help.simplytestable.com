@@ -1,6 +1,6 @@
 ---
 layout: error
-title: "There is no attribute &quot;src&quot;"
+title: "There is no attribute &quot;data-width&quot;"
 categories: [errors, html-validation, there-is-no-attribute-x]
 complete: true
 is_parent: false
@@ -10,37 +10,33 @@ relations: [attribute]
 error_elements: null
 error_attribute: null
 equivalent_errors: []
-date: 2013-01-17
+date: 2013-01-08
 ---
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
    
           
     
-          
-    
-       
-    
-    <div data-generic="true">
-        <h3>For data-* attributes</h3>
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="data-width">       
         <p>
-            You have used a <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attribute</a> 
-            in a HTML4 document.
+            Your HTML4 or XHTML markup contains a Facebook Like button or a Google Plus +1 button
+            that makes use of the <code>data-width</code> attribute in the form:            
+        </p>
+        <pre>&lt;div class="fb-like" data-width="280" …&gt;&lt;/div&gt;
+&lt;div class="g-plus" data-width="280" …&gt;&lt;/div&gt;</pre>
+        <p>
+            Attributes of the form <code>data-*</code> are <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>
+            and are valid only in HTML5 documents.
         </p>
         <p>
             Check the <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>
             used in your markup. For HTML5 this must be <code>&lt;!DOCTYPE html&gt;,</code>. Fix this if not correct. 
         </p> 
-        <h3>In general</h3>
-        <p>
-            You have used the attribute <code>src</code> on an element where the
-            element does not allow an attibute of that name.
-        </p>    
-        <p>
-            You should remove this attribute for your markup to be valid or consider
-            using <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>.
-        </p>        
-    </div></div>
+    </div>      
+    
+       
+    
+    </div>
 <div class="section"><h2>What This Error Means</h2>
     <p>
         There is a defined set of attributes for each HTML element. You may
@@ -48,7 +44,7 @@ date: 2013-01-17
         beyond those defined.
     </p>
     <p>
-        This error is simply saying that the attribute <code>src</code>
+        This error is simply saying that the attribute <code>data-width</code>
         cannot be used where you used it.
     </p></div>
 <div class="section"><h2>How To Fix It</h2>
@@ -79,7 +75,7 @@ date: 2013-01-17
     </p> 
     <h3>Simply remove the attribute</h3>  
     <p>
-        You have used the attribute <code>src</code> on an element where the
+        You have used the attribute <code>data-width</code> on an element where the
         element does not allow an attibute of that name.
     </p>    
     <p>
@@ -97,9 +93,9 @@ date: 2013-01-17
         Whilst the following is invalid HTML, the invalid attributes could
         still end up in the DOM and be accessible via JavaScript:
     </p>
-    <pre>&lt;img src="http://example.com/image.png" alt="Desc" src="jon" /&gt;</pre>   
+    <pre>&lt;img src="http://example.com/image.png" alt="Desc" data-width="jon" /&gt;</pre>   
     <p>
         <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>
         are intended exactly for this purpose. Give it a go if relevant to you.
     </p>
-    <pre>&lt;img src="http://example.com/image.png" alt="Desc" data-src="jon" /&gt;</pre></div>
+    <pre>&lt;img src="http://example.com/image.png" alt="Desc" data-data-width="jon" /&gt;</pre></div>
