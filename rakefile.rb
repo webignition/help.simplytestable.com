@@ -23,7 +23,7 @@ task :rebuild do
 end
 
 def jekyll
-  command = "jekyll"  
+  command = "jekyll build"  
   system(command)
 end
 
