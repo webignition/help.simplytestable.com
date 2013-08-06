@@ -729,7 +729,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
     //var parameter_limit = 2;
-    var error_limit = 23;
+    var error_limit = 24;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
@@ -771,7 +771,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form.toLowerCase() !== 'there is no attribute "%0"') {
+//        if (error.normal_form.toLowerCase().indexOf('but there were unclosed') === -1) {
 //            continue;
 //        }
    
