@@ -1,27 +1,32 @@
 ---
 layout: error
-title: "ID &quot;popup6&quot; already defined"
-categories: [errors, html-validation, id-x-already-defined]
+title: "Duplicate id socialmedia."
+categories: [errors, html-validation, duplicate-id-x]
 complete: true
 is_parent: false
-parent_path: id-x-already-defined
-parent_title: "ID &quot;X&quot; already defined"
+parent_path: duplicate-id-x
+parent_title: "Duplicate id X."
 relations: []
 error_elements: []
 error_attribute: null
-equivalent_errors: [duplicate-id-x]
+equivalent_errors: [id-x-already-defined]
 date: 2013-01-10
 ---
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
-    <p>
-        The value <code>popup6</code> has already been used for an <code>id</code>
-        attribute.
-    </p>
-    <p>
-        Find all attribute occurrences of the form <code>&hellip; id="popup6" &hellip;</code> and 
-        ensure each has a unique value within the given document.
-    </p></div>
+    
+        
+    
+    <div data-generic="true">    
+        <p>
+            The value <code>socialmedia</code> has already been used for an <code>id</code>
+            attribute.
+        </p>
+        <p>
+            Find all attribute occurrences of the form <code>… id="socialmedia" …</code> and 
+            ensure each has a unique value within the given document.
+        </p>
+    </div></div>
 <div class="section"><h2>What This Error Means</h2>
     <p>
         The <code>id</code> attribute is used to uniquely identify a single
@@ -33,31 +38,36 @@ date: 2013-01-10
         attribute must be unique within the given document.
     </p>
     <p>
-        This error is telling you that the value <code>popup6</code> has already
+        This error is telling you that the value <code>socialmedia</code> has already
         been used for an <code>id</code> attribute.
     </p></div>
 <div class="section"><h2>How To Fix It</h2>
+    
+        
+    
+    <div data-generic="true">    
     <p>
-        Find all attribute occurrences of the form <code>&hellip; id="popup6" &hellip;</code> and 
+        Find all attribute occurrences of the form <code>… id="socialmedia" …</code> and 
         ensure each has a unique value within the given document.
     </p>
     <p>
         For example, use:
     </p>
-    <pre>&lt;div id="popup6-foo"&gt;
+    <pre>&lt;div id="socialmedia-foo"&gt;
   &lt;p&gt;Foo&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="popup6-bar"&gt;
+&lt;div id="socialmedia-bar"&gt;
   &lt;p&gt;Bar&lt;/p&gt;
 &lt;/div&gt;</pre>
     <p>
         instead of:
     </p>    
-    <pre>&lt;div id="popup6"&gt;
+    <pre>&lt;div id="socialmedia"&gt;
   &lt;p&gt;Foo&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="popup6"&gt;
+&lt;div id="socialmedia"&gt;
   &lt;p&gt;Bar&lt;/p&gt;
-&lt;/div&gt;</pre></div>
+&lt;/div&gt;</pre>
+    </div></div>
