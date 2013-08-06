@@ -722,7 +722,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
     //var parameter_limit = 2;
-    var error_limit = 16;
+    var error_limit = 17;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
@@ -764,7 +764,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form !== 'element "%0" undefined') {
+//        if (error.normal_form !== '"%0" is not a member of a group specified for any attribute') {
 //            continue;
 //        }
    
