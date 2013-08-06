@@ -1,0 +1,60 @@
+---
+layout: error
+title: "An attribute value specification must be an attribute value literal unless shorttag yes is specified"
+categories: [errors, html-validation]
+complete: true
+is_parent: true
+is_standalone: true
+relations: []
+error_elements: []
+error_attribute: null
+equivalent_errors: []
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+    <p>
+        Your markup document contains a non-quoted attribute value similar to:
+    </p>    
+    <pre>&lt;div id=foo&gt;
+  &hellip;
+&lt;/div&gt;</pre>
+    <p>
+        Ensure all attribute values are contained in double quotes:
+    </p>
+    <pre>&lt;div id="foo"&gt;
+  &hellip;
+&lt;/div&gt;</pre>    
+</div>
+<div class="section"><h2>What This Means</h2>
+    <p>
+        This error is telling you that your markup contains a non-quoted attribute
+        value as given in the above example.
+    </p>
+    <p>
+        The wording of this message originates in <a href="http://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language">SGML</a>,
+        the markup language in which HTML and XHTML are defined.
+    </p>
+    <p>
+        Despite the wording of this error, there is nothing you, as an HTML or
+        XHTML author, can do to specify the <code>SHORTTAG</code> attribute. This
+        is not a HTML attribute but an SGML attribute, that is an attribute
+        for the language in which HTML is defined.
+    </p>
+</div>
+<div class="section"><h2>How To Fix It</h2>
+    <p>
+        Ensure all attribute values are contained in double quotes:
+    </p>
+    <p>
+        Use:
+    </p>
+    <pre>&lt;div id="foo"&gt;
+  &hellip;
+&lt;/div&gt;</pre>  
+    <p>
+        instead of:
+    </p>
+    <pre>&lt;div id=foo&gt;
+  &hellip;
+&lt;/div&gt;</pre>
+</div>
