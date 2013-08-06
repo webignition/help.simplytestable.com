@@ -1,16 +1,16 @@
 ---
 layout: error
-title: "End tag for element &quot;b&quot; which is not open"
-categories: [errors, html-validation, end-tag-for-element-x-which-is-not-open]
+title: "No font element in scope but a font end tag seen."
+categories: [errors, html-validation, no-x-element-in-scope-but-a-y-end-tag-seen]
 complete: true
 is_parent: false
-parent_path: end-tag-for-element-x-which-is-not-open
-parent_title: "End tag for element &quot;X&quot; which is not open"
+parent_path: no-x-element-in-scope-but-a-y-end-tag-seen
+parent_title: "No X element in scope but a X end tag seen."
 relations: []
 error_elements: []
 error_attribute: null
-equivalent_errors: [no-x-element-in-scope-but-a-x-end-tag-seen]
-date: 2013-01-13
+equivalent_errors: [end-tag-for-element-x-which-is-not-open]
+date: 2013-01-25
 ---
 
 <div class="section"><h2>Most Likely Cause and Fix</h2>
@@ -19,8 +19,8 @@ date: 2013-01-13
     
     <div data-generic="true">
         <p>
-            Your markup contains a closing tag in the form of <code>&lt;b /&gt;</code>
-            that is lacking a preceding opening tag such as <code>&lt;b … &gt;</code>.
+            Your markup contains a closing tag in the form of <code>&lt;font /&gt;</code>
+            that is lacking a preceding opening tag such as <code>&lt;font … &gt;</code>.
         </p>
         <p>
             <strong>Either:</strong>
@@ -30,22 +30,22 @@ date: 2013-01-13
             intended to be closed:
         </p>
 
-        <pre>&lt;b&gt;
+        <pre>&lt;font&gt;
   &lt;span&gt;
     Foo
-  &lt;/b&gt; &lt;!-- b is closed where when span should have been closed --&gt;
-&lt;/b&gt; &lt;!-- This will cause an error when the b is closed again --&gt;
+  &lt;/font&gt; &lt;!-- font is closed where when span should have been closed --&gt;
+&lt;/font&gt; &lt;!-- This will cause an error when the font is closed again --&gt;
         </pre>   
         <p>
             <strong>Or:</strong>
         </p>    
         <p>
-            The closing tag <code>&lt;b /&gt;</code> has inadvertently been included twice:
+            The closing tag <code>&lt;font /&gt;</code> has inadvertently been included twice:
         </p> 
-        <pre>&lt;b&gt;
+        <pre>&lt;font&gt;
   &lt;span&gt;Foo&lt;/span&gt;
-&lt;/b&gt;
-&lt;/b&gt; &amp;lt!-- closing b tag included twice by mistake --&gt;</pre>        
+&lt;/font&gt;
+&lt;/font&gt; &amp;lt!-- closing font tag included twice by mistake --&gt;</pre>        
     </div></div>
 <div class="section"><h2>What This Error Means</h2>
     <p>

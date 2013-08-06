@@ -100,9 +100,16 @@ var placeholder_transforms = {
                     'equivalent_errors': []                    
                 };
         }
-    },          
+    }          
 };
 
+var parent_document_parameters = {
+    'No %0 element in scope but a %1 end tag seen.':['X', 'X']
+};
+
+var get_parent_document_parameters = function (error) {
+    return (parent_document_parameters.hasOwnProperty(error.normal_form)) ? parent_document_parameters[error.normal_form] : [];
+};
 
 var get_document_by_filename = function (documents, file_name) {
     for (document_index = 0; document_index < documents.length; document_index++) {
@@ -178,8 +185,8 @@ var get_placeholder_values = function(normal_form, parameters) {
     }
 
     if (parameters !== undefined) {
-        for (var parameter_index = 0; parameter_index < parameters.length; parameter_index++) {
-            placeholder_values[parameter_index] = parameters[parameter_index].toLowerCase();
+        for (var parameter_index = 0; parameter_index < parameters.length; parameter_index++) {            
+            placeholder_values[parameter_index] = (['W', 'X', 'Y', 'Z'].indexOf(parameters[parameter_index]) === -1) ? parameters[parameter_index].toLowerCase() : parameters[parameter_index];
         }
     }
 
@@ -722,7 +729,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
     //var parameter_limit = 2;
-    var error_limit = 17;
+    var error_limit = 18;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
@@ -764,12 +771,11 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form !== '"%0" is not a member of a group specified for any attribute') {
+//        if (error.normal_form.toLowerCase() !== 'no %0 element in scope but a %1 end tag seen.') {
 //            continue;
 //        }
    
-        var parent_document = get_document_properties(error.normal_form, [], true);              
-        
+        var parent_document = get_document_properties(error.normal_form, get_parent_document_parameters(error), true);                              
         var documents = [parent_document];
         
         index_entries.push({
