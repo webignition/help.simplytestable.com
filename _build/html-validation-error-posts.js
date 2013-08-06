@@ -728,8 +728,8 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
-    //var parameter_limit = 2;
-    var error_limit = 21;
+    //var parameter_limit = 4;
+    var error_limit = 22;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
@@ -771,7 +771,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form.toLowerCase() !== 'value of attribute "%0" must be a single token') {
+//        if (error.normal_form.toLowerCase() !== 'unclosed element %0.') {
 //            continue;
 //        }
    
