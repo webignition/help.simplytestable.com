@@ -771,7 +771,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form.toLowerCase() !== 'duplicate id %0.') {
+//        if (error.normal_form.toLowerCase() !== 'there is no attribute "%0"') {
 //            continue;
 //        }
    
