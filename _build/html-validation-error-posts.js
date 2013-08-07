@@ -729,7 +729,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     var error_data = JSON.parse(data);    
     var parameter_limit = 20;
     //var parameter_limit = 2;
-    var error_limit = 24;
+    var error_limit = 25;
     var parameter_depth_limit = 4;
 
     var error_subset = error_data.slice(0, error_limit);
@@ -771,7 +771,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form.toLowerCase().indexOf('but there were unclosed') === -1) {
+//        if (error.normal_form.toLowerCase().indexOf('which is not finished') === -1) {
 //            continue;
 //        }
    
