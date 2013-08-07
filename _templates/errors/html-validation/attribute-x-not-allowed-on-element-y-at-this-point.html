@@ -15,17 +15,57 @@ date: {{date}}
 
 <div class="section">    
     <h2>Most Likely Cause and Fix</h2>
-    <p>
-        Your markup contains a <code>&lt;{{%1}}&gt;</code> element with
-        a <code>{{%0}}</code> attribute in the form <code>&lt;{{%1}} {{%0}}="value" /&gt;</code>.
-    </p>
-    <p>
-        Attribute <code>{{%0}}</code> is not allowed on element <code>&lt;{{%1}}&gt;</code>.
-    </p>    
-    <p>
-        You should remove this attribute for your markup to be valid or consider
-        using <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>.
-    </p>
+
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1" data-parameter-values="autocomplete,input">       
+        <p>
+            Your HTML5 markup contains an <code>&lt;input&gt;</code> element
+            with an <code>autocomplete</code> attribute that should not take this
+            attribute.
+        </p>
+        <p>
+            The <code>autocomplete</code> attribute is allowed only on input
+            elements with the type  text, search, url, tel, e-mail, password, 
+            datetime, date, month, week, time, datetime-local, number, range, or color.
+        </p>
+
+        <p>
+            Use
+        </p>
+        <pre>&lt;input type="button" &hellip; &gt;
+&lt;input type="checkbox" &hellip; &gt;
+&lt;input type="file" &hellip; &gt;
+&lt;input type="hidden" &hellip; &gt;
+&lt;input type="image" &hellip; &gt;
+&lt;input type="radio" &hellip; &gt;
+&lt;input type="reset" &hellip; &gt;
+&lt;input type="submit" &hellip; &gt;</pre> 
+        <p>
+            instead of
+        </p>
+        <pre>&lt;input type="button" autocomplete="on" &hellip; &gt;
+&lt;input type="checkbox" autocomplete="on" &hellip; &gt;
+&lt;input type="file" autocomplete="on" &hellip; &gt;
+&lt;input type="hidden" autocomplete="on" &hellip; &gt;
+&lt;input type="image" autocomplete="on" &hellip; &gt;
+&lt;input type="radio" autocomplete="on" &hellip; &gt;
+&lt;input type="reset" autocomplete="on" &hellip; &gt;
+&lt;input type="submit" autocomplete="on" &hellip; &gt;</pre>              
+    </div>
+    
+    <div data-generic="true">
+        <p>
+            Your markup contains a <code>&lt;{{%1}}&gt;</code> element with
+            a <code>{{%0}}</code> attribute in the form <code>&lt;{{%1}} {{%0}}="value" /&gt;</code>.
+        </p>
+        <p>
+            Attribute <code>{{%0}}</code> is not allowed on element <code>&lt;{{%1}}&gt;</code>.
+        </p>    
+        <p>
+            You should remove this attribute for your markup to be valid or consider
+            using <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>.
+        </p>        
+    </div>   
+
 </div>
 
 <div class="section">    
@@ -44,6 +84,41 @@ date: {{date}}
 
 <div class="section">
     <h2>How To Fix It</h2>
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0,%1" data-parameter-values="autocomplete,input">       
+        <h3>For the autocomplete attribute on input elements</h3>
+        <p>
+            The <code>autocomplete</code> attribute is allowed only on input
+            elements with the type  text, search, url, tel, e-mail, password, 
+            datetime, date, month, week, time, datetime-local, number, range, or color.
+        </p>
+
+        <p>
+            Use
+        </p>
+        <pre>&lt;input type="button" &hellip; &gt;
+&lt;input type="checkbox" &hellip; &gt;
+&lt;input type="file" &hellip; &gt;
+&lt;input type="hidden" &hellip; &gt;
+&lt;input type="image" &hellip; &gt;
+&lt;input type="radio" &hellip; &gt;
+&lt;input type="reset" &hellip; &gt;
+&lt;input type="submit" &hellip; &gt;</pre> 
+        <p>
+            instead of
+        </p>
+        <pre>&lt;input type="button" autocomplete="on" &hellip; &gt;
+&lt;input type="checkbox" autocomplete="on" &hellip; &gt;
+&lt;input type="file" autocomplete="on" &hellip; &gt;
+&lt;input type="hidden" autocomplete="on" &hellip; &gt;
+&lt;input type="image" autocomplete="on" &hellip; &gt;
+&lt;input type="radio" autocomplete="on" &hellip; &gt;
+&lt;input type="reset" autocomplete="on" &hellip; &gt;
+&lt;input type="submit" autocomplete="on" &hellip; &gt;</pre>              
+    </div>    
+    
+    
+    <h3>In general</h3>
     <p>
         The specific error message you encountered will refer to a line and column number.
         This will guide you to the exact point in your markup to which the error relates.

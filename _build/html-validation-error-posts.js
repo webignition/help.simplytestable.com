@@ -771,7 +771,7 @@ fs.readFile(file, 'utf8', function(err, data) {
             continue;
         }
         
-//        if (error.normal_form.toLowerCase().indexOf('which is not finished') === -1) {
+//        if (error.normal_form.toLowerCase().indexOf('attribute %0 not allowed on element %1 at this point') === -1) {
 //            continue;
 //        }
    
