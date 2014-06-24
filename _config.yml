@@ -2,6 +2,7 @@
 exclude: [nbproject, README.md, _drafts, _templates]
 permalink: /:categories/:title/
 url: http://help.simplytestable.com
+markdown: kramdown
 
 # Site
 simplytestable:
