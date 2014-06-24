@@ -24,56 +24,67 @@
             {% include header/introduction.html %}
             
             <div class="row">
-                <div class="span12">
+                <div class="col-lg-12">
                     {% include breadcrumb/breadcrumb.html %}
                 </div>
             </div>
-        {% if page.categories contains 'errors' and page.is_parent == true and (page.is_standalone == false or page.is_standalone == null) %}                 
-            <div class="row">
-                <div class="span12">   
-                    <div class="alert alert-info">
-                    This is a generic error page which should help you in general with errors of this type.
-                    Refer below to the specific examples to the right for more precise
-                    advice.
-                    </div>        
-                </div>
-            </div>                       
-        {% endif %}              
+
+            <!--{% if page.categories contains 'errors' and page.is_parent == true and (page.is_standalone == false or page.is_standalone == null) %}-->
+                <!--<div class="row">-->
+                    <!--<div class="col-lg-12">-->
+                        <!--<div class="alert alert-info">-->
+                        <!--This is a generic error page which should help you in general with errors of this type.-->
+                        <!--Refer below to the specific examples to the right for more precise-->
+                        <!--advice.-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--{% endif %}-->
             
             {% if page.id != '/errors/html-validation/index' %}
             <div class="row">
-                <div class="span8">
-                        {% include posts/post.html %}
+                <div class="col-lg-12">
+                    {% include posts/title.html %}
                 </div>
-                <div class="span4">  
-                    <div id="start-new-test-form">    
-                        <a class="brand" href="http://gears.simplytestable.com/">
-                            SimplyTestable
-                            <span>automated front-end web testing</span>
-                        </a>    
+                <div class="col-lg-8">
+                    <div class="post">
+                        {% include posts/content.html %}
+                    </div>
 
-                        <a href="http://gears.simplytestable.com/" class="btn btn-large btn-success">        
-                            <b>Test your full web site now</b>
-                            <span class="byline">Free and easy. Get started in seconds.</span>
+                        <!--{% include posts/post.html %}-->
+                </div>
+                <div class="col-lg-4">
+                    <div id="start-new-test-form">
+                        <!--<a class="brand" href="http://gears.simplytestable.com/">-->
+                            <!--SimplyTestable-->
+                            <!--<span>automated front-end web testing</span>-->
+                        <!--</a>-->
+
+                        <a href="http://gears.simplytestable.com/" class="btn btn-large btn-success">
+                            <h4>
+                                <i class="fa fa-tachometer"></i>
+                                Full-site HTML validation
+                            </h4>
+                            <span class="byline">Free, quick and easy. Get started in seconds.</span>
                             <i class="icon icon-caret-right"></i>
                         </a>
                     </div>
-                    
-                    
+
+
                     {% if page.error_elements == empty %}
-                    {% else %}                   
+                    {% else %}
                         {% if (page.is_parent != true or page.is_standalone != null)) %}
                             {% include error/error_technical_documentation.html %}
                         {% endif %}
                     {% endif %}
-                    
+
                     {% if page.is_standalone == false or page.is_standalone == null %}
-                        {% include error/main.html %} 
-                    {% endif %} 
-                    
+                        {% include error/main.html %}
+                    {% endif %}
+
                     {% include error/equivalent.html %}
                     {% include error/related.html %}
-                    
+
                     {% if page.is_standalone == false or page.is_standalone == null %}
                         {% include error/examples.html %}
                     {% endif %}

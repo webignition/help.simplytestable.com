@@ -16,7 +16,7 @@ $(document).ready(function() {
             return;
         }
         
-        var tocList = $('<ul class="sidebar-list" />');
+        var tocList = $('<ul class="sidebar-list list-unstyled link-list" />');
         
         headings.each(function () {
             var thisHeading = $(this);

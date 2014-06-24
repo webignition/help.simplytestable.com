@@ -1,0 +1,15 @@
+{% assign content_item = false %}
+{% if post %}
+{% assign content_item = post %}
+{% else %}
+{% assign content_item = page %}
+{% endif %}
+
+<div class="section section-post-meta post">
+    {% include posts/title.html %}
+    {% if content_item.date and content_item.categories contains 'legal'%}
+    <p class="meta">
+        Last updated: {{ content_item.date | date: "%B %e, %Y" }}
+    </p>
+    {% endif %}
+</div>

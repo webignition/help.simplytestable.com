@@ -8,15 +8,8 @@
 <div class="post">
     {% if content_item.is_archive %}
     {% else %}
-    <div class="section section-post-meta post">        
-        <h1>{{ content_item.title }}</h1>
-        {% if content_item.date and content_item.categories contains 'legal'%}        
-        <p class="meta">
-            Last updated: {{ content_item.date | date: "%B %e, %Y" }}     
-        </p>        
-        {% endif %}
-    </div>    
+    {% include posts/meta.html %}
     {% endif %}
-    
-    {{ content_item.content }}
+
+    {% include posts/content.html %}
 </div>

@@ -7,15 +7,14 @@
         {% assign item_text = category | replace:'-',' ' | capitalize | replace:'Html','HTML' %}
         {% capture path %}{{ path }}/{{ category }}{% endcapture %}
 
+    <li>
         {% if category == 'errors' %}
-            {% capture path %}{{ path }}/html-validation/index/{% endcapture %}
+            <a href="{{path}}/html-validation/index/">{{item_text}}</a>
+        {% else %}
+            <a href="{{path}}/index/">{{item_text}}</a>
         {% endif %}
+    </li>
 
-        <li>
-            <a href="{{ path }}">
-                {{ item_text }}
-            </a>
-        </li>
     {% endif %}
 
 {% endfor %}

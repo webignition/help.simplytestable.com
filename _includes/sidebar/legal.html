@@ -3,18 +3,21 @@
         Legal documents
     </h3>    
     
-    <ul class="sidebar-list document-list">
+    <ul class="sidebar-list document-list fa-ul link-list">
 {% for post in site.categories.legal | sort:"name" %}
         <li>
             {% if page.url != post.url %}
             <a href="{{ post.url }}">
-            {% endif %}    
-                <i class="icon icon-file-alt"></i>
-                <span>{{ post.title }}</span>
-            {% if page.url != '/privacy-policy/' %}
+                <i class="fa fa-li fa-file-text-o"></i>
+                {{ post.title }}
             </a>
-            {% endif %}  
-        </li>    
+            {% else %}
+            <span>
+                <i class="fa fa-li fa-file-text-o"></i>
+                {{ post.title }}
+            </span>
+            {% endif %}
+        </li>
 {% endfor %}         
     </ul> 
 </div>

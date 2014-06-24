@@ -25,6 +25,25 @@ body {
     border-left: 1px solid #999;
 }
 
+.link-list a,
+.link-list span {
+    display: block;
+    padding: 2px 0;
+}
+
+.link-list li {
+    padding: 2px 0;
+}
+
+.document-list.link-list a,
+.document-list.link-list span {
+    margin-top: -4px;
+}
+
+.document-list {
+    margin-top: 20px;
+}
+
 /*h1 {*/
     /*font-size: 31.5px;*/
 /*}*/
@@ -47,13 +66,13 @@ body {
     /*color:#0ae;*/
 /*}*/
 
-/*body .container a {*/
-    /*text-decoration: none;*/
-/*}*/
+body .container a {
+    text-decoration: none;
+}
 
-/*body .container a:hover {*/
-    /*text-decoration: none;*/
-/*}*/
+body .container a:hover {
+    text-decoration: none;
+}
 
 /*.sidebar-list {*/
     /*margin-left: 16px;*/
@@ -73,7 +92,7 @@ body {
 /*.document-list {*/
     /*list-style-type: none;*/
     /*margin:0;*/
-    /*padding:0;    */
+    /*padding:0;*/
 /*}*/
 
 /*.document-list li {*/
@@ -88,22 +107,22 @@ body {
     /*text-decoration: underline;*/
 /*}*/
 
-/*.section-post-meta .meta {*/
-    /*opacity: 0.4;*/
-/*}*/
+.section-post-meta .meta {
+    opacity: 0.4;
+}
 
 /*.post .section {*/
     /*width:80%;*/
 /*}*/
 
-/*.post .section {*/
-    /*margin-bottom: 40px;*/
-/*}*/
+.post .section {
+    margin-bottom: 40px;
+}
 
-/*.post p {*/
-    /*font-size: 16px;*/
-    /*line-height: 24px;    */
-/*}*/
+.post p {
+    font-size: 16px;
+    line-height: 24px;
+}
 
 /*ol.roman {*/
     /*list-style-type: lower-roman;*/
@@ -164,21 +183,23 @@ body {
     /*margin: 2px 0;*/
 /*}*/
 
-/*#start-new-test-form a.btn {*/
-    /*text-align: left;*/
-    /*width:300px;*/
-/*}*/
+#start-new-test-form a.btn {
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+}
 
-/*#start-new-test-form a.btn b {*/
-    /*display:block;*/
-/*}*/
+#start-new-test-form a.btn b {
+    display:block;
 
-/*#start-new-test-form .byline {*/
-/*font-size: 13px;*/
-/*text-align: left;*/
-/*font-style: normal;*/
-/*opacity: 0.8;    */
-/*}*/
+}
+
+#start-new-test-form span {
+    display:block;
+    white-space: normal;
+    opacity: 0.8;
+    margin-top: 8px;
+}
 
 /*#start-new-test-form .brand {*/
 /*background: url('/assets/img/st30.png') transparent no-repeat 0px 0px;*/

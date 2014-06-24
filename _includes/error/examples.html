@@ -9,15 +9,15 @@
 
 <div class="section related-errors">    
     <h3>Examples of this error</h3>
-    <ul>
+    <ul class="list-unstyled link-list">
         {% for post in site.posts %}
         {% if post.parent_path == page.parent_path and post.is_parent == false %}
-        <li>
+        <li class="{{ post.title == page.title ? 'not-linked' : 'linked' }}">
             {% if post.title == page.title %}
-            <span>{{post.title}}</span>
+                <span>{{post.title}}</span>
             {% else %}
-            <a href="{{post.url}}">{{post.title}}</a>
-            {% endif %}            
+                <a href="{{post.url}}">{{post.title}}</a>
+            {% endif %}
         </li>
         {% endif %}
         {% endfor %}        

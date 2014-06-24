@@ -2,25 +2,25 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://help.simplytestable.com/errors/html-validation/index/</loc>
-        <lastmod>2014-06-24T09:41:54+01:00</lastmod>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/legal/terms-of-service/</loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T12:22:15+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/legal/privacy/</loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T12:22:15+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/legal/cookies/</loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T12:22:15+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/ampersand-did-not-start-a-character-reference-ampersand-probably-should-have-been-escaped-as-amp/
         </loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T11:46:36+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -32,19 +32,19 @@
         <loc>
             http://help.simplytestable.com/errors/html-validation/an-attribute-value-specification-must-be-an-attribute-value-literal-unless-shorttag-yes-is-specified/
         </loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T11:46:36+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/an-img-element-must-have-an-alt-attribute-except-under-certain-conditions-for-details-consult-guidance-on-providing-text-alternatives-for-images/
         </loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T11:46:36+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/net-enabling-start-tag-not-immediately-followed-by-null-end-tag/
         </loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T11:46:36+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -62,31 +62,79 @@
         <loc>
             http://help.simplytestable.com/errors/html-validation/the-for-attribute-of-the-label-element-must-refer-to-a-form-control/
         </loc>
-        <lastmod>2014-06-24T08:31:39+01:00</lastmod>
+        <lastmod>2014-06-24T11:46:36+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-li-omitted-but-omittag-no-was-specified/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-x-not-defined-and-no-default-entity/general-entity-q-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-x-for-which-no-system-identifier-could-be-generated/reference-to-entity-limit-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2014-06-24T09:41:54+01:00</lastmod>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-img-omitted-but-omittag-no-was-specified/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-x-not-defined-and-no-default-entity/general-entity-hl-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-x-for-which-no-system-identifier-could-be-generated/reference-to-entity-mode-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2014-06-24T09:41:54+01:00</lastmod>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/end-tag-for-area-omitted-but-omittag-no-was-specified/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-x-not-defined-and-no-default-entity/general-entity-t-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-x-for-which-no-system-identifier-could-be-generated/reference-to-entity-order-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2014-06-24T09:41:54+01:00</lastmod>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/end-tag-for-x-omitted-but-omittag-no-was-specified/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://help.simplytestable.com/errors/html-validation/general-entity-x-not-defined-and-no-default-entity/
+        </loc>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://help.simplytestable.com/errors/html-validation/reference-to-entity-x-for-which-no-system-identifier-could-be-generated/
         </loc>
-        <lastmod>2014-06-24T09:41:54+01:00</lastmod>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
     <url>
         <loc>http://help.simplytestable.com/articles/html/fixing-variable-elements/</loc>
@@ -94,6 +142,6 @@
     </url>
     <url>
         <loc>http://help.simplytestable.com/</loc>
-        <lastmod>2014-06-24T09:41:54+01:00</lastmod>
+        <lastmod>2014-06-24T12:31:52+01:00</lastmod>
     </url>
 </urlset>

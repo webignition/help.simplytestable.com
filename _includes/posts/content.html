@@ -1,0 +1,8 @@
+{% assign content_item = false %}
+{% if post %}
+{% assign content_item = post %}
+{% else %}
+{% assign content_item = page %}
+{% endif %}
+    
+{{ content_item.content }}

@@ -730,7 +730,7 @@ fs.readFile(file, 'utf8', function(err, data) {
     //var parameter_limit = 20;
     var parameter_limit = 4;
     //var error_limit = 27;
-    var error_limit = 1;
+    var error_limit = 3;
     //var parameter_depth_limit = 4;
     var parameter_depth_limit = 4;
 
