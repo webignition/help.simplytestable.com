@@ -1,32 +1,24 @@
-<ul class="breadcrumb">
-    <li><a href="/">Documentation</a> <span class="divider">/</span></li>
-    
-   
-{% assign path = '' %}     
+<ol class="breadcrumb">
+    <li><a href="/">Documentation</a></li>
+
+{% assign path = '' %}
 {% for category in page.categories %}
     {% if forloop.last == false or page.is_parent %}
+        {% assign item_text = category | replace:'-',' ' | capitalize | replace:'Html','HTML' %}
+        {% capture path %}{{ path }}/{{ category }}{% endcapture %}
 
-    {% capture path %}{{ path }}/{{ category }}{% endcapture %}
-    <li>
         {% if category == 'errors' %}
-        <a href="{{path}}/html-validation/index/">{{ category | capitalize | replace:'Html','HTML' }}</a>
-        {% else %}
-        <a href="{{path}}/index/">{{ category | capitalize | replace:'Html','HTML' }}</a>
-        {% endif %}        
-        
-        {% if forloop.last %}
-            {% if page.is_parent == false %}
-            <span class="divider">/</span>
-            {% endif %}
-        {% else %}
-            <span class="divider">/</span>
+            {% capture path %}{{ path }}/html-validation/index/{% endcapture %}
         {% endif %}
-        
-        
-    </li>
+
+        <li>
+            <a href="{{ path }}">
+                {{ item_text }}
+            </a>
+        </li>
     {% endif %}
 
-{% endfor %} 
+{% endfor %}
 
 {% if page.is_parent == false %}
 <li class="active"><a href="/{{ page.categories | join: '/'}}/">{{page.parent_title}}</a></li>
@@ -40,4 +32,4 @@
 <li class="active">{{page.title}}</li>
 {% endif %}
 
-</ul>
+</ol>
