@@ -1,0 +1,72 @@
+---
+layout: error
+title: "Attribute rel not allowed on element img at this point."
+categories: [errors, html-validation, attribute-x-not-allowed-on-element-y-at-this-point]
+complete: true
+is_parent: false
+parent_path: attribute-x-not-allowed-on-element-y-at-this-point
+parent_title: "Attribute X not allowed on element Y at this point."
+relations: [attribute]
+error_elements: [img]
+error_attribute: "rel"
+equivalent_errors: []
+date: 2014-01-27
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+
+    
+    
+    <div data-generic="true">
+        <p>
+            Your markup contains a <code>&lt;img&gt;</code> element with
+            a <code>rel</code> attribute in the form <code>&lt;img rel="value" /&gt;</code>.
+        </p>
+        <p>
+            Attribute <code>rel</code> is not allowed on element <code>&lt;img&gt;</code>.
+        </p>    
+        <p>
+            You should remove this attribute for your markup to be valid or consider
+            using <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attributes</a>.
+        </p>        
+    </div></div>
+<div class="section"><h2>What This Error Means</h2>
+    <p>
+        There is a defined set of attributes for each HTML element. You may
+        choose to omit some but you cannot choose to add further attributes
+        beyond those defined.
+    </p>
+    <pre>&lt;img src="http://example.com/image.png" alt="Desc" /&gt;</pre>    
+    <p>
+        This error is saying that in the context of <code>&lt;img rel="value" /&gt;</code>,
+        the attribute <code>rel</code> is not allowed.
+    </p></div>
+<div class="section"><h2>How To Fix It</h2>
+    
+        
+    
+    
+    <h3>In general</h3>
+    <p>
+        The specific error message you encountered will refer to a line and column number.
+        This will guide you to the exact point in your markup to which the error relates.
+    </p>    
+    <p>
+        Your markup contains a <code>&lt;img&gt;</code> element with
+        a <code>rel</code> attribute in the form <code>&lt;rel img="value" /&gt;</code>.
+    </p>
+    <p>
+        Attribute <code>rel</code> is not allowed on element <code>&lt;img&gt;</code>.
+    </p>
+    <p>
+        Use
+    </p>
+    <pre>&lt;img … /&gt;</pre> 
+    <p>
+        instead of
+    </p>
+    <pre>&lt;img rel="value" … /&gt;</pre>     
+    <p>
+        or consider using a <a href="http://html5doctor.com/html5-custom-data-attributes/">HTML5 custom data attribute</a>
+    </p>
+    <pre>&lt;img data-rel="value" … /&gt;</pre></div>

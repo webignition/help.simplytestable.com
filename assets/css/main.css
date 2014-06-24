@@ -138,19 +138,18 @@ body .container a:hover {
     /*color: #aa0011;*/
 /*}*/
 
-/*.top-list ol {*/
-    /*margin-left:60px;*/
-/*}*/
+.top-list ol {
+    margin-left:15px;
+}
 
-/*.top-list ol li {*/
-    /*font-size: 40px;*/
-    /*color: #ddd;*/
-    /*margin-bottom: 40px;    */
-/*}*/
+.top-list ol li {
+    font-size: 40px;
+    color: #ddd;
+}
 
-/*.top-list ol li a {*/
-    /*display:block;*/
-/*}*/
+.top-list ol li a {
+    display:block;
+}
 
 /*.related-errors h3,*/
 /*.technical-documentation-links h3 {*/

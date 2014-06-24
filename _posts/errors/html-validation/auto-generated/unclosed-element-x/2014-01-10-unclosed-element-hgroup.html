@@ -1,0 +1,57 @@
+---
+layout: error
+title: "Unclosed element hgroup."
+categories: [errors, html-validation, unclosed-element-x]
+complete: true
+is_parent: false
+parent_path: unclosed-element-x
+parent_title: "Unclosed element X."
+relations: [mismatched-start-end-tags]
+error_elements: []
+error_attribute: null
+equivalent_errors: []
+date: 2014-01-10
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+    <p>
+        Your markup contains a <code>&lt;hgroup&gt;</code> start tag that is lacking
+        the matching <code>&lt;/hgroup&gt;</code> end tag. This commonly occurs
+        with inline elements.
+    </p>    
+    <p>
+        Use:
+    </p>
+    <pre>&lt;p&gt;
+  This is an &lt;a href="http://example.com/"&gt;example&lt;/a&gt;.
+&lt;/p&gt;</pre>
+    <p>
+        instead of:
+    </p>
+    <pre>&lt;p&gt;
+  This is an &lt;a href="http://example.com/"&gt;example.
+&lt;/p&gt;</pre></div>
+<div class="section"><h2>What This Error Means</h2>
+    <p>
+        Elements in HTML have a start and an end, with sometimes something in the middle:
+    </p>    
+    <pre>&lt;p&gt; &lt;!-- start --&gt;
+  Foo  &lt;!-- middle --&gt;
+&lt;/p&gt; &lt;!-- end --&gt;</pre>
+    <p>
+        When you include an element in your markup you should, as you might expect,
+        begin with the start, include any content in the middle where relevant
+        and finish with the end.
+    </p>
+    <p>
+        This error is telling you that your markup contains a <code>&lt;hgroup&gt;</code> start tag that is lacking
+        the matching <code>&lt;/hgroup&gt;</code> end tag.
+    </p></div>
+<div class="section"><h2>How To Fix It</h2>
+    <p>
+        The line and column number in the specific error message you encountered
+        will point you to the element in question.
+    </p>    
+    <p>
+        Ensure that a correctly-placed end tag matches the relevant start tag.
+    </p></div>

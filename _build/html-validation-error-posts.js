@@ -360,6 +360,19 @@ var get_post_path = function (error_properties, document_properties, document_in
 };
 
 var create_post = function (document_properties, error_properties, document_index) {
+    var fix_yaml_escape_characters = function (content) {
+        var header_body = content.split("---\n\n");
+        var yaml = header_body[0];
+
+        while (yaml.indexOf('\\') !== -1) {
+            yaml = yaml.replace('\\', '');
+        }
+
+        header_body[0] = yaml;
+
+        return header_body.join("---\n\n");
+    };
+
     var set_category = function (content) {
         var lines = content.split("\n");
 
@@ -485,13 +498,13 @@ var create_post = function (document_properties, error_properties, document_inde
         return post_sections.join("---\n\n");
     };
 
-
     if (!template_exists(error_properties.template)) {
         console.log("missing template: " + error_properties.template);
         process.exit();
     }
 
     var post_path = get_post_path(error_properties, document_properties, document_index);
+
     var content = fs.readFileSync(get_template_path(error_properties.template), "utf8");
 
     var template_values = {
@@ -526,6 +539,10 @@ var create_post = function (document_properties, error_properties, document_inde
 
     content = set_custom_sections(content, document_properties.is_parent, template_values);
     content = S(content).template(template_values).s;
+
+    if (document_properties.file_name.indexOf('serif') !== -1) {
+        content = fix_yaml_escape_characters(content);
+    }
 
     if (!document_properties.is_parent) {
         content = set_category(content);
@@ -728,9 +745,9 @@ fs.readFile(file, 'utf8', function(err, data) {
 
     var error_data = JSON.parse(data);
     //var parameter_limit = 20;
-    var parameter_limit = 4;
+    var parameter_limit = 20;
     //var error_limit = 27;
-    var error_limit = 3;
+    var error_limit = 27;
     //var parameter_depth_limit = 4;
     var parameter_depth_limit = 4;
 
@@ -772,13 +789,6 @@ fs.readFile(file, 'utf8', function(err, data) {
         if (count_parameter_placeholders(error.normal_form) > parameter_depth_limit) {
             continue;
         }
-
-//        console.log(error.normal_form);
-//        continue;
-
-//        if (error.normal_form.toLowerCase().indexOf('The %0 element is obsolete. Use CSS instead.'.toLowerCase()) === -1) {
-//            continue;
-//        }
 
         var parent_document = get_document_properties(error.normal_form, get_parent_document_parameters(error), true);
         var documents = [parent_document];

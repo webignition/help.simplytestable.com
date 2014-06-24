@@ -1,0 +1,80 @@
+---
+layout: error
+title: "End tag for body seen, but there were unclosed elements."
+categories: [errors, html-validation, end-tag-for-x-seen-but-there-were-unclosed-elements]
+complete: true
+is_parent: false
+parent_path: end-tag-for-x-seen-but-there-were-unclosed-elements
+parent_title: "End tag for X seen, but there were unclosed elements."
+relations: []
+error_elements: []
+error_attribute: null
+equivalent_errors: []
+date: 2014-01-27
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+    <p>
+        Your markup contains an unclosed element at the point your document
+        ended.
+    </p>    
+    <p>
+        Prior to your closing <code>&lt;/body&gt;</code> and <code>&lt;/html&gt;</code>
+        tags, ensure all previously-opened elements are correctly closed.
+    </p>
+    <p>
+        Use:
+    </p>
+    <pre>&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &hellip;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>
+        instead of:
+    </p>
+    <pre>&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &hellip;
+    &lt;!-- opened 'div' is never closed --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></div>
+<div class="section"><h2>What This Error Means</h2>
+    <p>
+        The validator reached your closing <code>&lt;/body&gt;</code> or <code>&lt;/html&gt;</code>
+        tag and found that a previously-opened element had not been closed.
+    </p></div>
+<div class="section"><h2>How To Fix It</h2>
+    <p>
+        Prior to your closing <code>&lt;/body&gt;</code> and <code>&lt;/html&gt;</code>
+        tags, ensure all previously-opened elements are correctly closed.
+    </p>
+    <p>
+        Use:
+    </p>
+    <pre>&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &hellip;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>
+        instead of:
+    </p>
+    <pre>&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &hellip;
+    &lt;!-- opened 'div' is never closed --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></div>

@@ -12,7 +12,7 @@
     <ul class="list-unstyled link-list">
         {% for post in site.posts %}
         {% if post.parent_path == page.parent_path and post.is_parent == false %}
-        <li class="{{ post.title == page.title ? 'not-linked' : 'linked' }}">
+        <li class="">
             {% if post.title == page.title %}
                 <span>{{post.title}}</span>
             {% else %}

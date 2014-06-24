@@ -1,0 +1,82 @@
+---
+layout: error
+title: "Duplicate id internal-source-marker_0."
+categories: [errors, html-validation, duplicate-id-x]
+complete: true
+is_parent: false
+parent_path: duplicate-id-x
+parent_title: "Duplicate id X."
+relations: []
+error_elements: []
+error_attribute: null
+equivalent_errors: [id-x-already-defined]
+date: 2014-01-21
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+
+     
+
+         
+
+    <div data-generic="true">    
+        <p>
+            The value <code>internal-source-marker_0</code> has already been used for an <code>id</code>
+            attribute.
+        </p>
+        <p>
+            Find all attribute occurrences of the form <code>… id="internal-source-marker_0" …</code> and 
+            ensure each has a unique value within the given document.
+        </p>
+    </div></div>
+<div class="section"><h2>What This Error Means</h2>    
+    
+           
+
+    <div data-generic="true">  
+        <p>
+            The <code>id</code> attribute is used to uniquely identify a single
+            element within a document:
+        </p>    
+        <pre>&lt;img src="http://example.com/header.png" id="header-image" &gt;</pre>
+        <p>
+            In order to uniquely identify a single element, the value of the <code>id</code>
+            attribute must be unique within the given document.
+        </p>
+        <p>
+            This error is telling you that the value <code>internal-source-marker_0</code> has already
+            been used for an <code>id</code> attribute.
+        </p>  
+    </div></div>
+<div class="section"><h2>How To Fix It</h2>
+
+     
+
+        
+
+    <div data-generic="true">    
+        <p>
+            Find all attribute occurrences of the form <code>… id="internal-source-marker_0" …</code> and 
+            ensure each has a unique value within the given document.
+        </p>
+        <p>
+            For example, use:
+        </p>
+        <pre>&lt;div id="internal-source-marker_0-foo"&gt;
+  &lt;p&gt;Foo&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="internal-source-marker_0-bar"&gt;
+  &lt;p&gt;Bar&lt;/p&gt;
+&lt;/div&gt;</pre>
+        <p>
+            instead of:
+        </p>    
+        <pre>&lt;div id="internal-source-marker_0"&gt;
+  &lt;p&gt;Foo&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="internal-source-marker_0"&gt;
+  &lt;p&gt;Bar&lt;/p&gt;
+&lt;/div&gt;</pre>
+    </div></div>
