@@ -98,7 +98,28 @@ body .container a:hover {
 }
 
 @media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .top-list h2 {
+        font-size: 18px;
+    }
+
+    .top-list ol {
+        margin-left: 0;
+    }
+
+    .top-list ol li {
+        font-size: 18px;
+        color: #bbb;
+    }
+
     .navbar-inverse .container .navbar-brand {
         margin-left: 15px;
+    }
+
+    .breadcrumb {
+        padding-left: 0;
     }
 }
