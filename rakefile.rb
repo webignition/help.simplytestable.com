@@ -11,7 +11,7 @@ task :default do
   fetch_dependencies
   build_html_validation_error_posts
   system("rm sitemap.xml")
-  jekyll
+  system("jekyll build")
   system("cp _site/sitemap.xml sitemap.xml") 
   #jekyll
 end

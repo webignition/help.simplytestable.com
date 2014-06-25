@@ -14,7 +14,7 @@
 {% if equivalent_error_count != '0' %}
 <div class="section related-errors">    
     <h3>Equivalent errors</h3>
-    <ul>
+    <ul class="list-unstyled link-list">
         {% for equivalent_error in page.equivalent_errors %}
             {% for post in site.posts %}
             {% capture comparator %}{{post.id | split:'/' | last}}{% endcapture %}    
@@ -24,7 +24,7 @@
             {{post.title}}
             {% else %}
             <a href="{{post.url}}">{{post.title}}</a>
-            {% endif %}         
+            {% endif %}
         </li>                     
                 {% endif %}
             {% endfor %}

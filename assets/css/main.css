@@ -2,26 +2,46 @@ body {
     margin-top:80px;
 }
 
-h1 {
-    font-size: 31.5px;
-}
-
-h2 {
-    font-size: 24.5px;
-}
-
-h3 {
-    font-size: 17.5px;
-}
-
-.navbar .brand {
-    background: url('/assets/img/st30.png') transparent no-repeat 5px 4px;
+.navbar-inverse .container .navbar-brand {
+    background: url('/assets/img/st30.png') transparent no-repeat 0px 9px;
     color: #08C;
     padding-left: 40px;
+    margin-left: -35px;
 }
 
-.navbar-inverse .brand:hover {
-    color:#0ae;
+.navbar .spacer {
+    width:0;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: transparent;
+}
+
+.navbar .user-actions .spacer {
+    border-left: 1px solid #999;
+}
+
+.link-list a,
+.link-list span {
+    display: block;
+    padding: 2px 0;
+}
+
+.link-list li {
+    padding: 2px 0;
+}
+
+.document-list.link-list a,
+.document-list.link-list span {
+    margin-top: -4px;
+}
+
+.document-list {
+    margin-top: 20px;
 }
 
 body .container a {
@@ -32,46 +52,10 @@ body .container a:hover {
     text-decoration: none;
 }
 
-.sidebar-list {
-    margin-left: 16px;
-}
-
-.sidebar-list li {
-    margin:0;
-    padding:3px;
-}
-
-.sidebar-list a {
-    display:block;
-    padding:3px;
-    margin: -3px;
-}
-
-.document-list {
-    list-style-type: none;
-    margin:0;
-    padding:0;    
-}
-
-.document-list li {
-    list-style-type: none;
-}
-
-.document-list .icon {
-    margin-right:6px;
-}
-
-.document-list a:hover span {
-    text-decoration: underline;
-}
-
 .section-post-meta .meta {
     opacity: 0.4;
 }
 
-/*.post .section {
-    width:80%;
-}*/
 
 .post .section {
     margin-bottom: 40px;
@@ -79,95 +63,91 @@ body .container a:hover {
 
 .post p {
     font-size: 16px;
-    line-height: 24px;    
-}
-
-ol.roman {
-    list-style-type: lower-roman;
-}
-
-span.target {
-    display: block;
-    height:40px;
-    margin-top:-40px;
-}
-
-strong .atv {
-    color: #aa0011;
+    line-height: 24px;
 }
 
 .top-list ol {
-    margin-left:60px;
+    margin-left:15px;
 }
 
 .top-list ol li {
     font-size: 40px;
     color: #ddd;
-    margin-bottom: 40px;    
 }
 
 .top-list ol li a {
     display:block;
 }
 
-.related-errors h3,
-.technical-documentation-links h3 {
-    margin-bottom:0;
-}
-
-.related-errors ul {
-    list-style: none;
-    margin: -8px 0 0 0;
-}
-
-.related-errors ul li {
-    margin: 4px 0;
-}
-
-.related-errors ul li a,
-.related-errors ul li span {
-    display: block;
-    padding: 4px 0;    
-}
-
-.toc-container ul {
-    list-style:none;
-    margin-left:0;
-}
-
-.technical-documentation-links a {
-    display: block;
-    padding: 4px 0;
-    margin: 2px 0;
-}
-
-#start-new-test-form a.btn {
+.cta .btn {
     text-align: left;
-    width:300px;
+    width: 100%;
+    margin-top: 20px;
 }
 
-#start-new-test-form a.btn b {
+.cta a.btn b {
     display:block;
+
 }
 
-#start-new-test-form .byline {
-font-size: 13px;
-text-align: left;
-font-style: normal;
-opacity: 0.8;    
+.cta span {
+    display:block;
+    white-space: normal;
+    opacity: 0.8;
+    margin-top: 8px;
 }
 
-#start-new-test-form .brand {
-background: url('/assets/img/st30.png') transparent no-repeat 0px 0px;
-color: #08C;
-padding-left: 35px;
-height: 30px;
-display: block;
-padding-top: 6px;
+@media (max-width: 992px) {
+    .cta h4 {
+        font-size: 16px;
+    }
 }
 
-.post p.citation {
-    margin-top:-20px;
-    font-size:80%;
-    opacity: 0.7;
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .error h1 {
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .top-list ol {
+        margin-left: 0;
+    }
+
+    .top-list ol li {
+        font-size: 18px;
+        color: #bbb;
+    }
+
+    .navbar-inverse .container .navbar-brand {
+        margin-left: 15px;
+    }
+
+    .breadcrumb {
+        padding-left: 0;
+    }
+
+    body.with-cta {
+        margin-top: 51px;
+    }
+
+    .with-cta .navbar {
+        margin-bottom: 0;
+    }
+
+    .cta .btn {
+        margin-top: 0;
+        border-radius: 0;
+        margin-bottom: 20px;
+    }
 }
