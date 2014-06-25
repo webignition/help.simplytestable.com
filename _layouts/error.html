@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>How to fix {{ page.title }} | {{ site.simplytestable.title }}</title>
+        <title>How to fix: {{ page.title }} | {{ site.simplytestable.title }}</title>
         {% include assets/css/default.html %}
         {% include assets/js/default.html %}
         <script>
@@ -46,7 +46,10 @@
             {% if page.id != '/errors/html-validation/index' %}
             <div class="row">
                 <div class="col-lg-12">
-                    {% include posts/title.html %}
+                    <h1>
+                        <span>How to fix:</span>
+                        {% include posts/title-content.html %}
+                    </h1>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8">
                     <div class="post">
