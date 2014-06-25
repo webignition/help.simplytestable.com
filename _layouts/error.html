@@ -16,8 +16,12 @@
             }); // end document.ready
         </script>        
     </head>
-    <body id="{% include page/id %}" class="{{ page.body_class }}">
+    <body id="{% include page/id %}" class="with-cta error {{ page.body_class }}">
         {% include header/navigation.html %}
+
+        <div class="hidden-lg hidden-md hidden-sm">
+            {% include sidebar/cta.html %}
+        </div>
 
         <div class="container">
             {% include header/introduction.html %}
@@ -39,16 +43,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div id="start-new-test-form">
-                        <a href="https://gears.simplytestable.com/" class="btn btn-large btn-success">
-                            <h4>
-                                <i class="fa fa-tachometer hidden-sm"></i>
-                                Full-site HTML validation
-                            </h4>
-                            <span class="byline">Free, quick and easy. Get started in seconds.</span>
-                            <i class="icon icon-caret-right"></i>
-                        </a>
+                    <div class="hidden-xs">
+                        {% include sidebar/cta.html %}
                     </div>
+
 
                     {% if page.error_elements == empty %}
                     {% else %}

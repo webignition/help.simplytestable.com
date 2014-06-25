@@ -79,18 +79,18 @@ body .container a:hover {
     display:block;
 }
 
-#start-new-test-form a.btn {
+.cta .btn {
     text-align: left;
     width: 100%;
     margin-top: 20px;
 }
 
-#start-new-test-form a.btn b {
+.cta a.btn b {
     display:block;
 
 }
 
-#start-new-test-form span {
+.cta span {
     display:block;
     white-space: normal;
     opacity: 0.8;
@@ -98,7 +98,7 @@ body .container a:hover {
 }
 
 @media (max-width: 992px) {
-    #start-new-test-form h4 {
+    .cta h4 {
         font-size: 16px;
     }
 }
@@ -106,6 +106,14 @@ body .container a:hover {
 @media (max-width: 768px) {
     h1 {
         font-size: 24px;
+    }
+
+    .error h1 {
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 22px;
     }
 
     .top-list h2 {
@@ -127,5 +135,19 @@ body .container a:hover {
 
     .breadcrumb {
         padding-left: 0;
+    }
+
+    body.with-cta {
+        margin-top: 51px;
+    }
+
+    .with-cta .navbar {
+        margin-bottom: 0;
+    }
+
+    .cta .btn {
+        margin-top: 0;
+        border-radius: 0;
+        margin-bottom: 20px;
     }
 }
