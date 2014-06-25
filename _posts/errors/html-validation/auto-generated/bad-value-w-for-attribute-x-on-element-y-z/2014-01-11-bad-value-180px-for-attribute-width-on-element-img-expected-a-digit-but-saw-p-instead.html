@@ -1,0 +1,91 @@
+---
+layout: error
+title: "Bad value 180px for attribute width on element img: expected a digit but saw p instead."
+categories: [errors, html-validation, bad-value-w-for-attribute-x-on-element-y-z]
+complete: true
+is_parent: false
+parent_path: bad-value-w-for-attribute-x-on-element-y-z
+parent_title: "Bad value W for attribute X on element Y: Z"
+relations: [attribute]
+error_elements: [img]
+error_attribute: width
+equivalent_errors: []
+date: 2014-01-11
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+    
+    
+    
+    
+    
+        
+    
+    
+    
+    <div data-generic="true">
+        <p>
+            In the context of <code>&lt;img width="180px" /&gt;</code>
+            the attribute <code>width</code> is not allowed to take the value <code>180px</code>.
+        </p>  
+        <p>
+            You should remove this attribute or set a valid value for your markup to be considered valid.
+        </p>        
+    </div></div>
+<div class="section"><h2>What This Error Means</h2>
+    
+     
+    
+        
+    
+    <div data-generic="true">
+        <p>
+            Some element attributes can take pretty much any value, others
+            can take only values of a certain type and others still can only
+            take a value from a pre-defined set.
+        </p>
+        <p>
+            This error relates to the following usage in your markup:
+        </p>    
+        <pre>&lt;img width="180px"&gt;</pre>
+        <p>
+            The error is stating that, in this context, the attribute <code>width</code>
+            on element <code>img</code> is not allowed to take the value <code>180px</code>
+        </p>
+        <p>
+            The validator is giving the reason: <em>expected a digit but saw p instead.</em>
+        </p>
+    </div></div>
+<div class="section"><h2>How To Fix It</h2>
+    
+     
+    
+     
+    
+    
+    
+      
+    
+    <div data-generic="true">
+        <p>
+            The error relates to an invalid attribute value being used on a specific
+            element.
+        </p>    
+        <p>
+            How this might be fixed often depends on the element, attribute, attribute
+            value and the context in which these are being used.
+        </p>
+        <p>
+            Pay attention to the additional information supplied by the HTML
+            validator as this will often point you in the right direction: <em>expected a digit but saw p instead.</em>
+        </p>
+    </div>
+
+    
+    <div data-generic="true">
+        <h3>In general</h3>
+        <p>
+            Change the relevant attribute value to one that is valid for the context
+            in which it is being used.
+        </p>
+    </div></div>
