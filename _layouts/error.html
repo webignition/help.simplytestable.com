@@ -8,12 +8,10 @@
         {% include assets/css/default.html %}
         {% include assets/js/default.html %}
         <script>
-            // Activate Google Prettify in this page
-            addEventListener('load', prettyPrint, false);
-            $(document).ready(function(){
-                // Add prettyprint class to pre elements
-                $('pre').addClass('prettyprint');           
-            }); // end document.ready
+            $(document).ready(function() {
+                $('pre').addClass('prettyprint');
+                prettyPrint();
+            });
         </script>        
     </head>
     <body id="{% include page/id %}" class="with-cta error {{ page.body_class }}">
