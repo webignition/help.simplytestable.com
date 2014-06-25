@@ -30,6 +30,19 @@
                 </div>
             </div>
 
+            {% if page.categories contains 'errors' and page.is_parent == true and (page.is_standalone == false or page.is_standalone == null) %}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="alert alert-info">
+                        <i class="fa fa-flag"></i>
+                        This is a generic error page which should help you in general with errors of this type.
+                        Refer below to the specific examples to the right for more precise
+                        advice.
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
             {% if page.id != '/errors/html-validation/index' %}
             <div class="row">
                 <div class="col-lg-12">
