@@ -7,6 +7,7 @@ var file = __dirname + '/../_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 var templates_directory = __dirname + '/../_templates/errors/html-validation';
 var includes_directory = __dirname + '/../_includes/generated/html-validation';
+var includes_base_directory = __dirname + '/../_includes';
 
 var TEMPLATE_TEMPLATE = 'template_default';
 var POST_TEMPLATE = 'post_default';
@@ -478,6 +479,20 @@ var create_post = function (document_properties, error_properties, document_inde
         return jqueryified.html();
     };
 
+    var process_liquid_includes = function (content) {
+        var include_matches = content.match('{% include [^%]+%}');
+        if (include_matches === null) {
+            return content;
+        }
+
+        var include_path = includes_base_directory + '/' + include_matches[0].replace('{% include ', '').replace(' %}', '');
+        var include_content = fs.readFileSync(include_path, "utf8");
+
+        content = content.replace(include_matches[0], include_content);
+
+        return content;
+    };
+
     var set_custom_sections = function (content, is_parent, template_values) {
         var post_sections = content.split("---\n\n");
 
@@ -539,10 +554,8 @@ var create_post = function (document_properties, error_properties, document_inde
 
     content = set_custom_sections(content, document_properties.is_parent, template_values);
     content = S(content).template(template_values).s;
-
-    if (document_properties.file_name.indexOf('serif') !== -1) {
-        content = fix_yaml_escape_characters(content);
-    }
+    content = fix_yaml_escape_characters(content);
+    content = process_liquid_includes(content);
 
     if (!document_properties.is_parent) {
         content = set_category(content);
@@ -777,6 +790,10 @@ fs.readFile(file, 'utf8', function(err, data) {
         if (error.normal_form.substr(0, 3) === '<p>') {
             continue;
         }
+
+//        if (error.normal_form != 'end tag for "%0" omitted, but OMITTAG NO was specified') {
+//            continue;
+//        }
 
         var error_properties = get_error_properties(error.normal_form);
 

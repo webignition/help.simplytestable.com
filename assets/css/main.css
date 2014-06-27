@@ -101,6 +101,19 @@ body.error h1 span {
     opacity: 0.6;
 }
 
+body.error .promo {
+    margin-top: 40px;
+}
+
+body.error .promo .alert-success a {
+    display: block;
+    color: #3c763d;
+}
+
+body.error .promo a span {
+    text-decoration: underline;
+}
+
 @media (max-width: 992px) {
     .cta h4 {
         font-size: 16px;
