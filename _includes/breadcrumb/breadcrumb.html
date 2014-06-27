@@ -1,5 +1,9 @@
 <ol class="breadcrumb">
-    <li><a href="/">Documentation</a></li>
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a href="/" itemprop="url">
+            <span itemprop="title">Documentation</span>
+        </a>
+    </li>
 
 {% assign path = '' %}
 {% for category in page.categories %}
@@ -7,11 +11,15 @@
         {% assign item_text = category | replace:'-',' ' | capitalize | replace:'Html','HTML' %}
         {% capture path %}{{ path }}/{{ category }}{% endcapture %}
 
-    <li>
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
         {% if category == 'errors' %}
-            <a href="{{path}}/html-validation/index/">{{item_text}}</a>
+            <a href="{{path}}/html-validation/index/" itemprop="url">
+                <span itemprop="title">{{item_text}}</span>
+            </a>
         {% else %}
-            <a href="{{path}}/index/">{{item_text}}</a>
+            <a href="{{path}}/index/" itemprop="url">
+                <span itemprop="title">{{item_text}}</span>
+            </a>
         {% endif %}
     </li>
 
@@ -20,15 +28,41 @@
 {% endfor %}
 
 {% if page.is_parent == false %}
-<li class="active"><a href="/{{ page.categories | join: '/'}}/">{{page.parent_title}}</a></li>
+<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="active">
+    <a href="/{{ page.categories | join: '/'}}/" itemprop="url">
+        <span itemprop="title">{{page.parent_title}}</span>
+    </a>
+</li>
 {% endif %}
 
 {% if page.id == '/errors/html-validation/index' %}
-<li class="active">HTML validation</li>
+<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="active">
+    <span itemprop="title">HTML validation</span>
+</li>
 {% endif %}
 
 {% if page.categories contains 'legal' %}
-<li class="active">{{page.title}}</li>
+<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="active">
+    <span itemprop="title">{{page.title}}</span>
+</li>
 {% endif %}
 
 </ol>
+
+<!--
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="http://www.example.com/dresses" itemprop="url">
+        <span itemprop="title">Dresses</span>
+    </a>
+</div>
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="http://www.example.com/dresses/real" itemprop="url">
+        <span itemprop="title">Real Dresses</span>
+    </a>
+</div>
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="http://www.example.com/clothes/dresses/real/green" itemprop="url">
+        <span itemprop="title">Real Green Dresses</span>
+    </a>
+</div>
+-->
