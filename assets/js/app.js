@@ -35,6 +35,12 @@ $(document).ready(function() {
         sidebarItem.append(tocList);
         
         $('.sidebar').append(sidebarItem);
+
+        sidebarItem.affix({
+            offset: {
+                top: 212
+            }
+        });
         
     });
 
