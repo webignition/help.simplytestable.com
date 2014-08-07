@@ -118,6 +118,35 @@ body.error .promo a span {
     top: 60px;
 }
 
+.toc-container .nav>li>a {
+    position: relative;
+    display: block;
+    padding: inherit;
+    opacity: 0.8;
+}
+
+.toc-container .nav>li>a:hover {
+    background: transparent;
+}
+
+.toc-container .active {
+    border-left: 3px solid #08c;
+    margin-left: 0;
+}
+
+.toc-container li.active a {
+    opacity: 1;
+}
+
+.toc-container li {
+    padding-left: 4px;
+    margin-left: 3px;
+}
+
+body.toc {
+    padding-bottom: 600px;
+}
+
 @media (max-width: 992px) {
     .cta h4 {
         font-size: 16px;

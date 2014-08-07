@@ -16,18 +16,21 @@ $(document).ready(function() {
             return;
         }
         
-        var tocList = $('<ul class="sidebar-list list-unstyled link-list" />');
+        var tocList = $('<ul class="sidebar-list list-unstyled link-list nav" />');
         
-        headings.each(function () {
+        headings.each(function (index) {
             var thisHeading = $(this);
             var headingId = 'h' + thisHeading.text().hashCode();
-            var idElement = $('<span class="target" id="'+headingId+'" />');
+
+            thisHeading.attr('id', headingId);
+
+            var listItem = $('<li><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>');
+
+            if (index === 0) {
+                listItem.addClass('active');
+            }
             
-            thisHeading.before(idElement);
-            
-            //thisHeading.attr('id', headingId);
-            
-            tocList.append($('<li><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>'));
+            tocList.append(listItem);
         });
         
         var sidebarItem = $('<div class="toc-container" />');
@@ -48,13 +51,9 @@ $(document).ready(function() {
         var target = $(this.hash);
 
         if (target.length) {
-            console.log("cp02");
-
             if ($('html').is('.history')) {
                 history.pushState(null, null, this.hash);
             }
-
-            $(this).closest('li').addClass('selected');
 
             var offset = 80;
 
@@ -67,4 +66,9 @@ $(document).ready(function() {
 
         return false;
     });
+
+    $('body').scrollspy({
+        target: '.toc-container',
+        offset: 90
+    })
 });
