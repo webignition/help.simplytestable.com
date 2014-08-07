@@ -37,4 +37,28 @@ $(document).ready(function() {
         $('.sidebar').append(sidebarItem);
         
     });
+
+    $('.toc-container a').click(function () {
+        var target = $(this.hash);
+
+        if (target.length) {
+            console.log("cp02");
+
+            if ($('html').is('.history')) {
+                history.pushState(null, null, this.hash);
+            }
+
+            $(this).closest('li').addClass('selected');
+
+            var offset = 80;
+
+            $('html,body').animate({
+                scrollTop: (target.offset().top) - offset
+            }, 400);
+
+            return false;
+        }
+
+        return false;
+    });
 });
