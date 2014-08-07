@@ -3,7 +3,7 @@ var program = require('commander');
 var S = require('string');
 var $ = require('jquery');
 
-var file = __dirname + '/../_data/errors/html-validation/errors.json';
+var file = __dirname + '/../_local_data/errors/html-validation/errors.json';
 var posts_directory = __dirname + '/../_posts/errors/html-validation';
 var templates_directory = __dirname + '/../_templates/errors/html-validation';
 var includes_directory = __dirname + '/../_includes/generated/html-validation';

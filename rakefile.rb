@@ -8,12 +8,10 @@ PLUGIN_DIRECTORY = "_plugins"
 
 task :default do  
   puts 'Building ...'
-  fetch_dependencies
+  #fetch_dependencies
   build_html_validation_error_posts
-  system("rm sitemap.xml")
+  #system("rm sitemap.xml")
   system("jekyll build")
-  system("cp _site/sitemap.xml sitemap.xml") 
-  #jekyll
 end
 
 task :rebuild do

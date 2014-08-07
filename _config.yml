@@ -1,5 +1,5 @@
 # Jekyll
-exclude: [nbproject, README.md, _drafts, _templates, _drafts]
+exclude: [nbproject, README.md, _drafts, _templates, _local_data]
 permalink: /:categories/:title/
 url: http://help.simplytestable.com
 markdown: kramdown
