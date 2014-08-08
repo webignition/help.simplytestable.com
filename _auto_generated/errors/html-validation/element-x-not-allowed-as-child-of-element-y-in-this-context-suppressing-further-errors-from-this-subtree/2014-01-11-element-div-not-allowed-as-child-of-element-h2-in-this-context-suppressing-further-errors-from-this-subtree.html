@@ -1,0 +1,99 @@
+---
+layout: error
+title: "Element div not allowed as child of element h2 in this context. (suppressing further errors from this subtree.)"
+categories: [errors, html-validation, element-x-not-allowed-as-child-of-element-y-in-this-context-suppressing-further-errors-from-this-subtree]
+complete: true
+is_parent: false
+parent_path: element-x-not-allowed-as-child-of-element-y-in-this-context-suppressing-further-errors-from-this-subtree
+parent_title: "Element X not allowed as child of element Y in this context. (suppressing further errors from this subtree.)"
+relations: [misplaced-element]
+error_elements: [div, h2]
+error_attribute: null
+equivalent_errors: []
+date: 2014-01-11
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+    <p>
+       Your markup includes a
+        <code>&lt;div&gt;</code> element inside a <code>&lt;h2&gt;</code> 
+        and that this is not allowed.
+        Re-organise your markup so that this is not the case.       
+    </p>    
+    <p>
+        You may have an unclosed <code>&lt;div&gt;</code> element further up
+        the page that is confusing the validator. Check this also.
+    </p>
+
+    <div data-generic="true" class="promo">
+    <div class="alert alert-success" role="alert">
+        <a href="https://gears.simplytestable.com/?utm_source=help-html-error&utm_medium=most-likely&utm_campaign=help-html">
+            One-click full-site HTML validation: <span>test your site now</span>
+            <i class="fa fa-caret-right"></i>
+        </a>
+    </div>
+</div></div>
+<div class="section"><h2>What This Error Means</h2>
+    <p>
+        HTML is often comprised of elements nested inside other elements, such as
+        the placing of an anchor within a paragraph:
+    </p>    
+    <pre>&lt;p&gt;
+    Hello &lt;a href="http://example.com"&gt;World!&lt;/a&gt;
+&lt;/p&gt;</pre>
+    <p>
+        There are rules regarding <em>which</em> elements can be nested inside other elements
+        and <em>when</em> this is allowed to happen.
+    </p>
+    <p>
+        Most notably, block-level elements, such as <code>&lt;div&gt;</code>,
+        are not allowed inside inline elements such as <code>&lt;span&gt;</code>.
+    </p>
+    <p>
+        This error is telling you that your markup includes a
+        <code>&lt;div&gt;</code> element inside a <code>&lt;h2&gt;</code> 
+        and that this is not allowed.
+    </p></div>
+<div class="section"><h2>How To Fix It</h2>
+    
+    <h3>If the error makes immediate sense</h3>
+    <p>
+        If you look at the line and column number given in the specific error
+        you encountered and you can see that you clearly have 
+        a <code>&lt;div&gt;</code> element inside a <code>&lt;h2&gt;</code>,
+        you need to re-organise your markup so that this is not the case.
+    </p>    
+    <p>
+        This can be a non-trivial task but here is some general advice:
+    </p>   
+    <ul>
+        <li>
+            <p>
+                don't use block-level elements inside inline elements
+            </p>
+        </li>        
+        <li>
+            <p>
+                some elements can contain only a small set of child elements,
+                such as lists (<code>&lt;ol&gt;</code> and <code>&lt;ul&gt;</code>)
+                allowing only list items (<code>&lt;li&gt;</code>) as direct
+                children                
+            </p>
+        </li>
+    </ul>
+    <h3>If the error does not make immediate sense</h3>
+    <p>
+        Check again. And then check again one more time.
+    </p>
+    <p>
+        The HTML validator can get confused. There's
+        only so much sense it can try to derive from invalid markup.
+    </p>
+    <p>
+       If there really is not a
+       <code>&lt;div&gt;</code> element inside a <code>&lt;h2&gt;</code>
+       in your markup at the point indicated by the line and column number in the
+       specific message you encountered, you will probably find that
+       there is an unclosed <code>&lt;div&gt;</code> element further up
+       the page that is causing confusion.
+    </p></div>

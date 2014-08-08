@@ -1,0 +1,101 @@
+---
+layout: error
+title: "Element &quot;font&quot; undefined"
+categories: [errors, html-validation, element-x-undefined]
+complete: true
+is_parent: false
+parent_path: element-x-undefined
+parent_title: "Element &quot;X&quot; undefined"
+relations: [invalid-element]
+error_elements: [font]
+error_attribute: null
+equivalent_errors: []
+date: 2014-01-20
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+
+        
+
+    
+    
+    
+    
+    
+    <div data-generic="true">
+        <p>
+            Your markup contains an uppercase <code>&lt;FONT&gt; … &lt;/FONT&gt;</code>
+            in a XHTML document.
+        </p>    
+        <p>
+            XTML documents must contain only lowercase element names.
+        </p>       
+        <p>
+            Use:
+        </p>
+        <pre>&lt;font&gt;&lt;/font&gt;</pre>
+        <p>
+            instead of:            
+        </p>
+        <pre>&lt;FONT&gt;&lt;FONT&gt;</pre>
+    </div>
+
+    <div data-generic="true" class="promo">
+    <div class="alert alert-success" role="alert">
+        <a href="https://gears.simplytestable.com/?utm_source=help-html-error&utm_medium=most-likely&utm_campaign=help-html">
+            One-click full-site HTML validation: <span>test your site now</span>
+            <i class="fa fa-caret-right"></i>
+        </a>
+    </div>
+</div></div>
+<div class="section"><h2>What This Error Means</h2>
+
+         
+    
+    <div data-generic="true">
+        <p>
+            This error is stating that your markup contains a <code>&lt;font&gt;</code>
+            element (or <code>&lt;{{%0_ELEMENT}}&gt;</code>) and that such
+            an element is not defined.
+        </p>    
+        <p>
+            HTML consists of a predefined set of elements. You can't validly use
+            an element that does not exist.
+        </p>      
+    </div></div>
+<div class="section"><h2>How To Fix It</h2>
+     
+    
+          
+    
+    <div data-generic="true">
+        <h3>For uppercase element names</h3>
+        <p>
+            You have a XHTML document which recognises only lowercase element
+            names as being valid and have in your markup a element in uppercase.
+        </p>
+        <p>
+            Use:
+        </p>
+        <pre>&lt;font&gt;&lt;/font&gt;</pre>
+        <p>
+            instead of:            
+        </p>
+        <pre>&lt;FONT&gt;&lt;FONT&gt;</pre>        
+        
+        
+        <h3>In general</h3>
+        <p>
+            If you've not inadvertently used an uppercase element in place of the
+            correct lowercase element, you have very likely used an element
+            that does not exist in the version of HTML you are using.
+        </p>    
+        <p>
+            Check the <a href="http://en.wikipedia.org/wiki/Document_Type_Declaration">document type declaration</a>
+            used in your markup. Fix this if not correct. 
+        </p>
+        <p>
+            If you're still running into 'element "font" undefined' errors, you're
+            simply using an invalid, undefined element. Don't.
+        </p>        
+    </div></div>

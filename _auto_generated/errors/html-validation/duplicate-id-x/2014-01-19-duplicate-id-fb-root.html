@@ -1,0 +1,91 @@
+---
+layout: error
+title: "Duplicate id fb-root."
+categories: [errors, html-validation, duplicate-id-x]
+complete: true
+is_parent: false
+parent_path: duplicate-id-x
+parent_title: "Duplicate id X."
+relations: []
+error_elements: []
+error_attribute: null
+equivalent_errors: [id-x-already-defined]
+date: 2014-01-19
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+
+     
+
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="fb-root">
+        <p>
+            Your page contains more than one Facebook plugin (such as the <a href="https://developers.facebook.com/docs/reference/plugins/like/">Like button</a>)
+            and your markup incorrectly includes the <a href="https://developers.facebook.com/docs/reference/javascript/">Facebook Javascript SDK</a> more than
+            once.
+        </p>
+        <p>
+            You must include the Javascript SDK only once, ideally right after
+            the opening <code>&lt;body&gt;</code> tag, and then place the code
+            for the plugin wherever you want the plugin to appear.
+        </p>
+        <p>
+            Refer to the <a href="https://developers.facebook.com/docs/reference/plugins/">Facebook plugin documentation</a>
+            for the plugin you are using and refer to the given code samples
+            for details on how to do this.
+        </p>
+        <p>
+            A <a href="http://www.zealoter.com/2011/09/how-to-fix-duplicate-id-fb-root.html">relevant blog post</a>
+            demonstrates this process for the Like button.
+        </p>
+    </div>     
+
+    
+
+    <div data-generic="true" class="promo">
+    <div class="alert alert-success" role="alert">
+        <a href="https://gears.simplytestable.com/?utm_source=help-html-error&utm_medium=most-likely&utm_campaign=help-html">
+            One-click full-site HTML validation: <span>test your site now</span>
+            <i class="fa fa-caret-right"></i>
+        </a>
+    </div>
+</div></div>
+<div class="section"><h2>What This Error Means</h2>    
+    
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="fb-root">   
+        <p>
+            In order to uniquely identify a single element, the value of the <code>id</code>
+            attribute must be unique within the given document.
+        </p>        
+        <p>
+            In the context of Facebook plugins, a <code>div</code> element with
+            a specific ID attribute is required when including the Facebook JavaScript SDK:
+        </p>
+        <pre>&lt;div id="fb-root"&gt;&lt;/div&gt;</pre>
+        <p>
+            This error occurs when you incorrectly include the above line more than once.
+        </p>
+    </div>       
+
+    </div>
+<div class="section"><h2>How To Fix It</h2>
+
+     
+
+    <div data-parameter-specific="true" data-parameter-keys="%0" data-parameter-values="fb-root">
+        <p>
+            You must include the Javascript SDK only once, ideally right after
+            the opening <code>&lt;body&gt;</code> tag, and then place the code
+            for the plugin wherever you want the plugin to appear.
+        </p>
+        <p>
+            Refer to the <a href="https://developers.facebook.com/docs/reference/plugins/">Facebook plugin documentation</a>
+            for the plugin you are using and refer to the given code samples
+            for details on how to do this.
+        </p>
+        <p>
+            A <a href="http://www.zealoter.com/2011/09/how-to-fix-duplicate-id-fb-root.html">relevant blog post</a>
+            demonstrates this process for the Like button.
+        </p>        
+    </div>    
+
+    </div>

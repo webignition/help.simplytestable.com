@@ -10,8 +10,9 @@ task :default do
   puts 'Building ...'
   #fetch_dependencies
   build_html_validation_error_posts
+  #normalise_auto_generated_posts
   #system("rm sitemap.xml")
-  system("jekyll build")
+  #system("jekyll build")
 end
 
 task :rebuild do
@@ -26,8 +27,13 @@ def jekyll
 end
 
 def build_html_validation_error_posts
-  system("node _build/html-validation-error-posts.js")
+  puts 'Generating HTML validation error posts ...'
+  system("node _build/generate-html-validation-error-posts.js")
 end
+
+#def normalise_auto_generated_posts
+#  system("node _build/normalise-auto-generated-posts.js")
+#end
 
 def remove_dependencies  
   config = YAML.load_file("manifest.yml")
