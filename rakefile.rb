@@ -7,12 +7,13 @@ DEPENDENCY_MANIFEST = "manifest.yml"
 PLUGIN_DIRECTORY = "_plugins"
 
 task :default do  
-  puts 'Building ...'
+  #puts 'Building ...'
   #fetch_dependencies
   build_html_validation_error_posts
   #normalise_auto_generated_posts
   #system("rm sitemap.xml")
-  #system("jekyll build")
+  puts 'Jekyll build ...'
+  system("jekyll build")
 end
 
 task :rebuild do
@@ -29,6 +30,16 @@ end
 def build_html_validation_error_posts
   puts 'Generating HTML validation error posts ...'
   system("node _build/generate-html-validation-error-posts.js")
+
+  puts 'Generating home top HTML validation errors list ...'
+  system("node _build/generate-home-list.js")
+
+  #
+  #
+  #
+
+  puts 'Copying generated content to _posts ...'
+  system("cp -R _auto_generated/* _posts/")
 end
 
 #def normalise_auto_generated_posts

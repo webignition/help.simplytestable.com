@@ -1,0 +1,63 @@
+---
+layout: error
+title: "An img element must have an alt attribute, except under certain conditions. for details, consult guidance on providing text alternatives for images."
+categories: [errors, html-validation]
+complete: true
+is_parent: true
+is_standalone: true
+relations: []
+error_elements: [img]
+error_attribute: null
+equivalent_errors: [required-attribute-alt-not-specified]
+---
+
+<div class="section"><h2>Most Likely Cause and Fix</h2>
+    <p>
+        Your markup contains an <code>&lt;img&gt;</code> element
+        that lacks the required <code>alt</code> attribute.
+    </p>
+    <p>
+        Use:
+    </p>
+    <pre>&lt;img src="http://example.com/image.png" alt="Relevant textual alternative to the image" &hellip; /&gt;</pre>
+    <p>
+        instead of:
+    </p>
+    <pre>&lt;img src="http://example.com/image.png" &hellip; /&gt;</pre>
+    <div data-generic="true" class="promo">
+        <div class="alert alert-success" role="alert">
+            <a href="https://gears.simplytestable.com/?utm_source=help-html-error&utm_medium=most-likely&utm_campaign=help-html">
+                One-click full-site HTML validation: <span>test your site now</span>
+                <i class="fa fa-caret-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="section"><h2>What This Means</h2>
+    <p>
+        The <code>&lt;img&gt;</code> element must contain an <code>alt</code>
+        attribute.
+    </p>    
+    <p>
+        This error is telling you that your markup contains a <code>&lt;img&gt;</code>
+        element that is lacking the required <code>alt</code> attribute.
+    </p>
+</div>
+<div class="section"><h2>How To Fix It</h2>
+    <p>
+        The line and column number of specific error message you encountered will 
+        point you to the relevant <code>&lt;img&gt;</code> element.
+
+    </p>    
+    <p>
+        Add the missing, required, <code>alt</code> attribute.
+    </p>
+    <p>
+        Use:
+    </p>
+    <pre>&lt;img src="http://example.com/image.png" alt="Relevant textual alternative to the image" &hellip; /&gt;</pre>
+    <p>
+        instead of:
+    </p>
+    <pre>&lt;img src="http://example.com/image.png" &hellip; /&gt;</pre>
+</div>
