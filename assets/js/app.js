@@ -70,5 +70,15 @@ $(document).ready(function() {
     $('body').scrollspy({
         target: '.toc-container',
         offset: 90
-    })
+    });
+
+    if ($(window.location.hash).length) {
+        var target = $(window.location.hash);
+
+        if (target.length) {
+            $('html,body').animate({
+                scrollTop: (target.offset().top) - 80
+            }, 400);
+        }
+    }
 });
