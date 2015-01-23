@@ -11,7 +11,7 @@ String.prototype.hashCode = function(){
 
 $(document).ready(function() {
     $('body.toc .post').each(function () {
-        var headings = $('h2', this);
+        var headings = $('h2, h3', this);
         if (headings.length === 0) {
             return;
         }
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
             thisHeading.attr('id', headingId);
 
-            var listItem = $('<li><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>');
+            var listItem = $('<li class="' + this.nodeName + '"><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>');
 
             if (index === 0) {
                 listItem.addClass('active');

@@ -143,6 +143,10 @@ body.error .promo a span {
     margin-left: 3px;
 }
 
+.toc-container li.H3 a {
+    padding-left: 14px;
+}
+
 body.toc {
     padding-bottom: 600px;
 }
