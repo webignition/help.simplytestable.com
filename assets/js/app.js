@@ -11,32 +11,32 @@ String.prototype.hashCode = function(){
 
 $(document).ready(function() {
     $('body.toc .post').each(function () {
-        var headings = $('h2, h3', this);
+        var headings = $('h2', this);
         if (headings.length === 0) {
             return;
         }
-        
+
         var tocList = $('<ul class="sidebar-list list-unstyled link-list nav" />');
-        
+
         headings.each(function (index) {
             var thisHeading = $(this);
             var headingId = 'h' + thisHeading.text().hashCode();
 
             thisHeading.attr('id', headingId);
 
-            var listItem = $('<li class="' + this.nodeName + '"><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>');
+            var listItem = $('<li><a href="#'+headingId+'">'+thisHeading.text()+'</a></li>');
 
             if (index === 0) {
                 listItem.addClass('active');
             }
-            
+
             tocList.append(listItem);
         });
-        
+
         var sidebarItem = $('<div class="toc-container" />');
         sidebarItem.append('<h3>In this document</h3>');
         sidebarItem.append(tocList);
-        
+
         $('.sidebar').append(sidebarItem);
 
         sidebarItem.affix({
@@ -44,7 +44,7 @@ $(document).ready(function() {
                 top: 212
             }
         });
-        
+
     });
 
     $('.toc-container a').click(function () {
